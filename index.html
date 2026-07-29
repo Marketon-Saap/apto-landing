@@ -573,11 +573,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
        Convierte grids verticales largos en scroll horizontal one-swipe-per-card.
        Reduce ~5000px de altura total mobile sin sacrificar contenido. */
     @media (max-width: 767px) {
-      /* Safety net · texto largo no rompe layout de cards en scroll-x */
+      /* Safety net · texto largo no rompe layout de cards en scroll-x · sin hyphens auto (rompe palabras españolas) */
       .card__title, .card__body, .producto__label, .producto__desc, .paso h3, .paso .card__body {
         overflow-wrap: break-word;
         word-wrap: break-word;
-        hyphens: auto;
+        hyphens: manual;
+        -webkit-hyphens: manual;
       }
       /* Dolores mobile: scroll horizontal 3 cards */
       .cards-3 {
@@ -717,29 +718,31 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .card__title { font-size: 1.25rem; margin-bottom: 12px; color: var(--ink); font-family: var(--font-heading); }
     .card__body { color: var(--ink-muted); font-size: 15.5px; margin: 0; line-height: 1.55; }
 
-    /* Pilares (5 en grid) */
+    /* Pilares (5 cards) · flexbox wrap con última fila centrada */
     .pilares {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
       gap: 24px;
     }
-    @media (max-width: 900px) { .pilares { grid-template-columns: 1fr; } }
-    @media (min-width: 901px) {
-      .pilares { grid-template-columns: repeat(6, 1fr); }
-      .pilares .card:nth-child(1) { grid-column: 1 / span 2; }
-      .pilares .card:nth-child(2) { grid-column: 3 / span 2; }
-      .pilares .card:nth-child(3) { grid-column: 5 / span 2; }
-      .pilares .card:nth-child(4) { grid-column: 2 / span 2; }
-      .pilares .card:nth-child(5) { grid-column: 4 / span 2; }
+    .pilares .card {
+      flex: 0 1 340px;
+      min-width: 280px;
     }
+    @media (max-width: 900px) { .pilares .card { flex: 1 1 100%; min-width: 0; } }
 
-    /* Productos (grid navy) */
+    /* Productos (5 cards navy) · 3+2 balanceado con última fila centrada */
     .productos {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
     }
-    @media (max-width: 900px) { .productos { grid-template-columns: repeat(2, 1fr); } }
+    .producto {
+      flex: 0 1 280px;
+      min-width: 240px;
+    }
+    @media (max-width: 900px) { .producto { flex: 1 1 100%; min-width: 0; } }
     .producto {
       background: rgba(255,255,255,.05);
       border: 1px solid rgba(255,255,255,.1);
@@ -822,12 +825,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     }
     @media (max-width: 900px) { .casos-secundarios { grid-template-columns: 1fr; } }
 
-    /* Método (3 pasos) */
+    /* Método (4 etapas) · fila única desktop · 2×2 tablet · scroll horizontal mobile */
     .metodo {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
     }
+    @media (max-width: 1200px) and (min-width: 901px) { .metodo { grid-template-columns: repeat(2, 1fr); gap: 24px; } }
     @media (max-width: 900px) { .metodo { grid-template-columns: 1fr; } }
     .paso {
       background: var(--paper);
