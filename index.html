@@ -726,10 +726,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       gap: 24px;
     }
     .pilares .card {
-      flex: 0 1 340px;
-      min-width: 280px;
+      flex: 0 0 340px;
+      max-width: 380px;
     }
-    @media (max-width: 900px) { .pilares .card { flex: 1 1 100%; min-width: 0; } }
+    @media (max-width: 1400px) { .pilares .card { flex: 0 0 calc(33.333% - 16px); } }
+    @media (max-width: 900px) { .pilares .card { flex: 1 1 100%; max-width: none; } }
 
     /* Productos (5 cards navy) · 3+2 balanceado con última fila centrada */
     .productos {
@@ -742,11 +743,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       margin-right: auto;
     }
     .producto {
-      flex: 0 1 340px;
-      min-width: 280px;
+      flex: 0 0 340px;
       max-width: 380px;
     }
-    @media (max-width: 900px) { .producto { flex: 1 1 100%; min-width: 0; } }
+    @media (max-width: 1400px) { .producto { flex: 0 0 calc(33.333% - 14px); } }
+    @media (max-width: 900px) { .producto { flex: 1 1 100%; max-width: none; } }
     .producto {
       background: rgba(255,255,255,.05);
       border: 1px solid rgba(255,255,255,.1);
