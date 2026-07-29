@@ -1806,6 +1806,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             industry: workerPayload.industry || '',
             company_size: workerPayload.company_size || '',
             country: 'MX', // default MX · Worker enriquece con CF-IPCountry
+            // Form free-text (message del textarea "qué te está trabando")
+            message: workerPayload.message || '',
+            message_length: (workerPayload.message || '').length,
             // Attribution IDs
             gclid: new URLSearchParams(location.search).get('gclid') || '',
             fbclid: new URLSearchParams(location.search).get('fbclid') || '',
