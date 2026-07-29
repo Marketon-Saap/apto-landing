@@ -808,7 +808,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       color: var(--ink); font-weight: 500;
       margin-bottom: 24px;
     }
-    .caso__link { font-weight: 600; color: var(--blue-cta); font-family: var(--font-heading); text-transform: uppercase; letter-spacing: 0.06em; font-size: 13px; }
+    .caso__link { font-weight: 600; color: var(--blue-cta); font-family: var(--font-heading); text-transform: uppercase; letter-spacing: 0.06em; font-size: 13px; display: inline-flex; align-items: center; min-height: 44px; padding: 10px 0; }
     .caso__visual {
       border-radius: 12px; overflow: hidden;
       background: var(--paper-cream);
@@ -921,7 +921,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       font-size: 12px; color: var(--ink-muted);
       text-align: center; margin-top: 18px;
     }
-    .form-privacy a { color: var(--blue-cta); }
+    .form-privacy a { color: var(--blue-cta); display: inline-block; padding: 8px 2px; min-height: 32px; }
+    @media (max-width: 767px) { .form-privacy a { min-height: 44px; padding: 12px 4px; font-size: 14px; } }
     .form-message {
       padding: 14px 18px; border-radius: var(--radius-input);
       font-size: 14px; margin-bottom: 20px;
