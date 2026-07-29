@@ -1492,12 +1492,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div class="container">
       <div class="conoce__grid">
         <div class="conoce__copy">
-          <p class="eyebrow" style="color:#60A5FA">Conoce al equipo</p>
+          <p class="eyebrow" style="color:#60A5FA">Conoce a los socios</p>
           <h2 class="conoce__title">Antes de agendar, conoce quién te va a atender.</h2>
-          <p class="conoce__body">Álvaro Aguirre — socio senior de APTO. Es quien toma la primera llamada contigo, con o sin tu equipo. Sin filtros de agencia, sin BDRs, sin discovery calls con juniors.</p>
+          <p class="conoce__body">Álvaro Plasencia y Carlos — socios senior de APTO. Uno de ellos toma la primera llamada contigo, con o sin tu equipo. Sin filtros de agencia, sin BDRs, sin discovery calls con juniors.</p>
           <ul class="conoce__list">
             <li>10 años acompañando líderes de innovación en México</li>
-            <li>Enfoque en Product y Business Design con equipo propio de construcción</li>
+            <li>Product y Business Design con equipo propio de construcción</li>
             <li>Aterrizado, sin humo, sin metodología encima del problema</li>
           </ul>
         </div>
@@ -1506,7 +1506,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   data-yt-id="40gjKGn8qME"
                   aria-label="Reproducir: APTO — Innovación especializada en product y business design">
             <img src="./assets/team/alvaro-cover.jpg"
-                 alt="Álvaro Aguirre, socio senior de APTO"
+                 alt="Álvaro Plasencia, socio senior de APTO"
                  loading="lazy" decoding="async" width="1280" height="720"
                  fetchpriority="low">
             <span class="yt-facade__play" aria-hidden="true">
@@ -1762,7 +1762,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           if (!id) return;
           track('video_play', { video_id: id, video_provider: 'youtube', location: btn.id || 'facade' });
           const iframe = document.createElement('iframe');
-          iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&modestbranding=1&playsinline=1`;
+          // enablejsapi=1 permite que GTM trigger YouTube Video escuche eventos (start · progress 25/50/75 · complete)
+          iframe.src = `https://www.youtube.com/embed/${id}?autoplay=1&rel=0&modestbranding=1&playsinline=1&enablejsapi=1&origin=${encodeURIComponent(location.origin)}`;
           iframe.title = btn.getAttribute('aria-label') || 'YouTube video';
           iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
           iframe.allowFullscreen = true;
