@@ -251,7 +251,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       .hero { padding: 40px 0 56px; }
     }
     .hero__eyebrow { color: rgba(255,255,255,.7); font-size: 13px; text-transform: uppercase; letter-spacing: 0.12em; font-weight: 500; font-family: var(--font-heading); margin-bottom: 20px; }
-    @media (max-width: 767px) { .hero__eyebrow { font-size: 11.5px; margin-bottom: 12px; } }
+    @media (max-width: 767px) { .hero__eyebrow { font-size: 12.5px; margin-bottom: 12px; } }
     .hero__title { color: var(--paper); margin-bottom: 28px; }
     @media (max-width: 767px) { .hero__title { margin-bottom: 20px; font-size: clamp(1.75rem, 8.5vw, 2.5rem) !important; line-height: 1.12 !important; } }
     .hero__sub { color: rgba(255,255,255,.82); font-size: clamp(1.0625rem, 1.6vw, 1.25rem); line-height: 1.55; max-width: 640px; margin-bottom: 40px; font-family: var(--font-body); }
@@ -276,7 +276,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .btn--outline:hover { background: rgba(255,255,255,.1); border-color: var(--paper); }
     .btn__arrow { display: inline-block; transition: transform 200ms ease; }
     .btn:hover .btn__arrow { transform: translateX(4px); }
-    .link-secondary { color: rgba(255,255,255,.72); font-size: 15px; font-family: var(--font-heading); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 500; }
+    .link-secondary { color: rgba(255,255,255,.72); font-size: 15px; font-family: var(--font-heading); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 500; display: inline-flex; align-items: center; min-height: 44px; padding: 10px 0; }
     .link-secondary:hover { color: var(--paper); }
     .hero__trust { color: rgba(255,255,255,.72); font-size: 13px; margin-top: 24px; }
     .hero__visual {
@@ -300,6 +300,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     }
     .proof__logo {
       height: 56px; width: auto; max-width: 160px; opacity: .85;
+      aspect-ratio: 16 / 6; /* placeholder para reservar espacio antes de load · reduce CLS */
       object-fit: contain;
       transition: opacity 200ms ease;
     }
@@ -990,7 +991,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     }
     .footer__col ul { list-style: none; padding: 0; margin: 0; }
     .footer__col li { margin-bottom: 10px; }
-    .footer__col a { color: rgba(255,255,255,.7); font-size: 14px; }
+    .footer__col a { color: rgba(255,255,255,.7); font-size: 14px; display: inline-flex; align-items: center; min-height: 32px; padding: 6px 0; }
+    @media (max-width: 767px) { .footer__col a { min-height: 44px; padding: 10px 0; font-size: 15px; } }
     .footer__col a:hover { color: var(--paper); text-decoration: none; }
     .footer__bottom {
       margin-top: 56px; padding-top: 24px;
@@ -1003,8 +1005,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       filter: brightness(0) saturate(100%) invert(78%) sepia(41%)
               saturate(6084%) hue-rotate(199deg) brightness(105%) contrast(101%);
     }
-    /* Footer social · target size WCAG 2.2 ≥24px */
-    .footer__social a { padding: 4px 0; }
+    /* Footer social · WCAG 2.2 SC 2.5.8 · 44x44 preferido */
+    .footer__social a { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; padding: 7px; }
 
     /* Sticky bottom CTA mobile */
     .sticky-cta-mobile {
@@ -1065,7 +1067,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                  id="hero-video">
             <source src="https://apto.b-cdn.net/slide-1-vp9-chrome.webm" type="video/webm">
             <source src="https://apto.b-cdn.net/slide-1-hevc-safari.mp4" type="video/mp4; codecs=hvc1">
-            <img src="./assets/hero-abstract-to-concrete.jpg" alt="De lo abstracto a lo concreto — la metáfora visual del approach APTO" fetchpriority="high">
+            <img src="./assets/hero-abstract-to-concrete.jpg" alt="De lo abstracto a lo concreto — la metáfora visual del approach APTO" fetchpriority="high" width="1920" height="1080" decoding="async">
           </video>
         </div>
       </div>
