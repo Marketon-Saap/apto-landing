@@ -1,0 +1,64 @@
+<!DOCTYPE html><html><head><style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:100%; height:100%; overflow:hidden; -webkit-font-smoothing:antialiased; }
+  body { font-family:'Inter', -apple-system, sans-serif; color:#F5F0E8; }
+  .canvas {
+    width:100%; height:100vh;
+    display:flex; flex-direction:column;
+    position:relative; overflow:hidden;
+  }
+  .heading { font-family:'Space Grotesk', sans-serif; font-weight:600; line-height:0.92; letter-spacing:-0.02em; }
+  .body-text { font-family:'Inter', sans-serif; font-weight:400; line-height:1.4; }
+  .eyebrow {
+    font-family:'Space Grotesk', sans-serif; font-weight:600;
+    font-size:14px; text-transform:uppercase; letter-spacing:0.16em;
+    color:#3A86FF;
+  }
+  .cta {
+    display:inline-flex; align-items:center; gap:8px;
+    background:#005DE0; color:#F5F0E8;
+    padding:16px 28px; border-radius:100px;
+    font-family:'Space Grotesk', sans-serif; font-weight:600;
+    font-size:15px; letter-spacing:0.02em;
+  }
+  .cta .arrow { font-size:18px; line-height:1; }
+  .logo-footer {
+    font-family:'Space Grotesk', sans-serif; font-weight:700;
+    font-size:16px; letter-spacing:0.24em; color:#F5F0E8;
+  }
+  .logo-footer .dot { color:#3A86FF; }
+  .divider { height:1px; background:rgba(255,255,255,.12); }
+
+    .canvas { background:#050E24; padding:80px; justify-content:space-between; }
+    .grain {
+      position:absolute; inset:0; opacity:.04; pointer-events:none;
+      background-image:radial-gradient(circle at 20% 30%, #3A86FF 1px, transparent 1px);
+      background-size:20px 20px;
+    }
+    .header { z-index:2; }
+    .hero {
+      z-index:2; text-align:left;
+      font-size:clamp(120px, 18vw, 200px); line-height:0.88; letter-spacing:-0.035em;
+    }
+    .hero .neq { color:#F59E0B; font-weight:700; }
+    .sub {
+      z-index:2; max-width:700px;
+      font-size:22px;
+      color:rgba(245,240,232,.72); font-weight:400; line-height:1.5;
+    }
+    .footer { z-index:2; display:flex; justify-content:space-between; align-items:center; }
+  </style></head><body>
+    <div class="canvas">
+      <div class="grain"></div>
+      <div class="header">
+        <div class="eyebrow">Consultoría de innovación</div>
+      </div>
+      <h1 class="heading hero">Más software<br><span class="neq">≠</span> solución.</h1>
+      <p class="body-text sub">Estrategia, diseño y tecnología resueltas por el mismo equipo. Nos quedamos hasta que el sistema opera — no entregamos un deck y desaparecemos.</p>
+      <div class="footer">
+        <div class="cta">Agenda tu sesión <span class="arrow">→</span></div>
+        <div class="logo-footer">APTO<span class="dot">.</span></div>
+      </div>
+    </div>
+  </body></html>
