@@ -886,6 +886,49 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       .metodo__fase { padding: 28px 24px; gap: 24px; }
     }
 
+    /* Section CTA · botón scroll al form reutilizable · cream (default) + navy variant */
+    .section-cta { display: flex; justify-content: center; margin-top: 44px; }
+    .section-cta__link {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: var(--font-heading); font-weight: 600;
+      font-size: 15px; letter-spacing: 0.01em;
+      text-decoration: none;
+      padding: 14px 26px; border-radius: 100px;
+      color: var(--navy);
+      border: 1px solid rgba(10,26,59,.22);
+      background: transparent;
+      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+    }
+    .section-cta__link .arr { font-size: 18px; line-height: 1; transition: transform 180ms ease; }
+    .section-cta__link:hover { border-color: var(--navy); background: rgba(10,26,59,.04); }
+    .section-cta__link:hover .arr { transform: translateX(3px); }
+    .section--navy .section-cta__link {
+      color: var(--paper);
+      border-color: rgba(96,165,250,.45);
+    }
+    .section--navy .section-cta__link:hover {
+      border-color: rgba(96,165,250,.85);
+      background: rgba(96,165,250,.10);
+    }
+
+    /* LinkedIn icon en partner cards */
+    .partner-card__header { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+    .partner-card__linkedin {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 26px; height: 26px; border-radius: 6px;
+      color: rgba(255,255,255,.5);
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.08);
+      transition: color 180ms ease, background 180ms ease, border-color 180ms ease;
+      flex-shrink: 0;
+    }
+    .partner-card__linkedin:hover {
+      color: #60A5FA;
+      background: rgba(96,165,250,.12);
+      border-color: rgba(96,165,250,.40);
+    }
+    .partner-card__linkedin svg { width: 14px; height: 14px; display: block; }
+
     /* Conoce al equipo · Fila horizontal foto compacta + bio + video complementario */
     #conoce-equipo { padding: 88px 0 72px; border-bottom: 1px solid rgba(255,255,255,.06); }
     .conoce__header { max-width: 640px; margin: 0 auto 44px; text-align: center; }
@@ -1303,6 +1346,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           </div>
         </div>
       </div>
+
+      <div class="section-cta">
+        <a class="section-cta__link" href="#cta-form" data-track="problema_cta_click">¿Te suena? Cuéntanos qué está pasando <span class="arr" aria-hidden="true">→</span></a>
+      </div>
     </div>
   </section>
 
@@ -1427,6 +1474,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <p class="card__body">Modelo de trabajo con documentación completa — requerimientos, especificaciones y criterios de aceptación — para que construcción no tenga que adivinar. Se reduce el retrabajo por ambigüedad a mínimos.</p>
         </article>
       </div>
+
+      <div class="section-cta">
+        <a class="section-cta__link" href="#cta-form" data-track="casos_cta_click">Podemos hacer algo similar contigo <span class="arr" aria-hidden="true">→</span></a>
+      </div>
     </div>
   </section>
 
@@ -1536,6 +1587,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           </div>
         </div>
       </div>
+
+      <div class="section-cta">
+        <a class="section-cta__link" href="#cta-form" data-track="metodo_cta_click">Empieza con la fase 1 · Inmersión <span class="arr" aria-hidden="true">→</span></a>
+      </div>
     </div>
   </section>
 
@@ -1555,7 +1610,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                alt="Álvaro Plasencia, socio senior de APTO"
                loading="lazy" decoding="async" width="800" height="1000">
           <div class="partner-card__body">
-            <h3 class="partner-card__name">Álvaro Plasencia</h3>
+            <div class="partner-card__header">
+              <h3 class="partner-card__name">Álvaro Plasencia</h3>
+              <a class="partner-card__linkedin"
+                 href="https://www.linkedin.com/in/alvaroplasencia/"
+                 target="_blank" rel="noopener noreferrer"
+                 aria-label="LinkedIn de Álvaro Plasencia"
+                 data-track="partner_linkedin_alvaro_click">
+                <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20.5 2h-17A1.5 1.5 0 0 0 2 3.5v17A1.5 1.5 0 0 0 3.5 22h17a1.5 1.5 0 0 0 1.5-1.5v-17A1.5 1.5 0 0 0 20.5 2ZM8 19H5v-9h3v9Zm-1.5-10.28A1.72 1.72 0 1 1 8.22 7 1.72 1.72 0 0 1 6.5 8.72ZM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0 0 13 14.19a2.16 2.16 0 0 0-.05.61V19h-3s.04-8.18 0-9h3v1.27a3.4 3.4 0 0 1 3.08-1.4c1.79 0 3.05 1.16 3.05 3.7L19 19Z"/></svg>
+              </a>
+            </div>
             <p class="partner-card__role">Socio · Estrategia y negocio</p>
             <p class="partner-card__bio">Dirige estrategia y modelos de negocio digitales. Diseña la ruta que conecta producto, cliente y tecnología. Formado en IPADE, lidera equipos de estrategia, diseño y desarrollo.</p>
           </div>
@@ -1567,7 +1631,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                alt="Carlos Beltrán, socio senior de APTO"
                loading="lazy" decoding="async" width="800" height="1000">
           <div class="partner-card__body">
-            <h3 class="partner-card__name">Carlos Beltrán</h3>
+            <div class="partner-card__header">
+              <h3 class="partner-card__name">Carlos Beltrán</h3>
+              <a class="partner-card__linkedin"
+                 href="https://www.linkedin.com/in/cbeltran1212/"
+                 target="_blank" rel="noopener noreferrer"
+                 aria-label="LinkedIn de Carlos Beltrán"
+                 data-track="partner_linkedin_carlos_click">
+                <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20.5 2h-17A1.5 1.5 0 0 0 2 3.5v17A1.5 1.5 0 0 0 3.5 22h17a1.5 1.5 0 0 0 1.5-1.5v-17A1.5 1.5 0 0 0 20.5 2ZM8 19H5v-9h3v9Zm-1.5-10.28A1.72 1.72 0 1 1 8.22 7 1.72 1.72 0 0 1 6.5 8.72ZM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0 0 13 14.19a2.16 2.16 0 0 0-.05.61V19h-3s.04-8.18 0-9h3v1.27a3.4 3.4 0 0 1 3.08-1.4c1.79 0 3.05 1.16 3.05 3.7L19 19Z"/></svg>
+              </a>
+            </div>
             <p class="partner-card__role">Socio · Diseño y experiencia</p>
             <p class="partner-card__bio">Dirige diseño y experiencia. 15+ años construyendo productos y ecosistemas de servicio para CPG, banca, movilidad y retail. Cree que un buen producto empieza por entender a la persona que lo va a usar.</p>
           </div>
@@ -1575,7 +1648,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       </div>
 
       <div class="conoce__cta-row">
-        <a class="conoce__cta-link" href="#cta-form">Agenda con Álvaro o Carlos <span aria-hidden="true">→</span></a>
+        <a class="conoce__cta-link" href="#cta-form" data-track="conoce_cta_click">Agenda con Álvaro o Carlos <span aria-hidden="true">→</span></a>
       </div>
 
       <div class="conoce__video-block">
@@ -1728,6 +1801,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <summary>¿Qué necesitan de mí para la sesión de descubrimiento?</summary>
           <div class="faq-item__body">30 minutos. Carlos, socio senior, toma la llamada. Nosotros preparamos las preguntas; tú traes el contexto de operación.</div>
         </details>
+      </div>
+
+      <div class="section-cta">
+        <a class="section-cta__link" href="#cta-form" data-track="faq_cta_click">¿Sin dudas? Agenda tu sesión de descubrimiento <span class="arr" aria-hidden="true">→</span></a>
       </div>
     </div>
   </section>
