@@ -1865,6 +1865,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         // GA4 client_id (from _ga cookie)
         const gaMatch = document.cookie.match(/_ga=GA\d+\.\d+\.([^;]+)/);
         if (gaMatch) context.client_id = gaMatch[1];
+        // Meta Pixel event_id · generado ANTES del POST para dedup client+server (48h window)
+        // Worker usa este mismo id en CAPI · tag 85 GTM lo lee del dataLayer form_submit_success
+        const metaEventId = 'apto-lead-' + Date.now() + '-' + Math.random().toString(36).slice(2, 10);
+        context.event_id = metaEventId;
+        window.__aptoLastLeadEventId = metaEventId;
 
         // Payload flat para Worker Marketon (Contact + Deal + CAPI + GA4 + email)
         const workerPayload = {
@@ -1894,6 +1899,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           const data = await res.json();
 
           track('form_submit_success', {
+            // Meta Pixel event_id · dedup con CAPI server-side (mismo id que Worker CAPI usa)
+            event_id: metaEventId,
             // User data (raw · GA4/Meta hashea auto en sus lados)
             email: workerPayload.email,
             phone: workerPayload.phone || '',
