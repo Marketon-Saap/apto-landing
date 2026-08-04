@@ -898,26 +898,60 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       .metodo__fase { padding: 28px 24px; gap: 24px; }
     }
 
-    /* Conoce al equipo · YouTube facade */
+    /* Conoce al equipo · Portraits socios + video complementario */
     #conoce-equipo { padding: 96px 0; }
-    .conoce__grid {
+    .conoce__header { max-width: 720px; margin: 0 auto 56px; text-align: center; }
+    .conoce__header .eyebrow { display: inline-block; color: #60A5FA; margin-bottom: 12px; }
+    .conoce__title { color: var(--paper); font-family: var(--font-heading); font-size: clamp(28px, 3.6vw, 40px); line-height: 1.1; letter-spacing: -0.02em; margin: 0 0 16px; }
+    .conoce__intro { color: rgba(255,255,255,.75); font-size: 17px; line-height: 1.55; margin: 0; }
+    .conoce__partners {
       display: grid;
-      grid-template-columns: 1fr 1.2fr;
-      gap: 56px;
-      align-items: center;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-bottom: 48px;
     }
-    @media (max-width: 900px) { .conoce__grid { grid-template-columns: 1fr; gap: 32px; } #conoce-equipo { padding: 64px 0; } }
-    .conoce__copy .eyebrow { display: inline-block; }
-    .conoce__title { color: var(--paper); font-family: var(--font-heading); margin: 8px 0 20px; }
-    .conoce__body { color: rgba(255,255,255,.82); font-size: 1.0625rem; line-height: 1.55; margin-bottom: 24px; }
-    .conoce__list { list-style: none; padding: 0; margin: 0; }
-    .conoce__list li {
-      color: rgba(255,255,255,.85); font-size: 15px;
-      padding: 6px 0 6px 26px; position: relative;
+    @media (max-width: 820px) {
+      #conoce-equipo { padding: 64px 0; }
+      .conoce__partners { grid-template-columns: 1fr; gap: 24px; margin-bottom: 40px; }
+      .conoce__header { margin-bottom: 40px; }
     }
-    .conoce__list li::before {
-      content: '·'; position: absolute; left: 8px; top: 4px;
-      color: #60A5FA; font-weight: 700; font-size: 20px;
+    .partner-card {
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex; flex-direction: column;
+      transition: border-color 200ms ease, transform 200ms ease;
+    }
+    .partner-card:hover { border-color: rgba(96,165,250,.35); transform: translateY(-2px); }
+    .partner-card__photo {
+      width: 100%; aspect-ratio: 4 / 5;
+      object-fit: cover; object-position: center 20%;
+      display: block;
+      filter: grayscale(100%) contrast(1.05);
+      background: #000;
+    }
+    .partner-card__body { padding: 24px 26px 28px; }
+    .partner-card__name {
+      font-family: var(--font-heading); font-weight: 700;
+      font-size: 22px; line-height: 1.2; color: var(--paper);
+      letter-spacing: -0.01em; margin: 0 0 4px;
+    }
+    .partner-card__role {
+      font-family: var(--font-heading); font-weight: 500;
+      font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: #60A5FA; margin: 0 0 16px;
+    }
+    .partner-card__bio {
+      color: rgba(255,255,255,.78); font-size: 15px; line-height: 1.55; margin: 0;
+    }
+    .conoce__video-block {
+      max-width: 720px; margin: 0 auto;
+    }
+    .conoce__video-label {
+      font-family: var(--font-heading); font-weight: 500;
+      font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase;
+      color: rgba(255,255,255,.6); text-align: center; margin: 0 0 16px;
     }
     .yt-facade {
       display: block; width: 100%;
@@ -939,7 +973,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .yt-facade iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
     .conoce__video-caption {
       color: rgba(255,255,255,.55); font-size: 13px; margin: 12px 0 0;
-      text-align: right; font-family: var(--font-heading);
+      text-align: center; font-family: var(--font-heading);
       text-transform: uppercase; letter-spacing: 0.08em;
     }
 
@@ -1490,34 +1524,55 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <!-- Conoce al equipo · video institucional Álvaro (YouTube lazy facade) -->
   <section class="section section--navy" id="conoce-equipo">
     <div class="container">
-      <div class="conoce__grid">
-        <div class="conoce__copy">
-          <p class="eyebrow" style="color:#60A5FA">Conoce a los socios</p>
-          <h2 class="conoce__title">Antes de agendar, conoce quién te va a atender.</h2>
-          <p class="conoce__body">Álvaro Plasencia y Carlos — socios senior de APTO. Uno de ellos toma la primera llamada contigo, con o sin tu equipo. Sin filtros de agencia, sin BDRs, sin discovery calls con juniors.</p>
-          <ul class="conoce__list">
-            <li>10 años acompañando líderes de innovación en México</li>
-            <li>Product y Business Design con equipo propio de construcción</li>
-            <li>Aterrizado, sin humo, sin metodología encima del problema</li>
-          </ul>
-        </div>
-        <div class="conoce__video">
-          <button type="button" class="yt-facade" id="yt-facade-alvaro"
-                  data-yt-id="40gjKGn8qME"
-                  aria-label="Reproducir: APTO — Innovación especializada en product y business design">
-            <img src="./assets/team/alvaro-cover.jpg"
-                 alt="Álvaro Plasencia, socio senior de APTO"
-                 loading="lazy" decoding="async" width="1280" height="720"
-                 fetchpriority="low">
-            <span class="yt-facade__play" aria-hidden="true">
-              <svg viewBox="0 0 68 48" xmlns="http://www.w3.org/2000/svg">
-                <path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55C3.97 2.33 2.27 4.81 1.48 7.74.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z" fill="#f00"/>
-                <path d="M45 24 27 14v20" fill="#fff"/>
-              </svg>
-            </span>
-          </button>
-          <p class="conoce__video-caption">1 min · Manifesto APTO</p>
-        </div>
+      <header class="conoce__header">
+        <p class="eyebrow">Con quién vas a trabajar</p>
+        <h2 class="conoce__title">Antes de agendar, conoce quién te va a atender.</h2>
+        <p class="conoce__intro">Uno de los dos socios toma la primera llamada contigo, con o sin tu equipo. Sin filtros de agencia, sin BDRs, sin discovery calls con juniors.</p>
+      </header>
+
+      <div class="conoce__partners">
+        <article class="partner-card">
+          <img class="partner-card__photo"
+               src="./assets/team/alvaro-portrait.jpg"
+               alt="Álvaro Plasencia, socio senior de APTO"
+               loading="lazy" decoding="async" width="800" height="1000">
+          <div class="partner-card__body">
+            <h3 class="partner-card__name">Álvaro Plasencia</h3>
+            <p class="partner-card__role">Socio · Estrategia y negocio</p>
+            <p class="partner-card__bio">Dirige estrategia y modelos de negocio digitales. Diseña la ruta que conecta producto, cliente y tecnología. Formado en IPADE, lidera equipos de estrategia, diseño y desarrollo.</p>
+          </div>
+        </article>
+
+        <article class="partner-card">
+          <img class="partner-card__photo"
+               src="./assets/team/carlos-portrait.jpg"
+               alt="Carlos Beltrán, socio senior de APTO"
+               loading="lazy" decoding="async" width="800" height="1000">
+          <div class="partner-card__body">
+            <h3 class="partner-card__name">Carlos Beltrán</h3>
+            <p class="partner-card__role">Socio · Diseño y experiencia</p>
+            <p class="partner-card__bio">Dirige diseño y experiencia. 15+ años construyendo productos y ecosistemas de servicio para CPG, banca, movilidad y retail. Cree que un buen producto empieza por entender a la persona que lo va a usar.</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="conoce__video-block">
+        <p class="conoce__video-label">Escucha a Álvaro · 1 min</p>
+        <button type="button" class="yt-facade" id="yt-facade-alvaro"
+                data-yt-id="40gjKGn8qME"
+                aria-label="Reproducir: APTO — Innovación especializada en product y business design">
+          <img src="./assets/team/alvaro-cover.jpg"
+               alt=""
+               loading="lazy" decoding="async" width="1280" height="720"
+               fetchpriority="low">
+          <span class="yt-facade__play" aria-hidden="true">
+            <svg viewBox="0 0 68 48" xmlns="http://www.w3.org/2000/svg">
+              <path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55C3.97 2.33 2.27 4.81 1.48 7.74.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z" fill="#f00"/>
+              <path d="M45 24 27 14v20" fill="#fff"/>
+            </svg>
+          </span>
+        </button>
+        <p class="conoce__video-caption">Manifesto APTO</p>
       </div>
     </div>
   </section>
