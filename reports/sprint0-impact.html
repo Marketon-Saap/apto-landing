@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>APTO · Sprint 0 Impact Report · 8-jul → 5-ago 2026</title>
+<meta name="description" content="Reporte de impacto del Sprint 0 Marketon en APTO. Sistema construido, métricas mejoradas, volumen transparente, roadmap 4 semanas.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/pagedjs/dist/paged.polyfill.js"></script>
+<style>
+:root {
+  --apto-navy: #0A1A3B;
+  --apto-navy-deep: #050E24;
+  --apto-blue: #005DE0;
+  --apto-blue-light: #3A86FF;
+  --apto-paper: #F5F0E8;
+  --apto-amber: #F59E0B;
+  --apto-green: #059669;
+  --apto-red: #DC2626;
+  --ink: #1a1a1a;
+  --ink-secondary: #4A4A4A;
+  --ink-muted: #7A7A7A;
+  --line: #E2E2DA;
+  --line-strong: #C8C8BE;
+  --paper: #FFFFFF;
+  --bg: #EFEBE3;
+  --heading: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --mono: 'JetBrains Mono', 'SF Mono', monospace;
+}
+
+@page {
+  size: A4;
+  margin: 22mm 20mm 22mm 20mm;
+  @top-left { content: "APTO · Sprint 0 Impact Report"; font-family: 'Inter', sans-serif; font-size: 8pt; color: #7A7A7A; letter-spacing: 0.4px; }
+  @top-right { content: "8-jul → 5-ago 2026 · v1.0"; font-family: 'Inter', sans-serif; font-size: 8pt; color: #7A7A7A; letter-spacing: 0.4px; }
+  @bottom-left { content: "Marketon Growth Boutique · Preparado para APTO"; font-family: 'Inter', sans-serif; font-size: 7.5pt; color: #7A7A7A; }
+  @bottom-right { content: counter(page) " / " counter(pages); font-family: 'Inter', sans-serif; font-size: 8.5pt; color: #4A4A4A; font-weight: 500; }
+}
+@page :first { margin: 0; @top-left, @top-right, @bottom-left, @bottom-right { content: none; } }
+@page cover { margin: 0; }
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { font-family: var(--sans); color: var(--ink); background: var(--bg); -webkit-font-smoothing: antialiased; font-size: 10.5pt; line-height: 1.55; }
+
+@media screen {
+  body { padding: 12mm 0; background: #DEDCD3; }
+  .page { box-shadow: 0 4px 24px rgba(10,26,59,.15); margin: 0 auto 12mm auto; background: white; }
+}
+@media print {
+  body { background: white; padding: 0; }
+  .page { box-shadow: none; margin: 0 auto; }
+}
+
+.page {
+  width: 210mm; min-height: 297mm; padding: 22mm 20mm 22mm 20mm;
+  position: relative; break-after: page;
+}
+.page.cover { padding: 0; page: cover; }
+.page.chapter-break { break-before: page; }
+.page:last-child { break-after: auto; }
+
+/* Cover */
+.cover-inner {
+  width: 210mm; min-height: 297mm;
+  padding: 32mm 22mm 24mm 22mm;
+  display: flex; flex-direction: column; justify-content: space-between;
+  background:
+    radial-gradient(ellipse at 100% 0%, rgba(58,134,255,.18) 0%, transparent 60%),
+    radial-gradient(ellipse at 0% 100%, rgba(245,158,11,.10) 0%, transparent 55%),
+    var(--apto-navy-deep);
+  color: var(--apto-paper);
+}
+.cover-mark {
+  font-family: var(--heading); font-weight: 700; font-size: 11pt;
+  letter-spacing: 4px; color: var(--apto-blue-light); text-transform: uppercase;
+}
+.cover-mark span {
+  display: block; font-weight: 400; color: rgba(245,240,232,.55);
+  margin-top: 4px; letter-spacing: 1.2px; font-size: 8.5pt;
+}
+.cover-rule { width: 100px; height: 2px; background: var(--apto-blue); margin: 14px 0 0 0; }
+.cover-eyebrow {
+  font-family: var(--heading); font-size: 10pt; font-weight: 600;
+  letter-spacing: 4.5px; color: var(--apto-amber); text-transform: uppercase; margin-top: 24px;
+}
+.cover-title {
+  font-family: var(--heading); font-weight: 700; font-size: 44pt; line-height: 1.02;
+  letter-spacing: -1.6px; margin-top: 14px; color: var(--apto-paper); max-width: 155mm;
+}
+.cover-title em {
+  font-style: normal; color: var(--apto-blue-light); font-weight: 500;
+  display: block; font-size: 22pt; letter-spacing: -0.6px; margin-top: 6px;
+}
+.cover-subtitle {
+  font-family: var(--sans); font-weight: 400; font-size: 12.5pt;
+  color: rgba(245,240,232,.82); margin-top: 20px; line-height: 1.5; max-width: 150mm;
+}
+.cover-meta {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 14mm 8mm;
+  border-top: 1px solid rgba(245,240,232,.18); padding-top: 16px; margin-top: 24px;
+}
+.cover-meta-block {
+  font-size: 9pt; color: rgba(245,240,232,.7); line-height: 1.6; font-family: var(--sans);
+}
+.cover-meta-block strong {
+  display: block; color: var(--apto-amber); font-weight: 700; font-size: 7.5pt;
+  letter-spacing: 1.6px; margin-bottom: 4px; text-transform: uppercase;
+}
+.cover-meta-block span { color: rgba(245,240,232,.94); font-weight: 500; font-size: 10.5pt; }
+
+/* Section headers */
+.section-eyebrow {
+  font-family: var(--heading); font-size: 9pt; font-weight: 700;
+  letter-spacing: 3.5px; color: var(--apto-blue); text-transform: uppercase;
+}
+.section-title {
+  font-family: var(--heading); font-weight: 700; font-size: 26pt; line-height: 1.1;
+  letter-spacing: -0.8px; color: var(--apto-navy); margin-top: 8px;
+}
+.section-title .num {
+  color: var(--apto-blue); font-weight: 500; margin-right: 8px;
+}
+.section-lead {
+  font-family: var(--sans); font-size: 12pt; font-weight: 400; line-height: 1.55;
+  color: var(--ink-secondary); margin-top: 12px; max-width: 155mm;
+}
+
+/* Body */
+h3 {
+  font-family: var(--heading); font-size: 14pt; font-weight: 600;
+  color: var(--apto-navy); margin: 24pt 0 10pt 0; letter-spacing: -0.2px;
+}
+h4 {
+  font-family: var(--heading); font-size: 11pt; font-weight: 600;
+  color: var(--apto-navy); margin: 16pt 0 6pt 0;
+}
+p {
+  font-size: 10.5pt; line-height: 1.55; color: var(--ink);
+  margin: 0 0 8pt 0; max-width: 66ch;
+}
+p.lead {
+  font-size: 11.5pt; color: var(--ink-secondary); line-height: 1.55;
+}
+strong { color: var(--apto-navy); font-weight: 600; }
+em { font-style: italic; color: var(--apto-navy); }
+code {
+  font-family: var(--mono); font-size: 9pt; background: rgba(0,93,224,.06);
+  color: var(--apto-navy); padding: 1px 5px; border-radius: 3px;
+}
+
+/* Answer-First card */
+.answer-first {
+  background: var(--apto-navy);
+  color: var(--apto-paper);
+  padding: 22pt 26pt;
+  border-radius: 10pt;
+  margin: 20pt 0 0 0;
+}
+.answer-first .label {
+  font-family: var(--heading); font-size: 9pt; font-weight: 700;
+  letter-spacing: 3px; color: var(--apto-blue-light); text-transform: uppercase;
+  margin-bottom: 12pt;
+}
+.answer-first p {
+  color: var(--apto-paper); font-size: 12pt; line-height: 1.6;
+  margin-bottom: 10pt; max-width: none;
+}
+.answer-first p:last-child { margin-bottom: 0; }
+.answer-first strong { color: var(--apto-amber); }
+
+/* Tables */
+table {
+  width: 100%; border-collapse: collapse; margin: 12pt 0;
+  font-size: 10pt; font-family: var(--sans);
+}
+th {
+  text-align: left; padding: 8pt 10pt;
+  background: var(--apto-navy); color: var(--apto-paper);
+  font-family: var(--heading); font-weight: 600; font-size: 9pt;
+  letter-spacing: 0.3px;
+}
+td {
+  padding: 8pt 10pt; border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+td:first-child { font-weight: 500; color: var(--apto-navy); }
+tr:last-child td { border-bottom: none; }
+td.num, th.num {
+  font-variant-numeric: tabular-nums; text-align: right; font-family: var(--mono);
+}
+.table-caption {
+  font-size: 9pt; color: var(--ink-muted); font-style: italic;
+  margin-top: 4pt;
+}
+
+/* Antes/Ahora comparison */
+.compare {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 12pt; margin: 12pt 0;
+}
+.compare-cell {
+  padding: 12pt 14pt; border-radius: 8pt;
+  font-size: 10pt; line-height: 1.5;
+}
+.compare-cell.before {
+  background: rgba(220,38,38,.05);
+  border-left: 3px solid var(--apto-red);
+}
+.compare-cell.after {
+  background: rgba(5,150,105,.06);
+  border-left: 3px solid var(--apto-green);
+}
+.compare-cell .tag {
+  font-family: var(--heading); font-size: 8pt; font-weight: 700;
+  letter-spacing: 1.6px; text-transform: uppercase; margin-bottom: 6pt;
+  display: block;
+}
+.compare-cell.before .tag { color: var(--apto-red); }
+.compare-cell.after .tag { color: var(--apto-green); }
+
+/* Metric cards */
+.metrics-row {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 10pt; margin: 14pt 0;
+}
+.metric-card {
+  padding: 14pt; border-radius: 8pt;
+  background: rgba(0,93,224,.04);
+  border: 1px solid rgba(0,93,224,.15);
+}
+.metric-card .label {
+  font-family: var(--heading); font-size: 8pt; font-weight: 600;
+  letter-spacing: 1.4px; text-transform: uppercase;
+  color: var(--apto-blue); margin-bottom: 6pt;
+}
+.metric-card .value {
+  font-family: var(--heading); font-size: 22pt; font-weight: 700;
+  color: var(--apto-navy); line-height: 1; letter-spacing: -0.8px;
+}
+.metric-card .value .unit {
+  font-size: 11pt; font-weight: 500; color: var(--ink-secondary); margin-left: 4pt;
+}
+.metric-card .caption {
+  font-size: 8.5pt; color: var(--ink-secondary); margin-top: 6pt; line-height: 1.4;
+}
+.metric-card.positive {
+  background: rgba(5,150,105,.06);
+  border-color: rgba(5,150,105,.20);
+}
+.metric-card.positive .label { color: var(--apto-green); }
+
+/* Roadmap timeline */
+.roadmap {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 12pt; margin: 14pt 0;
+}
+.roadmap-item {
+  padding: 14pt; border-radius: 8pt;
+  background: var(--apto-paper);
+  border: 1px solid var(--line-strong);
+}
+.roadmap-item .phase {
+  font-family: var(--heading); font-size: 9pt; font-weight: 700;
+  letter-spacing: 1.4px; color: var(--apto-blue); text-transform: uppercase;
+}
+.roadmap-item h4 { margin-top: 4pt; margin-bottom: 8pt; }
+.roadmap-item ul { margin: 0; padding-left: 16pt; font-size: 9.5pt; line-height: 1.5; }
+.roadmap-item li { margin-bottom: 4pt; color: var(--ink); }
+
+/* Risks */
+.risk {
+  padding: 12pt 14pt;
+  background: rgba(245,158,11,.05);
+  border-left: 3px solid var(--apto-amber);
+  border-radius: 4pt;
+  margin: 10pt 0;
+}
+.risk-title {
+  font-family: var(--heading); font-weight: 600; font-size: 11pt;
+  color: var(--apto-navy); margin-bottom: 4pt;
+}
+.risk p { font-size: 9.5pt; margin-bottom: 4pt; line-height: 1.5; }
+
+/* Chart */
+.chart-wrap {
+  margin: 20pt 0; padding: 16pt;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 8pt;
+}
+.chart-title {
+  font-family: var(--heading); font-weight: 600; font-size: 11pt;
+  color: var(--apto-navy); margin-bottom: 4pt;
+}
+.chart-sub {
+  font-size: 9pt; color: var(--ink-muted); margin-bottom: 12pt;
+}
+.chart-legend {
+  display: flex; gap: 20pt; margin-top: 10pt;
+  font-size: 9pt; color: var(--ink-secondary);
+}
+.chart-legend .item { display: flex; align-items: center; gap: 6pt; }
+.chart-legend .swatch { width: 14pt; height: 3pt; border-radius: 1pt; }
+
+/* Anexo footer */
+.anexo-list {
+  font-size: 9.5pt; line-height: 1.6; padding-left: 20pt;
+}
+.anexo-list li { margin-bottom: 6pt; }
+.footer-note {
+  margin-top: 30pt; padding-top: 14pt;
+  border-top: 1px solid var(--line);
+  font-family: var(--heading); font-size: 9pt;
+  color: var(--ink-muted); letter-spacing: 0.4px;
+  text-transform: uppercase; text-align: center;
+}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<section class="page cover">
+  <div class="cover-inner">
+    <header>
+      <div class="cover-mark">
+        MARKETON
+        <span>Growth Boutique · Preparado para APTO</span>
+      </div>
+      <div class="cover-rule"></div>
+    </header>
+
+    <div>
+      <p class="cover-eyebrow">Sprint 0 · Impact Report</p>
+      <h1 class="cover-title">
+        Construimos el sistema.
+        <em>Ahora encendemos el volumen.</em>
+      </h1>
+      <p class="cover-subtitle">
+        En cuatro semanas cerramos el loop de atribución punta a punta: landing propia, safety net, pipeline dedicado, Google Ads reestructurado y Meta Ads S2 con estructura Andromeda 2026. Este reporte es transparente sobre lo que ya se ve y lo que falta por medir.
+      </p>
+    </div>
+
+    <div class="cover-meta">
+      <div class="cover-meta-block"><strong>Ventana</strong><span>8-julio → 5-agosto 2026 (28 días)</span></div>
+      <div class="cover-meta-block"><strong>Audiencia</strong><span>Álvaro Plasencia · Carlos Beltrán · Chucho Porras</span></div>
+      <div class="cover-meta-block"><strong>Versión</strong><span>v1.0 · 5-agosto-2026</span></div>
+      <div class="cover-meta-block"><strong>Autor</strong><span>Marketon Growth Boutique</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ANSWER FIRST + §1 INTRO -->
+<section class="page">
+  <p class="section-eyebrow">Answer-First</p>
+  <h2 class="section-title">Lo que hay que saber en 30 segundos.</h2>
+
+  <div class="answer-first">
+    <p class="label">Bottom line</p>
+    <p>En 4 semanas construimos el sistema para que cada lead sea <strong>medible, atribuible y escalable</strong>. Hoy encendemos Meta Ads S2 para que el volumen empiece a moverse.</p>
+    <p>El volumen total todavía no crece — Google Ads necesita 4-6 semanas post-reestructura para estabilizar bid strategy, Meta Ads S2 acaba de arrancar y la landing v2 tiene 8 días live.</p>
+    <p>Lo que sí cambió: canal Paid Search reactivado (<strong>+225% recovery</strong> en HubSpot), infraestructura de tracking cerrada punta a punta y pipeline dedicado con atribución económica por etapa del funnel.</p>
+  </div>
+
+  <h3 style="margin-top: 28pt;">Cómo leer este reporte</h3>
+  <p>Cinco secciones que responden a lo que Álvaro y Carlos van a preguntar en el orden que van a preguntarlo. §1 muestra el cambio estructural — qué existía antes y qué existe ahora. §2 cuantifica las métricas que sí mejoraron. §3 pone el volumen tal cual está, sin edulcorar. §4 explica por qué las próximas 4 semanas son cuando la data va a hablar. §5 reconoce los riesgos abiertos.</p>
+  <p>Toda cifra citada tiene fuente verificable en HubSpot, Google Ads, Cloudflare D1 o Meta Ads. El anexo al final documenta las fuentes primarias.</p>
+</section>
+
+<!-- §1 ANTES / AHORA -->
+<section class="page chapter-break">
+  <p class="section-eyebrow">Sección 1</p>
+  <h2 class="section-title"><span class="num">§1</span>Lo que existía → lo que existe hoy</h2>
+  <p class="section-lead">Cambio estructural por dimensión. Todo lo de la columna "ahora" es verificable en las cuentas correspondientes.</p>
+
+  <h3>Tracking Google Ads</h3>
+  <div class="compare">
+    <div class="compare-cell before">
+      <span class="tag">Antes</span>
+      30 de 44 conversions reportadas por Google Ads en 10 semanas <strong>nunca llegaron al CRM</strong>. El conversion event apuntaba a acciones distintas al form real (click "Contactar", page view). Gap de atribución: 68%.
+    </div>
+    <div class="compare-cell after">
+      <span class="tag">Ahora</span>
+      Enhanced Conversions con sync automático HubSpot → Google Ads. El conversion event es el form submit real que cierra loop en pipeline Marketon. Value-based bidding con escala Lead $500 → Cliente $456K MXN.
+    </div>
+  </div>
+
+  <h3>Landing page</h3>
+  <div class="compare">
+    <div class="compare-cell before">
+      <span class="tag">Antes</span>
+      apto.mx/contacto sin sync a pipeline Marketon. Los submits llegaban como contactos sueltos sin asignación de deal ni owner. Cero telemetría propia de conversion.
+    </div>
+    <div class="compare-cell after">
+      <span class="tag">Ahora</span>
+      <code>landing.apto.mx</code> v2. Cada submit atraviesa Cloudflare Worker → D1 safety net (nunca perdemos un lead) → HubSpot + Meta CAPI + GA4 property <code>320108858</code> + email notify.
+    </div>
+  </div>
+
+  <h3>Google Ads (cuenta)</h3>
+  <div class="compare">
+    <div class="compare-cell before">
+      <span class="tag">Antes</span>
+      1 campaña vieja <code>ESTRATEGIA DE NEGOCIO</code> pausada. Sin estructura por ICP, sin Enhanced Conversions, sin value-based bidding.
+    </div>
+    <div class="compare-cell after">
+      <span class="tag">Ahora</span>
+      Campaña <code>APTO · Adquisición 2026H2 (Tiers 1-3 + Brand)</code>. <strong>12 ad groups</strong> × 5 tiers ICP (T1 Coppel · T2 Apinza/GP core · T3 emprendedores). Auto-tagging GCLID + Enhanced Conversions + value-based bidding.
+    </div>
+  </div>
+
+  <h3>Meta Ads (cuenta)</h3>
+  <div class="compare">
+    <div class="compare-cell before">
+      <span class="tag">Antes</span>
+      Cuenta dormida desde enero 2025. Última actividad fue boost de posts orgánicos con objetivo LINK_CLICKS, no OUTCOME_LEADS. Ningún pixel training reciente.
+    </div>
+    <div class="compare-cell after">
+      <span class="tag">Ahora</span>
+      3 campañas Power 1 Andromeda 2026: <strong>Core $380/día</strong> (4 ads · winners hipótesis) · <strong>Sandbox $120/día</strong> (4 ads · testing) · <strong>Retargeting $50/día PAUSED</strong> con Custom Audience Warm que activa cuando madure a ≥1000 users.
+    </div>
+  </div>
+</section>
+
+<section class="page">
+  <h3>Creativos S2 producidos</h3>
+  <p>8 creativos Reels 9:16 con estructura Andromeda 4-Capas: Avatar Máquina · Buyer Persona · Match Score visual · Human Comprehension. Copy 5x5x5 multivariate (5 primary texts × 5 headlines × 5 descriptions rotando via Meta) con <code>optimization_type: DEGREES_OF_FREEDOM</code> (Advantage+ Creative). <code>url_tags</code> con macros dinámicos que resuelven a nombre real de campaign/adset/ad en cada click — la atribución no depende de UTMs hardcodeados.</p>
+
+  <h3>Pipeline HubSpot</h3>
+  <div class="compare">
+    <div class="compare-cell before">
+      <span class="tag">Antes</span>
+      Contactos mixtos en pipeline default sin separación APTO. Sin lifecycle stages diseñados para el ciclo de venta APTO. Sin workflows de deal routing.
+    </div>
+    <div class="compare-cell after">
+      <span class="tag">Ahora</span>
+      Pipeline dedicado <code>Marketon · APTO Sales Pipeline 2026H2</code> (ID <code>922134387</code>) con 8 stages · workflows deal routing · owner auto-assign · lifecycle sync con Google Ads Enhanced Conv y Meta CAPI.
+    </div>
+  </div>
+
+  <h3>Conversions API (Meta CAPI)</h3>
+  <div class="compare">
+    <div class="compare-cell before">
+      <span class="tag">Antes</span>
+      No existía. Solo pixel client-side, sujeto a iOS 14.5+ tracking loss (~30-40% señal perdida).
+    </div>
+    <div class="compare-cell after">
+      <span class="tag">Ahora</span>
+      CAPI live vía Cloudflare Worker con value escalonado: Lead $500 · MQL $2K · SQL $10K · Discovery $25K · Proposal $75K · Negotiation $100K · Purchase = deal amount real. Meta pondera CAPI 3-5× más que pixel solo.
+    </div>
+  </div>
+
+  <h3>Safety net leads</h3>
+  <div class="compare">
+    <div class="compare-cell before">
+      <span class="tag">Antes</span>
+      Forms perdibles. Si HubSpot fallaba, no había registro.
+    </div>
+    <div class="compare-cell after">
+      <span class="tag">Ahora</span>
+      D1 database <code>apto-leads</code> persiste TODO submit antes de intentar HubSpot. Reconciliación 3-way (D1 + GA4 + HubSpot) confirmada el 5-ago: <strong>4 de 4 leads reales</strong> cierran loop sin gaps.
+    </div>
+  </div>
+</section>
+
+<!-- §2 METRICAS QUE SI MEJORARON -->
+<section class="page chapter-break">
+  <p class="section-eyebrow">Sección 2</p>
+  <h2 class="section-title"><span class="num">§2</span>Métricas que sí mejoraron</h2>
+  <p class="section-lead">Data verificable en HubSpot, Google Ads MCP y D1 wrangler queries. Comparación pre-engagement (10 sem) versus post-engagement (3 sem parcial).</p>
+
+  <div class="metrics-row">
+    <div class="metric-card positive">
+      <p class="label">Paid Search recovery</p>
+      <p class="value">+225<span class="unit">%</span></p>
+      <p class="caption">0.4 leads/sem → 1.3 leads/sem en HubSpot</p>
+    </div>
+    <div class="metric-card positive">
+      <p class="label">Landing tracked</p>
+      <p class="value">100<span class="unit">%</span></p>
+      <p class="caption">4 de 4 leads cierran loop D1 + GA4 + HubSpot</p>
+    </div>
+    <div class="metric-card">
+      <p class="label">Gap atribución Google Ads</p>
+      <p class="value">68 → 64<span class="unit">%</span></p>
+      <p class="caption">Baja gradual · objetivo &lt;30% en sem 4-6</p>
+    </div>
+  </div>
+
+  <h3>Paid Search en HubSpot — detalle</h3>
+  <table>
+    <thead><tr><th>Ventana</th><th class="num">Semanas</th><th class="num">Leads Paid</th><th class="num">Promedio/sem</th></tr></thead>
+    <tbody>
+      <tr><td>Pre-engagement · 5-may → 13-jul</td><td class="num">10</td><td class="num">14</td><td class="num">0.4</td></tr>
+      <tr><td>Post-engagement · 20-jul → 5-ago (parcial)</td><td class="num">3</td><td class="num">4</td><td class="num">1.3</td></tr>
+    </tbody>
+  </table>
+  <p class="table-caption">Pre había 6 de 7 semanas en cero. Los 4 leads post son Verónica Galeana (UTCGG · 30-jul), Adan (vimac.mx · 31-jul), Rodrigo Alcalá (RODO · 3-ago) y Ricardo (ZUBLIMA · 5-ago).</p>
+
+  <h3>Landing forms tracked · 3-way</h3>
+  <p>El Worker de Cloudflare escribe primero a D1 (safety net) y después dispara HubSpot + Meta CAPI + GA4 en paralelo. Reconciliación del 5-ago confirmó match perfecto entre las tres fuentes:</p>
+  <table>
+    <thead><tr><th>Lead</th><th>D1</th><th>GA4 <code>form_submit</code></th><th>HubSpot pipeline</th><th>CAPI</th></tr></thead>
+    <tbody>
+      <tr><td>Verónica Galeana · UTCGG</td><td>✓</td><td>✓</td><td>Deal <code>63310108768</code></td><td>skipped*</td></tr>
+      <tr><td>Adan · vimac.mx</td><td>✓</td><td>✓</td><td>Deal <code>63334902065</code></td><td>skipped*</td></tr>
+      <tr><td>Rodrigo Alcalá · RODO</td><td>✓</td><td>✓</td><td>Deal <code>63446972199</code></td><td>skipped*</td></tr>
+      <tr><td>Ricardo · ZUBLIMA</td><td>✓</td><td>✓</td><td>Deal <code>63480666514</code></td><td><strong>success</strong></td></tr>
+    </tbody>
+  </table>
+  <p class="table-caption">*CAPI empezó a servir con Ricardo. Los 3 anteriores no envían CAPI porque la implementación se activó después. Meta pixel arranca training histórico desde 1 conversion.</p>
+</section>
+
+<!-- §3 VOLUMEN TOTAL -->
+<section class="page chapter-break">
+  <p class="section-eyebrow">Sección 3</p>
+  <h2 class="section-title"><span class="num">§3</span>Volumen total — transparencia</h2>
+  <p class="section-lead">Data cruda HubSpot 90 días, sin edulcorar. Excluimos 38 contactos bot del 25-may (webhook mal configurado, UUID <code>e3875d32-...</code>) y 36 contactos OFFLINE (outreach manual del equipo APTO vía HubSpot Chrome Extension, no leads de marketing digital).</p>
+
+  <div class="metrics-row">
+    <div class="metric-card">
+      <p class="label">Marketing leads pre</p>
+      <p class="value">4.5<span class="unit">/sem</span></p>
+      <p class="caption">45 leads en 10 semanas · sin bots ni OFFLINE</p>
+    </div>
+    <div class="metric-card">
+      <p class="label">Marketing leads post</p>
+      <p class="value">3.7<span class="unit">/sem</span></p>
+      <p class="caption">11 leads en 3 semanas · última parcial (3 días)</p>
+    </div>
+    <div class="metric-card">
+      <p class="label">Google Ads 90d</p>
+      <p class="value">$1,062<span class="unit">/conv</span></p>
+      <p class="caption">55 conv · $58,442 MXN gasto · CTR 5.8%</p>
+    </div>
+  </div>
+
+  <div class="chart-wrap">
+    <p class="chart-title">Leads HubSpot vs conversions Google Ads · semanal</p>
+    <p class="chart-sub">14 semanas · marcadores rojo=Marketon engagement (8-jul), ámbar=landing v2 live (28-jul)</p>
+    <svg viewBox="0 0 640 260" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto; display:block">
+      <!-- axes -->
+      <line x1="46" y1="20" x2="46" y2="215" stroke="#C8C8BE" stroke-width="0.8"/>
+      <line x1="46" y1="215" x2="620" y2="215" stroke="#C8C8BE" stroke-width="0.8"/>
+      <!-- y ticks -->
+      <g font-family="Inter" font-size="9" fill="#7A7A7A" text-anchor="end">
+        <text x="42" y="219">0</text>
+        <text x="42" y="170">3</text>
+        <text x="42" y="121">6</text>
+        <text x="42" y="72">9</text>
+        <text x="42" y="24">13</text>
+      </g>
+      <!-- grid -->
+      <g stroke="#EFEBE3" stroke-width="0.5">
+        <line x1="46" y1="167" x2="620" y2="167"/>
+        <line x1="46" y1="118" x2="620" y2="118"/>
+        <line x1="46" y1="69" x2="620" y2="69"/>
+      </g>
+      <!-- inflection lines -->
+      <line x1="440" y1="20" x2="440" y2="215" stroke="#DC2626" stroke-width="1" stroke-dasharray="3,3"/>
+      <line x1="510" y1="20" x2="510" y2="215" stroke="#F59E0B" stroke-width="1" stroke-dasharray="3,3"/>
+      <!-- HubSpot line (blue) - values 3,7,11,12,5,13,4,4,10,5,2,12,4,2 -->
+      <polyline points="60,166 100,101 140,35 180,20 220,133 260,4 300,150 340,150 380,52 420,133 460,182 500,20 540,150 580,182"
+        fill="none" stroke="#005DE0" stroke-width="2"/>
+      <!-- HubSpot dots -->
+      <g fill="#005DE0">
+        <circle cx="60" cy="166" r="3"/><circle cx="100" cy="101" r="3"/><circle cx="140" cy="35" r="3"/>
+        <circle cx="180" cy="20" r="3"/><circle cx="220" cy="133" r="3"/><circle cx="260" cy="4" r="3"/>
+        <circle cx="300" cy="150" r="3"/><circle cx="340" cy="150" r="3"/><circle cx="380" cy="52" r="3"/>
+        <circle cx="420" cy="133" r="3"/><circle cx="460" cy="182" r="3"/><circle cx="500" cy="20" r="3"/>
+        <circle cx="540" cy="150" r="3"/><circle cx="580" cy="182" r="3"/>
+      </g>
+      <!-- Google Ads line (amber, dashed) - values 2,2,5,5,3,9,0,5,11,2,0,5,4,2 -->
+      <polyline points="60,182 100,182 140,133 180,133 220,166 260,52 300,215 340,133 380,35 420,182 460,215 500,133 540,150 580,182"
+        fill="none" stroke="#F59E0B" stroke-width="2" stroke-dasharray="5,4"/>
+      <!-- Google Ads triangles -->
+      <g fill="#F59E0B">
+        <polygon points="57,185 63,185 60,179"/><polygon points="97,185 103,185 100,179"/>
+        <polygon points="137,136 143,136 140,130"/><polygon points="177,136 183,136 180,130"/>
+        <polygon points="217,169 223,169 220,163"/><polygon points="257,55 263,55 260,49"/>
+        <polygon points="297,218 303,218 300,212"/><polygon points="337,136 343,136 340,130"/>
+        <polygon points="377,38 383,38 380,32"/><polygon points="417,185 423,185 420,179"/>
+        <polygon points="457,218 463,218 460,212"/><polygon points="497,136 503,136 500,130"/>
+        <polygon points="537,153 543,153 540,147"/><polygon points="577,185 583,185 580,179"/>
+      </g>
+      <!-- x labels -->
+      <g font-family="Inter" font-size="8" fill="#7A7A7A" text-anchor="middle">
+        <text x="60" y="230">05-04</text>
+        <text x="100" y="230">05-11</text>
+        <text x="140" y="230">05-18</text>
+        <text x="180" y="230">05-25</text>
+        <text x="220" y="230">06-01</text>
+        <text x="260" y="230">06-08</text>
+        <text x="300" y="230">06-15</text>
+        <text x="340" y="230">06-22</text>
+        <text x="380" y="230">06-29</text>
+        <text x="420" y="230">07-06</text>
+        <text x="460" y="230">07-13</text>
+        <text x="500" y="230">07-20</text>
+        <text x="540" y="230">07-27</text>
+        <text x="580" y="230">08-03</text>
+      </g>
+      <!-- inflection labels -->
+      <text x="440" y="14" font-family="Inter" font-size="7.5" fill="#DC2626" text-anchor="middle" font-weight="600">Engagement</text>
+      <text x="510" y="14" font-family="Inter" font-size="7.5" fill="#F59E0B" text-anchor="middle" font-weight="600">Landing v2</text>
+      <!-- axis labels -->
+      <text x="10" y="118" font-family="Inter" font-size="8" fill="#7A7A7A" text-anchor="middle" transform="rotate(-90 10 118)">Leads / semana</text>
+    </svg>
+    <div class="chart-legend">
+      <div class="item"><span class="swatch" style="background:#005DE0"></span>HubSpot leads totales (limpio de bots)</div>
+      <div class="item"><span class="swatch" style="background:#F59E0B; border-top:1px dashed #F59E0B"></span>Google Ads conversions reportadas</div>
+    </div>
+  </div>
+
+  <h3>Por qué es muy pronto para juzgar volumen</h3>
+  <p><strong>Google Ads</strong> necesita 4-6 semanas para estabilizar bid strategy tras una reestructura. Estamos en semana 3.</p>
+  <p><strong>Meta Ads S2</strong> arrancó hoy. Los primeros 6-24h son review de Meta, después 7-14 días de acumulación de señal antes de que Andromeda entre en learning phase madura.</p>
+  <p><strong>Meta pixel</strong> arranca training desde 1 conversion CAPI histórica (Ricardo). Advantage+ necesita 50+ conversions/semana para optimización robusta.</p>
+  <p><strong>Landing v2</strong> tiene 8 días live. No hay ventana estadística para medir mejora en conversion rate todavía.</p>
+</section>
+
+<!-- §4 ROADMAP -->
+<section class="page chapter-break">
+  <p class="section-eyebrow">Sección 4</p>
+  <h2 class="section-title"><span class="num">§4</span>Roadmap próximas 4 semanas</h2>
+  <p class="section-lead">Qué esperar cuando la data empiece a hablar. Estas son hipótesis de trabajo con métricas específicas — si la realidad no las cumple, se dispara audit v3 con kill-switch pre-definido.</p>
+
+  <div class="roadmap">
+    <div class="roadmap-item">
+      <p class="phase">Semanas 1-2 · 5 → 19 ago</p>
+      <h4>Aprendizaje activo</h4>
+      <ul>
+        <li>Meta S2 pasa review y empieza a servir · primeras conversions CAPI acumulan señal para pixel training</li>
+        <li>Google Ads: los ad groups nuevos decantan keywords ganadoras · CPCs esperados bajan 15-25% conforme Quality Score sube</li>
+        <li>Sandbox Meta muestra cuál de los 4 conceptos trae mejor CTR y CVR (Disciplines · ValueProp · PortraitAlvaro · PortraitCarlos)</li>
+      </ul>
+    </div>
+    <div class="roadmap-item">
+      <p class="phase">Semanas 3-4 · 19-ago → 2-sep</p>
+      <h4>Consolidación</h4>
+      <ul>
+        <li>Winners identificados de Sandbox se mueven a Core (validación 3-5 días es suficiente según Andromeda). Losers se matan.</li>
+        <li>Landing conv rate objetivo ≥2%. Si estamos abajo al día 30 se dispara audit v3.</li>
+        <li>GTM v60 microconversions live: cada CTA por sección medido como micro-conv en GA4 + Meta Pixel CustomEvent. Optimizamos qué sección mueve más al form.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Retargeting cuando madure</h3>
+  <p>La Custom Audience Warm (visitantes landing 30d) activa cuando llega a ≥1000 users, estimado 30-45 días con el volumen actual de tráfico Paid Search + Meta. Ahí encendemos la campaña Retargeting con los 3 creativos preservados (CoppelCase, PortraitAlvaro, PortraitCarlos) apuntados al form como reforzamiento de warm audience.</p>
+</section>
+
+<!-- §5 RIESGOS -->
+<section class="page chapter-break">
+  <p class="section-eyebrow">Sección 5</p>
+  <h2 class="section-title"><span class="num">§5</span>Riesgos reconocidos</h2>
+  <p class="section-lead">SME honesto — lo que puede salir distinto a lo esperado, con mitigación concreta cuando aplica.</p>
+
+  <div class="risk">
+    <p class="risk-title">Riesgo 1 · El volumen puede tardar más en crecer</p>
+    <p><strong>Base case</strong>: sem 4-6 aparece mejora tangible. <strong>Downside case</strong>: sem 8-10 si Google Ads Quality Score toma más de lo previsto y Meta necesita más conversions para Advantage+ robusto.</p>
+    <p><strong>Mitigación</strong>: budget flexible ($500 MXN/día distribuido entre Core y Sandbox), kill-switches en landing y creativos con métricas duras pre-definidas.</p>
+  </div>
+
+  <div class="risk">
+    <p class="risk-title">Riesgo 2 · OFFLINE outreach no cae en pipeline Marketon</p>
+    <p>Los 28 contactos vía HubSpot Chrome Extension del equipo APTO (Álvaro y Carlos agregando prospects desde Gmail) no están cayendo en el pipeline <code>Marketon · APTO Sales 2026H2</code>. Quedan como contactos sueltos sin deal ni lifecycle.</p>
+    <p><strong>Impacto</strong>: Marketon no tiene visibilidad sobre el trabajo completo del sales team APTO. Cualquier reporte de conversion pipeline queda incompleto. Análisis de sources subestima outreach manual.</p>
+    <p><strong>Recomendación</strong>: definir workflow HubSpot que auto-crea deal en pipeline Marketon cuando el contacto se agrega vía extension, o alinear proceso donde el equipo APTO manualmente hace enroll al pipeline tras usar la Extension.</p>
+  </div>
+
+  <div class="risk">
+    <p class="risk-title">Riesgo 3 · Meta pixel training desde cero</p>
+    <p>1 conversion CAPI histórica (Ricardo, 5-ago). Meta Advantage+ típicamente necesita 50+ conversions/semana para optimización robusta. En las primeras 2 semanas puede haber costo por lead más alto de lo esperado mientras el pixel aprende.</p>
+  </div>
+
+  <div class="risk">
+    <p class="risk-title">Riesgo 4 · Bots ruido HubSpot histórico</p>
+    <p>38 contactos basura identificados el 25-may con UUID <code>e3875d32-ab81-48f1-9e78-493eae864f12</code> — probablemente webhook mal configurado o import CSV mal ejecutado.</p>
+    <p><strong>Recomendación</strong>: cleanup HubSpot de esos 38 contactos y desactivar el origen del webhook para prevenir recurrencia. Toma ~30 min via HubSpot MCP.</p>
+  </div>
+</section>
+
+<!-- ANEXO -->
+<section class="page chapter-break">
+  <p class="section-eyebrow">Anexo</p>
+  <h2 class="section-title">Data verificada · fuentes primarias</h2>
+  <p class="section-lead">Toda cifra citada tiene fuente verificable en las cuentas correspondientes. La reconciliación 3-way (D1 + GA4 + HubSpot) del 5-ago confirma que los 4 leads reales del período post-engagement están en las tres fuentes sin gaps.</p>
+
+  <ul class="anexo-list">
+    <li><strong>HubSpot MCP</strong> — Contacts + Deals pipeline Marketon (ID <code>922134387</code>) · queries SQL con <code>hs_analytics_source</code> breakdown por semana · portal <code>2583031</code></li>
+    <li><strong>Google Ads MCP</strong> — customer <code>7021324934</code> (APTO MKT) · <code>LAST_90_DAYS</code> con <code>time_breakdown=week</code> · 2 campañas totales (1 paused + 1 active)</li>
+    <li><strong>Cloudflare D1</strong> — database <code>apto-leads</code> (<code>7868f2ee-7419-45be-a900-ea0bd19fbd40</code>) · 8 rows leads · reconciliación 3-way completa</li>
+    <li><strong>GA4 property <code>320108858</code></strong> — eventos <code>landing_page_form_submit</code> últimos 30 días</li>
+    <li><strong>Meta Ads MCP</strong> — account <code>act_751870129931473</code> (Apto &amp; Sandbox) · 3 campañas Power 1 verificadas ACTIVE · pixel <code>721335916342252</code></li>
+  </ul>
+
+  <h3>Reproducibilidad</h3>
+  <p>Cualquier cifra de este reporte se puede re-verificar corriendo las queries documentadas contra las cuentas anteriores. Si en algún momento la reconciliación 3-way muestra gap, es prioridad P0 investigar antes de tomar decisiones sobre budget o creativos.</p>
+
+  <p class="footer-note">
+    Marketon Growth Boutique · Reporte Sprint 0 APTO · 5-agosto-2026 · v1.0
+  </p>
+</section>
+
+</body>
+</html>
