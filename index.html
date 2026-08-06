@@ -236,7 +236,24 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       transition: background 200ms ease;
     }
     .nav__cta:hover { background: var(--blue-cta-hover); text-decoration: none; }
-    @media (max-width: 900px) { .nav__menu { display: none; } .nav__logo img { height: 32px; } }
+    @media (max-width: 900px) {
+      .nav__menu { display: none; }
+      .nav__logo img { height: 32px; }
+      /* Smart-hide mobile: fixed en mobile para poder translate · transition suave · siempre visible en top */
+      .nav {
+        position: fixed; top: 0; left: 0; right: 0;
+        transform: translateY(0);
+        transition: transform 260ms cubic-bezier(.16,1,.3,1);
+        will-change: transform;
+      }
+      .nav.nav--hidden { transform: translateY(-100%); }
+      /* Compensa el fixed con padding en el body para que el hero no quede tapado */
+      body { padding-top: 76px; }
+      main > .hero:first-child { padding-top: 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .nav { transition: none !important; }
+    }
 
     /* Hero con video */
     .hero {
@@ -2051,6 +2068,37 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           track(el.dataset.track, { label: el.textContent.trim().slice(0,50) });
         });
       });
+
+      // Nav smart-hide mobile · hide on scroll down + show on scroll up
+      // Solo activa <900px (desktop mantiene sticky always visible via CSS)
+      (function initSmartHideNav(){
+        var nav = document.querySelector('.nav');
+        if (!nav || window.innerWidth > 900) return;
+        var lastY = window.scrollY || 0;
+        var ticking = false;
+        var TOP_ZONE = 100; // px desde el top donde el nav siempre está visible
+        var DELTA = 8;      // umbral mínimo para reaccionar (anti-jitter)
+        function onScroll(){
+          if (ticking) return;
+          ticking = true;
+          window.requestAnimationFrame(function(){
+            var y = window.scrollY || 0;
+            var diff = y - lastY;
+            if (Math.abs(diff) > DELTA) {
+              if (y < TOP_ZONE) {
+                nav.classList.remove('nav--hidden');
+              } else if (diff > 0) {
+                nav.classList.add('nav--hidden'); // scroll down · hide
+              } else {
+                nav.classList.remove('nav--hidden'); // scroll up · show
+              }
+              lastY = y;
+            }
+            ticking = false;
+          });
+        }
+        window.addEventListener('scroll', onScroll, { passive: true });
+      })();
 
       // YouTube lazy facade · reemplaza thumbnail por iframe al click, cero cost hasta interacción
       document.querySelectorAll('.yt-facade').forEach(btn => {
