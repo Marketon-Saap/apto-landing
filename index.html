@@ -1038,6 +1038,78 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       text-transform: uppercase; letter-spacing: 0.08em;
     }
 
+    /* Proyectos · breadth grid (complemento a Casos que es depth) */
+    #proyectos { padding: 88px 0 96px; background: var(--paper-cream); }
+    .proyectos__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 12px;
+      margin-top: 48px;
+    }
+    .proyecto {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 20px 18px;
+      transition: border-color 200ms ease, transform 200ms ease;
+      display: flex; flex-direction: column;
+      min-height: 140px;
+    }
+    .proyecto:hover {
+      border-color: var(--navy);
+      transform: translateY(-2px);
+    }
+    .proyecto__client {
+      font-family: var(--font-heading); font-weight: 700;
+      font-size: 16px; color: var(--navy);
+      letter-spacing: -0.01em; line-height: 1.2;
+      margin-bottom: 4px;
+    }
+    .proyecto__industry {
+      font-family: var(--font-heading); font-weight: 500;
+      font-size: 10px; letter-spacing: 0.14em;
+      color: var(--blue-cta); text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .proyecto__brief {
+      font-family: var(--font-body); font-size: 13px; line-height: 1.5;
+      color: var(--ink-muted); margin: 0 auto 0 0;
+    }
+    .proyecto__metric {
+      font-family: var(--font-heading); font-weight: 600;
+      font-size: 11px; color: var(--navy);
+      margin-top: 10px; padding-top: 8px;
+      border-top: 1px solid var(--line);
+      letter-spacing: 0.02em;
+    }
+    .proyectos__cta {
+      text-align: center; margin-top: 40px;
+    }
+    .proyectos__cta a {
+      font-family: var(--font-heading); font-weight: 500;
+      font-size: 14px; color: var(--navy);
+      text-decoration: none; padding: 12px 22px;
+      border: 1px solid var(--gray-neutral);
+      border-radius: var(--radius-btn);
+      display: inline-flex; align-items: center; gap: 8px;
+      transition: border-color 180ms ease, background 180ms ease;
+    }
+    .proyectos__cta a:hover {
+      border-color: var(--navy);
+      background: rgba(3,27,63,.04);
+    }
+    .proyectos__cta a .arr {
+      font-size: 16px; transition: transform 180ms ease;
+    }
+    .proyectos__cta a:hover .arr { transform: translateX(3px); }
+    @media (max-width: 640px) {
+      #proyectos { padding: 64px 0 72px; }
+      .proyectos__grid { gap: 10px; margin-top: 32px; }
+      .proyecto { padding: 16px 14px; min-height: auto; }
+      .proyecto__client { font-size: 14px; }
+      .proyecto__brief { font-size: 12.5px; }
+    }
+
     /* Form CTA */
     .cta-form { background: var(--navy); padding: 112px 0; color: var(--paper); }
     .cta-form__grid {
@@ -1477,6 +1549,77 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
       <div class="section-cta">
         <a class="section-cta__link" href="#cta-form" data-track="casos_cta_click">Podemos hacer algo similar contigo <span class="arr" aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Proyectos · breadth grid (complemento a Casos que es depth) -->
+  <section id="proyectos">
+    <div class="container">
+      <header class="section__header">
+        <p class="eyebrow">Proyectos</p>
+        <h2>10 años, 40+ proyectos, industrias distintas.</h2>
+        <p class="lead">Cada proyecto arranca como un reto único. Estos son algunos sistemas que hemos diseñado y construido con clientes en retail, finanzas, energía, educación, real estate, telecom y B2B.</p>
+      </header>
+
+      <div class="proyectos__grid">
+        <article class="proyecto">
+          <p class="proyecto__client">KIOSKO</p>
+          <p class="proyecto__industry">Retail · POS</p>
+          <p class="proyecto__brief">Rediseño de la experiencia de punto de venta para cajeros.</p>
+        </article>
+        <article class="proyecto">
+          <p class="proyecto__client">Coppel · Seguros</p>
+          <p class="proyecto__industry">Servicios financieros</p>
+          <p class="proyecto__brief">Co-diseño de producto de seguros integrado al ecosistema Coppel.</p>
+        </article>
+        <article class="proyecto">
+          <p class="proyecto__client">Coppel · Uniformes</p>
+          <p class="proyecto__industry">Retail · Operación</p>
+          <p class="proyecto__brief">Gestión operativa de uniformes para toda la organización.</p>
+          <p class="proyecto__metric">130,000+ empleados</p>
+        </article>
+        <article class="proyecto">
+          <p class="proyecto__client">MTP</p>
+          <p class="proyecto__industry">Telecomunicaciones</p>
+          <p class="proyecto__brief">Evolución continua del ecosistema digital de Mexico Telecom Partners.</p>
+        </article>
+        <article class="proyecto">
+          <p class="proyecto__client">BE GRAND</p>
+          <p class="proyecto__industry">Logistics · Automotive</p>
+          <p class="proyecto__brief">Transformación de la experiencia digital de entrega y post-venta.</p>
+        </article>
+        <article class="proyecto">
+          <p class="proyecto__client">NANO HUMANS</p>
+          <p class="proyecto__industry">B2B · Comercio</p>
+          <p class="proyecto__brief">Digitalización y optimización de la experiencia comercial.</p>
+        </article>
+        <article class="proyecto">
+          <p class="proyecto__client">ITESO</p>
+          <p class="proyecto__industry">Educación superior</p>
+          <p class="proyecto__brief">Transformación de la experiencia de servicios universitarios.</p>
+        </article>
+        <article class="proyecto">
+          <p class="proyecto__client">Grupo San Carlos</p>
+          <p class="proyecto__industry">Real Estate</p>
+          <p class="proyecto__brief">Redefinición de la experiencia de compra de propiedades.</p>
+        </article>
+        <article class="proyecto">
+          <p class="proyecto__client">SUNBANK</p>
+          <p class="proyecto__industry">Energía solar</p>
+          <p class="proyecto__brief">Optimización del proceso de venta de energía solar.</p>
+        </article>
+        <article class="proyecto">
+          <p class="proyecto__client">FANOSA</p>
+          <p class="proyecto__industry">B2B · Comercio</p>
+          <p class="proyecto__brief">Automatización de procesos comerciales end-to-end.</p>
+        </article>
+      </div>
+
+      <div class="proyectos__cta">
+        <a href="https://apto.mx/proyectos/" target="_blank" rel="noopener" data-track="proyectos_ver_mas_click">
+          Ver los 40+ proyectos en apto.mx <span class="arr" aria-hidden="true">→</span>
+        </a>
       </div>
     </div>
   </section>
