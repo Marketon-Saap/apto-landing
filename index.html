@@ -1165,6 +1165,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       font-family: var(--font-heading); text-transform: uppercase; letter-spacing: 0.06em;
     }
     .form-field label .req { color: var(--error); }
+    .form-field label .req-optional {
+      color: var(--ink-muted); font-weight: 400; text-transform: none;
+      letter-spacing: 0; font-size: 12px; margin-left: 4px;
+    }
+    .form-field__hint {
+      display: block; font-size: 12.5px; color: var(--ink-muted);
+      margin-top: 6px; line-height: 1.4;
+    }
     .form-field input, .form-field textarea, .form-field select {
       width: 100%; padding: 14px 16px;
       border: 1.5px solid var(--line);
@@ -1917,8 +1925,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               <span class="form-field__error" id="err-industry" aria-live="polite"></span>
             </div>
             <div class="form-field">
-              <label for="f-message">¿Qué te está trabando? (opcional)</label>
-              <textarea id="f-message" name="message" maxlength="500" placeholder="Cuéntanos en 1-2 líneas — nos ayuda a llegar mejor preparados a la sesión"></textarea>
+              <label for="f-message">Cuéntanos qué te está trabando la operación <span class="req-optional">(opcional)</span></label>
+              <textarea id="f-message" name="message" maxlength="500" rows="4" placeholder="Ej: Tenemos un checkout que abandona el 70% y no sabemos si es UX o backend · O: llevamos 2 años queriendo lanzar el portal B2B y siempre se posterga · O: cerramos ventas pero la operación después es un desastre." aria-describedby="err-message hint-message"></textarea>
+              <span class="form-field__hint" id="hint-message">2 líneas basta — nos ayuda a llegar preparados a la sesión.</span>
               <span class="form-field__error" id="err-message" aria-live="polite"></span>
             </div>
             <button type="submit" class="btn btn--full" id="form-submit">
@@ -2272,6 +2281,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             // Form free-text (message del textarea "qué te está trabando")
             message: workerPayload.message || '',
             message_length: (workerPayload.message || '').length,
+            // Bool derivado para funnel/segmentation GA4 sin exponer PII · true = usuario describió problema
+            has_problem_desc: !!(workerPayload.message || '').trim(),
             // Attribution IDs
             gclid: new URLSearchParams(location.search).get('gclid') || '',
             fbclid: new URLSearchParams(location.search).get('fbclid') || '',
