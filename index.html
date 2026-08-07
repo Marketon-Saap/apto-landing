@@ -1203,6 +1203,38 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       margin-top: 6px; min-height: 18px;
     }
     .form-field textarea { min-height: 100px; resize: vertical; font-family: inherit; }
+    /* Checkbox custom · privacy consent */
+    .form-field--checkbox { margin-bottom: 24px; }
+    .form-checkbox {
+      display: flex; align-items: flex-start; gap: 12px;
+      cursor: pointer; font-family: var(--font-body);
+      font-size: 13px; line-height: 1.5; color: var(--ink);
+      text-transform: none; letter-spacing: normal; font-weight: 400;
+      margin-bottom: 0;
+    }
+    .form-checkbox input[type="checkbox"] {
+      position: absolute; opacity: 0; pointer-events: none; width: 1px; height: 1px;
+    }
+    .form-checkbox__mark {
+      flex: 0 0 auto; width: 20px; height: 20px; margin-top: 1px;
+      border: 1.5px solid var(--line); border-radius: 4px;
+      background: var(--paper); position: relative;
+      transition: border-color 150ms ease, background 150ms ease;
+    }
+    .form-checkbox input[type="checkbox"]:checked + .form-checkbox__mark {
+      background: var(--blue-cta); border-color: var(--blue-cta);
+    }
+    .form-checkbox input[type="checkbox"]:checked + .form-checkbox__mark::after {
+      content: ''; position: absolute; left: 6px; top: 2px;
+      width: 5px; height: 10px; border: solid var(--paper);
+      border-width: 0 2px 2px 0; transform: rotate(45deg);
+    }
+    .form-checkbox input[type="checkbox"]:focus-visible + .form-checkbox__mark {
+      outline: 2px solid var(--blue-cta); outline-offset: 2px;
+    }
+    .form-field--checkbox.has-error .form-checkbox__mark { border-color: var(--error); }
+    .form-checkbox__label a { color: var(--blue-cta); text-decoration: underline; }
+    .form-checkbox__label a:hover { text-decoration: none; }
     .form-privacy {
       font-size: 12px; color: var(--ink-muted);
       text-align: center; margin-top: 18px;
@@ -1929,11 +1961,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               <textarea id="f-message" name="message" required minlength="10" maxlength="500" rows="4" placeholder="Ej: Necesitamos dinamizar nuestro modelo comercial." aria-describedby="err-message"></textarea>
               <span class="form-field__error" id="err-message" aria-live="polite"></span>
             </div>
+            <div class="form-field form-field--checkbox">
+              <label for="f-privacy_consent" class="form-checkbox">
+                <input type="checkbox" id="f-privacy_consent" name="privacy_consent" required aria-describedby="err-privacy_consent">
+                <span class="form-checkbox__mark" aria-hidden="true"></span>
+                <span class="form-checkbox__label">He leído y acepto el <a href="https://apto.mx/aviso-de-privacidad" target="_blank" rel="noopener">aviso de privacidad</a>. <span class="req">*</span></span>
+              </label>
+              <span class="form-field__error" id="err-privacy_consent" aria-live="polite"></span>
+            </div>
             <button type="submit" class="btn btn--full" id="form-submit">
               <span id="submit-label">Agenda tu sesión de descubrimiento</span>
               <span class="btn__arrow">→</span>
             </button>
-            <p class="form-privacy">Al enviar aceptas nuestro <a href="/privacidad">aviso de privacidad</a>.</p>
           </form>
           <div id="form-success" class="form-success" hidden tabindex="-1" role="status" aria-live="polite">
             <div class="form-success__icon" aria-hidden="true">✓</div>
@@ -2144,7 +2183,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         const wrap = input.closest('.form-field');
         let msg = '';
 
-        if (input.required && !input.value.trim()) {
+        if (input.type === 'checkbox') {
+          if (input.required && !input.checked) {
+            msg = 'Debes aceptar el aviso de privacidad para continuar.';
+          }
+        } else if (input.required && !input.value.trim()) {
           msg = 'Este campo es requerido.';
         } else if (input.value.trim() && input.minLength > 0 && input.value.trim().length < input.minLength) {
           msg = `Mínimo ${input.minLength} caracteres.`;
@@ -2247,6 +2290,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           industry: document.getElementById('f-industry').value.trim(),
           company_size: document.getElementById('f-company_size').value.trim(),
           message: document.getElementById('f-message').value.trim(),
+          privacy_consent: document.getElementById('f-privacy_consent').checked,
+          privacy_consent_ts: new Date().toISOString(),
+          privacy_notice_url: 'https://apto.mx/aviso-de-privacidad',
           context: context
         };
 
@@ -2282,6 +2328,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             message_length: (workerPayload.message || '').length,
             // Bool derivado para funnel/segmentation GA4 sin exponer PII · true = usuario describió problema
             has_problem_desc: !!(workerPayload.message || '').trim(),
+            // Consent legal (proof of consent · siempre true si llegó a este punto por required)
+            privacy_consent: workerPayload.privacy_consent,
+            privacy_consent_ts: workerPayload.privacy_consent_ts,
             // Attribution IDs
             gclid: new URLSearchParams(location.search).get('gclid') || '',
             fbclid: new URLSearchParams(location.search).get('fbclid') || '',
