@@ -1205,10 +1205,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .form-field textarea { min-height: 100px; resize: vertical; font-family: inherit; }
     /* Checkbox custom · privacy consent */
     .form-field--checkbox { margin-bottom: 24px; }
-    .form-checkbox {
+    .form-field label.form-checkbox {
       display: flex; align-items: flex-start; gap: 12px;
       cursor: pointer; font-family: var(--font-body);
-      font-size: 13px; line-height: 1.5; color: var(--ink);
+      font-size: 13.5px; line-height: 1.5; color: var(--ink);
       text-transform: none; letter-spacing: normal; font-weight: 400;
       margin-bottom: 0;
     }
@@ -1216,8 +1216,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       position: absolute; opacity: 0; pointer-events: none; width: 1px; height: 1px;
     }
     .form-checkbox__mark {
-      flex: 0 0 auto; width: 20px; height: 20px; margin-top: 1px;
-      border: 1.5px solid var(--line); border-radius: 4px;
+      flex: 0 0 auto; width: 22px; height: 22px; margin-top: 0;
+      border: 2px solid var(--ink-muted); border-radius: 4px;
       background: var(--paper); position: relative;
       transition: border-color 150ms ease, background 150ms ease;
     }
