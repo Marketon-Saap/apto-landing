@@ -1925,8 +1925,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               <span class="form-field__error" id="err-industry" aria-live="polite"></span>
             </div>
             <div class="form-field">
-              <label for="f-message">Cuéntanos brevemente, ¿qué problema necesitas resolver? <span class="req-optional">(opcional)</span></label>
-              <textarea id="f-message" name="message" maxlength="500" rows="4" placeholder="Ej: Necesitamos dinamizar nuestro modelo comercial." aria-describedby="err-message"></textarea>
+              <label for="f-message">Cuéntanos brevemente, ¿qué problema necesitas resolver? <span class="req">*</span></label>
+              <textarea id="f-message" name="message" required minlength="10" maxlength="500" rows="4" placeholder="Ej: Necesitamos dinamizar nuestro modelo comercial." aria-describedby="err-message"></textarea>
               <span class="form-field__error" id="err-message" aria-live="polite"></span>
             </div>
             <button type="submit" class="btn btn--full" id="form-submit">
