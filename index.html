@@ -2171,6 +2171,55 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         });
       });
 
+      // Anchor scroll fix · IG WebView + Chrome mobile in-app browsers a veces ignoran
+      // href="#..." nativo (users tapean el CTA repetidamente sin respuesta). Clarity
+      // 2026-08-10 registró 33 taps en "Agenda tu sesión →" desde IG en 1m38s con dead click.
+      // Fix: interceptar clicks en anchors internos, hacer scrollIntoView programático,
+      // compensar altura del nav sticky, y actualizar hash sin recargar.
+      (function initAnchorScrollFix(){
+        var NAV_OFFSET = 72; // altura aproximada del nav sticky (px)
+        function scrollToId(id){
+          if (!id) return false;
+          var target = document.getElementById(id);
+          if (!target) return false;
+          var rect = target.getBoundingClientRect();
+          var y = rect.top + window.scrollY - NAV_OFFSET;
+          try {
+            window.scrollTo({ top: y, behavior: 'smooth' });
+          } catch(e){
+            window.scrollTo(0, y);
+          }
+          // actualiza URL sin trigger de scroll nativo
+          if (history.replaceState) history.replaceState(null, '', '#' + id);
+          // focus para keyboard/AT users si target es form input
+          if (target.tagName === 'FORM' || target.querySelector('input, textarea, select')) {
+            var firstInput = target.querySelector('input:not([type=hidden]), textarea, select');
+            if (firstInput) setTimeout(function(){ firstInput.focus({ preventScroll: true }); }, 500);
+          }
+          return true;
+        }
+        document.addEventListener('click', function(e){
+          var link = e.target.closest('a[href^="#"]');
+          if (!link) return;
+          var href = link.getAttribute('href') || '';
+          if (href === '#' || href.length < 2) return;
+          var id = href.slice(1);
+          if (scrollToId(id)) {
+            e.preventDefault();
+            // track click event si tiene data-track (mantiene compatibilidad con GTM)
+            if (link.dataset.track && typeof window.dataLayer !== 'undefined') {
+              window.dataLayer.push({ event: link.dataset.track, anchor: id });
+            }
+          }
+        });
+        // Deep-link on load · si Meta ad manda URL con hash, scrollea después de que layout está listo
+        if (window.location.hash && window.location.hash.length > 1) {
+          window.addEventListener('load', function(){
+            setTimeout(function(){ scrollToId(window.location.hash.slice(1)); }, 300);
+          });
+        }
+      })();
+
       // Nav smart-hide mobile · hide on scroll down + show on scroll up
       // Solo activa <900px (desktop mantiene sticky always visible via CSS)
       (function initSmartHideNav(){
