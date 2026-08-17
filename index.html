@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#031B3F">
-  <title>APTO · Diseñamos y construimos los sistemas que tu operación necesita para crecer</title>
-  <meta name="description" content="Diseñamos y construimos los sistemas que tu operación necesita para crecer. Estrategia, diseño y tecnología resueltas por el mismo equipo — nos quedamos hasta que el sistema opera. Casos: Coppel, KIOSKO, Grupo San Carlos, APYMSA, Fanosa.">
+  <title>APTO · Plataformas, sistemas internos y agentes AI para tu operación · construidos y operando</title>
+  <meta name="description" content="APTO diseña y construye las plataformas B2B, sistemas internos y agentes AI que tu operación necesita — y se queda hasta que tu equipo los opera solo. Casos: Coppel, KIOSKO, APYMSA, BayWa r.e., Fanosa, Grupo San Carlos.">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <meta name="author" content="APTO Innovación S.A.P.I. de C.V.">
   <link rel="canonical" href="https://mktgrupoplasenciaautomotriz.github.io/marketon-clients/clients/apto/landing/">
@@ -14,8 +14,8 @@
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="APTO · Los sistemas que tu operación necesita para crecer">
-  <meta property="og:description" content="Diseñamos y construimos los sistemas que tu operación necesita para crecer. Estrategia + implementación en el mismo equipo. Nos quedamos hasta que el sistema opera — no entregamos un deck y desaparecemos.">
+  <meta property="og:title" content="APTO · Plataformas, sistemas internos y agentes AI · construidos y operando">
+  <meta property="og:description" content="Diseñamos y construimos las plataformas, sistemas internos y agentes AI que tu operación necesita — nos quedamos hasta que tu equipo los opera solo. Sin handoff a fábrica externa. Casos: Coppel, KIOSKO, APYMSA, BayWa r.e.">
   <meta property="og:url" content="https://mktgrupoplasenciaautomotriz.github.io/marketon-clients/clients/apto/landing/">
   <meta property="og:image" content="https://mktgrupoplasenciaautomotriz.github.io/marketon-clients/clients/apto/landing/assets/og-image-apto-official.png">
   <meta property="og:image:secure_url" content="https://mktgrupoplasenciaautomotriz.github.io/marketon-clients/clients/apto/landing/assets/og-image-apto-official.png">
@@ -299,7 +299,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     }
     .hero__eyebrow { color: rgba(255,255,255,.7); font-size: 13px; text-transform: uppercase; letter-spacing: 0.12em; font-weight: 500; font-family: var(--font-heading); margin-bottom: 20px; }
     @media (max-width: 767px) { .hero__eyebrow { font-size: 12.5px; margin-bottom: 12px; } }
-    .hero__title { color: var(--paper); margin-bottom: 28px; }
+    .hero__title { color: var(--paper); margin-bottom: 28px; font-size: clamp(2rem, 3.6vw, 3rem); line-height: 1.06; letter-spacing: -0.015em; }
     @media (max-width: 767px) { .hero__title { margin-bottom: 20px; font-size: clamp(1.5rem, 7.2vw, 2.125rem) !important; line-height: 1.08 !important; letter-spacing: -0.01em; } }
     .hero__sub { color: rgba(255,255,255,.82); font-size: clamp(1.0625rem, 1.6vw, 1.25rem); line-height: 1.55; max-width: 640px; margin-bottom: 40px; font-family: var(--font-body); }
     @media (max-width: 767px) { .hero__sub { font-size: 15.5px; margin-bottom: 24px; } }
@@ -332,8 +332,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       background: var(--navy-deep);
       box-shadow: 0 20px 60px rgba(0,0,0,.4);
     }
+    .hero__visual { margin: 0; }
     .hero__visual video, .hero__visual img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .hero__visual .hero__visual-fallback { display: none; }
+    .hero__visual-caption {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 12px 16px;
+      background: linear-gradient(to top, rgba(15,23,42,.92) 0%, rgba(15,23,42,0) 100%);
+      color: rgba(255,255,255,.9); font-size: 12.5px; letter-spacing: 0.01em;
+      font-family: var(--font-body);
+    }
+    .hero__visual-caption a {
+      color: rgba(255,255,255,.9); text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,.35);
+      padding-bottom: 1px; transition: border-color .15s ease;
+    }
+    .hero__visual-caption a:hover { border-color: rgba(255,255,255,.85); }
+    @media (max-width: 767px) { .hero__visual-caption { font-size: 11.5px; padding: 10px 12px; } }
     @media (max-width: 767px) {
       .hero__visual video { display: none; }
       .hero__visual .hero__visual-fallback { display: block; }
@@ -1520,8 +1535,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <img src="./assets/logos/apto-logo-white.svg" alt="APTO" width="93" height="56">
       </a>
       <ul class="nav__menu">
-        <li><a href="#pilares">Servicios</a></li>
-        <li><a href="#casos">Casos de éxito</a></li>
+        <li><a href="#productos">Qué construimos</a></li>
+        <li><a href="#casos">Casos</a></li>
         <li><a href="#metodo">Método</a></li>
         <li><a href="#faq">FAQ</a></li>
         <li><a href="#cta-form">Contacto</a></li>
@@ -1536,19 +1551,55 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div class="container">
       <div class="hero__grid">
         <div>
-          <p class="hero__eyebrow">Consultoría de innovación y diseño estratégico</p>
-          <h1 class="hero__title">Diseñamos y construimos los sistemas que tu operación necesita para crecer.</h1>
-          <p class="hero__sub">Estrategia, diseño y tecnología resueltas por el mismo equipo. Nos quedamos hasta que el sistema opera — no entregamos un deck y desaparecemos.</p>
+          <p class="hero__eyebrow">Para directores de operación · mid-market y corporativos MX</p>
+          <h1 class="hero__title">Plataformas, sistemas internos y agentes AI que tu operación necesita — diseñados, construidos y operando.</h1>
+          <p class="hero__sub">Del descubrimiento a producción con el mismo equipo. Nos quedamos hasta que tu equipo los opera solo — sin handoff a fábrica externa, sin deck que desaparece.</p>
           <div class="hero__cta-group">
             <a href="#cta-form" class="btn" data-track="hero_cta_click">
-              Agenda tu sesión de descubrimiento <span class="btn__arrow">→</span>
+              Agenda 30 min con un socio senior <span class="btn__arrow">→</span>
             </a>
-            <a href="#casos" class="link-secondary" data-track="hero_secondary_click">Ver cómo lo hicimos con Coppel ↓</a>
-            <p class="hero__trust">Sesión sin costo · Responde socio senior en &lt;24h · Casos: Coppel, APYMSA, BayWa r.e., Fanosa</p>
+            <a href="#casos" class="link-secondary" data-track="hero_secondary_click">Ver el caso Coppel ↓</a>
+            <p class="hero__trust">Sin costo · Responde socio senior en &lt;24h · Coppel · APYMSA · BayWa r.e. · Fanosa · KIOSKO · +40 proyectos</p>
           </div>
         </div>
-        <div class="hero__visual" aria-hidden="true">
-          <img src="./assets/hero-abstract-to-concrete.jpg" alt="De lo abstracto a lo concreto — la metáfora visual del approach APTO" fetchpriority="high" width="1920" height="1080" decoding="async">
+        <figure class="hero__visual">
+          <img src="https://apto.mx/wp-content/uploads/2026/01/Coppel-CPF-Hero-image-web-apto.webp"
+               alt="Coppel Club de Protección Familiar — plataforma multi-producto diseñada y construida por APTO, en producción"
+               fetchpriority="high" width="1600" height="1200" decoding="async">
+          <figcaption class="hero__visual-caption">
+            <a href="#casos" data-track="hero_visual_caso_click">Coppel · Club de Protección Familiar · en producción →</a>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categoría · movida al fold para responder "¿es para mí?" antes del abandono -->
+  <section class="categoria" id="categoria">
+    <div class="container">
+      <header class="section__header">
+        <p class="eyebrow">Dónde vive APTO</p>
+        <h2>Entre el rigor de la consultora estratégica y la ejecución del estudio de diseño.</h2>
+        <p class="lead">Ni Big-Four con proyectos de tres años y facturas de ocho dígitos, ni estudio de diseño que se queda en el mock-up. La sensibilidad de un estudio con el rigor de una consultora — al precio de empresa mediana o corporativo grande.</p>
+      </header>
+      <div class="categoria__grid">
+        <div class="categoria__col">
+          <p class="categoria__label">Estudio de diseño</p>
+          <h3>Sensibilidad de diseño, pero se queda en concepto</h3>
+          <p>Diseñan la experiencia y el mock-up. No documentan para construcción ni resuelven la lógica de negocio detrás. El sistema real queda por definir.</p>
+          <p class="categoria__players">Ej. IDEO, frog</p>
+        </div>
+        <div class="categoria__col categoria__col--apto">
+          <p class="categoria__label">Aquí vive APTO</p>
+          <h3>Diseño con rigor + construcción con criterio</h3>
+          <p>Rediseñamos y construimos con el mismo equipo. Del journey mapeado al sistema en producción — sin traspaso de contexto, sin re-interpretación entre fases.</p>
+          <p class="categoria__players">Empresas medianas y corporativos grandes en México</p>
+        </div>
+        <div class="categoria__col">
+          <p class="categoria__label">Consultora estratégica</p>
+          <h3>Rigor estratégico, pero sobreprecio y bloat</h3>
+          <p>Análisis profundo y decks robustos. Sobredimensión metodológica, proyectos de tres años y equipos senior sólo en el pitch. Ejecución tercerizada o inexistente.</p>
+          <p class="categoria__players">Ej. McKinsey Digital, BCG DV, Big-Four</p>
         </div>
       </div>
     </div>
@@ -1593,22 +1644,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div class="card__icon-wrap" aria-hidden="true">
             <img src="./assets/icons/dolor-01.svg" alt="" width="32" height="32">
           </div>
-          <h3 class="card__title">Fábricas de software sin criterio de negocio</h3>
-          <p class="card__body">Construyen lo que les pides, no lo que resuelve el problema. Buenos programadores, cero contexto de operación. El resultado: software que nadie usa y que hay que rehacer en 12 meses.</p>
+          <h3 class="card__title">Outsourcing que programa lo que le pides — no lo que resuelve el problema</h3>
+          <p class="card__body">Buenos programadores, cero contexto de operación. Construyen exactamente lo especificado en el ticket, incluso cuando el ticket estaba mal. Resultado: software que nadie usa y que hay que rehacer en 12 meses.</p>
         </article>
         <article class="card">
           <div class="card__icon-wrap" aria-hidden="true">
             <img src="./assets/icons/dolor-02.svg" alt="" width="32" height="32">
           </div>
-          <h3 class="card__title">Big-Four con costos que nunca aterrizan en el sistema</h3>
-          <p class="card__body">120 slides, 8 semanas de análisis, tarifas altas y proyectos de tres años que nunca terminan. Cuando el roadmap por fin se ejecuta, la oportunidad ya cerró.</p>
+          <h3 class="card__title">Consultora Big-Four con proyectos de tres años y facturas de ocho dígitos</h3>
+          <p class="card__body">120 slides, 8 semanas de análisis, roadmap a 36 meses. Cuando por fin llega la ejecución, el partner que vendió ya rotó y la oportunidad de negocio ya cerró. La ejecución la tercerizan.</p>
         </article>
         <article class="card">
           <div class="card__icon-wrap" aria-hidden="true">
             <img src="./assets/icons/dolor-03.svg" alt="" width="32" height="32">
           </div>
-          <h3 class="card__title">Consultoras que se quedan a 15,000 pies</h3>
-          <p class="card__body">Concepto puro, slides bonitos, frameworks — sin bajar a las tripas del problema. La estrategia sin implementación no vale: es solo una opinión bien redactada.</p>
+          <h3 class="card__title">Consultora que entrega deck y desaparece</h3>
+          <p class="card__body">Concepto puro, slides bonitos, frameworks — sin bajar a las tripas del problema. La estrategia sin implementación es una opinión bien redactada, no un sistema operando el lunes siguiente.</p>
         </article>
       </div>
 
@@ -1640,67 +1691,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
   </section>
 
-  <!-- Pilares · con iconos oficiales de APTO -->
-  <section class="section section--cream" id="pilares">
-    <div class="container">
-      <header class="section__header">
-        <p class="eyebrow">Nuestros pilares</p>
-        <h2>Cinco puertas de entrada, el mismo resultado: el sistema que te falta.</h2>
-        <p class="lead">Diseñamos los acabados y también la lógica de operación detrás. Entres por la puerta que entres, terminamos en el mismo lugar: sistema construido, documentado y operando.</p>
-      </header>
-      <div class="pilares">
-        <article class="card">
-          <div class="card__icon-wrap" aria-hidden="true">
-            <img src="./assets/icons/servicio-05.svg" alt="" width="32" height="32">
-          </div>
-          <h3 class="card__title">Service Design</h3>
-          <p class="card__body">Rediseñar cómo se entrega la experiencia al cliente de principio a fin — desde cómo la vive el usuario hasta el motor operativo detrás. La puerta más común cuando el servicio no está a la altura de la marca.</p>
-        </article>
-        <article class="card">
-          <div class="card__icon-wrap" aria-hidden="true">
-            <img src="./assets/icons/servicio-01.svg" alt="" width="32" height="32">
-          </div>
-          <h3 class="card__title">Diseño sistémico</h3>
-          <p class="card__body">Pensamiento no lineal aplicado a operaciones complejas. Cuando cada área trabaja aislada y todo genera retrabajo, diseñamos la base común. Es el patrón que probamos en Coppel.</p>
-        </article>
-        <article class="card">
-          <div class="card__icon-wrap" aria-hidden="true">
-            <img src="./assets/icons/servicio-04.svg" alt="" width="32" height="32">
-          </div>
-          <h3 class="card__title">Business Design</h3>
-          <p class="card__body">Rediseñar cómo funciona una línea de negocio o un canal. Cuando la estrategia macro ya está pero una unidad concreta dejó de crecer y necesita reinventarse.</p>
-        </article>
-        <article class="card">
-          <div class="card__icon-wrap" aria-hidden="true">
-            <img src="./assets/icons/ai-chip.svg" alt="" width="32" height="32">
-          </div>
-          <h3 class="card__title">AI aplicada</h3>
-          <p class="card__body">Asistentes, automatización y agentes donde de verdad agregan valor. No como buzzword: como capa práctica sobre la operación que ya tienes, supervisada siempre por personas.</p>
-        </article>
-        <article class="card">
-          <div class="card__icon-wrap" aria-hidden="true">
-            <img src="./assets/icons/servicio-03.svg" alt="" width="32" height="32">
-          </div>
-          <h3 class="card__title">Transformación</h3>
-          <p class="card__body">Modernización de la operación — procesos, equipos, tecnología. Para empresas medianas que necesitan cerrar de una vez la primera ola digital antes de saltar a la siguiente.</p>
-        </article>
-      </div>
-    </div>
-  </section>
+  <!-- Pilares eliminado · redundante con Productos · reducción de scroll fatigue -->
 
   <!-- Productos con iconos oficiales servicio-06 + variantes -->
   <section class="section section--navy" id="productos">
     <div class="container">
       <header class="section__header">
-        <p class="eyebrow">Qué entregamos</p>
-        <h2>El sistema — no el deck.</h2>
-        <p class="lead">Un sistema puede ser un proceso, una herramienta, una organización, un producto digital o un servicio. Todos comparten dos cosas: la lógica de negocio resuelta detrás y documentación que tu equipo puede operar sin adivinar.</p>
+        <p class="eyebrow">Qué construimos</p>
+        <h2>Cinco outputs concretos, no un deck de recomendaciones.</h2>
+        <p class="lead">Cada uno con la lógica de negocio resuelta detrás y documentación que tu equipo puede operar sin adivinar. Encuentra el más cercano a lo que necesitas y agenda una sesión — si tu caso no encaja en ninguno, también te lo decimos.</p>
       </header>
       <div class="productos">
         <article class="producto">
           <div class="producto__icon-wrap"><img src="./assets/icons/servicio-02.svg" alt="" width="40" height="40"></div>
-          <div class="producto__label">Productos digitales completos</div>
-          <p class="producto__desc">Del prototipado al testing: apps, plataformas B2B y experiencias que integran objetivos de negocio, viabilidad operativa y usuario real. <strong>No hacemos sitios corporativos genéricos.</strong></p>
+          <div class="producto__label">Plataformas B2B y apps operativas</div>
+          <p class="producto__desc"><em>Para: retail, distribuidoras, industrial con catálogo complejo o proceso comercial denso.</em> Del prototipado al testing: apps, plataformas B2B y experiencias que integran objetivos de negocio, viabilidad operativa y usuario real. No hacemos sitios corporativos genéricos.</p>
           <details class="producto__more">
             <summary data-track="producto_expand" data-producto="digitales-completos">Ver ejemplos concretos</summary>
             <ul class="producto__examples">
@@ -1712,8 +1717,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </article>
         <article class="producto">
           <div class="producto__icon-wrap"><img src="./assets/icons/servicio-06.svg" alt="" width="40" height="40"></div>
-          <div class="producto__label">Sistemas internos de operación</div>
-          <p class="producto__desc">ERPs, dashboards, data warehouses e interfaces internas construidas para tu operación real — no para vender licencias ni cobrar por hora.</p>
+          <div class="producto__label">ERPs, dashboards y data warehouses internos</div>
+          <p class="producto__desc"><em>Para: empresas medianas donde el SaaS del mercado no cabe y Excel dejó de escalar.</em> Sistemas internos, dashboards ejecutivos y data warehouses construidos para tu operación real — no para vender licencias ni cobrar por hora.</p>
           <details class="producto__more">
             <summary data-track="producto_expand" data-producto="sistemas-internos">Ver ejemplos concretos</summary>
             <ul class="producto__examples">
@@ -1725,8 +1730,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </article>
         <article class="producto">
           <div class="producto__icon-wrap"><img src="./assets/icons/browser.svg" alt="" width="40" height="40"></div>
-          <div class="producto__label">Ecosistemas digitales omnicanal</div>
-          <p class="producto__desc">Cuando canales, procesos, equipos y tecnología deben operar coordinados. Reducimos fricción y alineamos operación con negocio · el patrón de KIOSKO POS +900 tiendas y Grupo San Carlos.</p>
+          <div class="producto__label">Ecosistemas multi-canal (POS + web + mobile + backend)</div>
+          <p class="producto__desc"><em>Para: operaciones multi-tienda, multi-marca o multi-canal donde cada front-end vive aislado.</em> Cuando canales, procesos, equipos y tecnología deben operar coordinados. El patrón que probamos en KIOSKO (+900 tiendas) y Grupo San Carlos.</p>
           <details class="producto__more">
             <summary data-track="producto_expand" data-producto="ecosistemas-omnicanal">Ver ejemplos concretos</summary>
             <ul class="producto__examples">
@@ -1738,8 +1743,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </article>
         <article class="producto">
           <div class="producto__icon-wrap"><img src="./assets/icons/ai-chip.svg" alt="" width="40" height="40"></div>
-          <div class="producto__label">Agentes AI e integraciones</div>
-          <p class="producto__desc">Asistentes, automatizaciones e integraciones sobre los sistemas que ya tienes. Supervisados por personas donde importa.</p>
+          <div class="producto__label">Agentes AI integrados a tu stack</div>
+          <p class="producto__desc"><em>Para: equipos que ya tienen operación digital y quieren amplificar sin sustituir criterio del equipo.</em> Asistentes, automatizaciones e integraciones sobre los sistemas que ya tienes. Supervisados por personas donde importa.</p>
           <details class="producto__more">
             <summary data-track="producto_expand" data-producto="agentes-ai">Ver ejemplos concretos</summary>
             <ul class="producto__examples">
@@ -1751,8 +1756,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </article>
         <article class="producto">
           <div class="producto__icon-wrap"><img src="./assets/icons/ai-ops.svg" alt="" width="40" height="40"></div>
-          <div class="producto__label">Automatización de operación</div>
-          <p class="producto__desc">Para equipos que ya digitalizaron y ahora quieren que la operación se ejecute sola donde tiene sentido — sin sustituir el criterio del equipo.</p>
+          <div class="producto__label">Automatización de procesos que consumen tiempo del equipo</div>
+          <p class="producto__desc"><em>Para: equipos que ya digitalizaron y ven cuellos de botella repetitivos en la operación diaria.</em> Ejecutamos lo que se puede ejecutar solo — sin sustituir criterio humano en decisiones que no se pueden fallar.</p>
           <details class="producto__more">
             <summary data-track="producto_expand" data-producto="automatizacion">Ver ejemplos concretos</summary>
             <ul class="producto__examples">
@@ -1771,8 +1776,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div class="container">
       <header class="section__header">
         <p class="eyebrow">Casos</p>
-        <h2>Estrategia que aterrizó — con evidencia medible.</h2>
-        <p class="lead">No inventamos metodología nueva por cliente. Aplicamos frameworks probados, y cuando el problema lo pide, construimos los que hacen falta.</p>
+        <h2>Sistemas en producción — no propuestas ganadas.</h2>
+        <p class="lead">Cada caso es un output tangible que sigue operando en la empresa cliente. Aplicamos frameworks probados cuando encajan y construimos los que hacen falta cuando no.</p>
       </header>
 
       <article class="caso-flagship">
@@ -1796,9 +1801,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <img src="https://apto.mx/wp-content/uploads/2024/09/slide_apymsa-compressed.jpg" alt="APYMSA — plataforma B2B de catálogo corporativo diseñada y construida por APTO" loading="lazy" width="800" height="500">
           </div>
           <div class="card__body-wrap">
-            <p class="caso__cliente">APYMSA</p>
+            <p class="caso__cliente">APYMSA · en producción</p>
             <h3 class="card__title">Plataforma B2B para catálogo corporativo de autopartes con lógica densa</h3>
-            <p class="card__body">Distribución regional, inventario multi-almacén y catálogo con cuatro variantes por parte cruzadas por modelo, año y códigos. Diseñamos y construimos la plataforma que orquesta la operación en 15 sucursales.</p>
+            <p class="card__body">Distribución regional, inventario multi-almacén y catálogo con cuatro variantes por parte cruzadas por modelo, año y códigos. Plataforma operando hoy en la red de sucursales — diseñada y construida por APTO.</p>
           </div>
         </article>
         <article class="card card--with-image">
@@ -1806,9 +1811,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <img src="https://apto.mx/wp-content/uploads/2024/08/baywa-compressed.jpg" alt="BayWa r.e. — modelo de documentación y cadencia de producto diseñado por APTO" loading="lazy" width="800" height="500">
           </div>
           <div class="card__body-wrap">
-            <p class="caso__cliente">BayWa r.e.</p>
-            <h3 class="card__title">Cadencia y documentación de producto que el equipo técnico puede construir sin interpretar</h3>
-            <p class="card__body">Modelo de trabajo con documentación completa — requerimientos, especificaciones y criterios de aceptación — para que construcción no tenga que adivinar. Se reduce el retrabajo por ambigüedad a mínimos.</p>
+            <p class="caso__cliente">BayWa r.e. · modelo adoptado internamente</p>
+            <h3 class="card__title">Cadencia y documentación de producto que el equipo técnico ejecuta sin interpretar</h3>
+            <p class="card__body">Modelo de trabajo con documentación completa — requerimientos, especificaciones y criterios de aceptación — para que construcción no tenga que adivinar. El equipo interno adoptó el modelo y lo sigue operando post-engagement.</p>
           </div>
         </article>
         <article class="card card--with-image">
@@ -1816,9 +1821,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <img src="https://apto.mx/wp-content/uploads/2024/08/fanosa-compressed.jpg" alt="Fanosa — solución operativa diseñada por APTO" loading="lazy" width="800" height="500">
           </div>
           <div class="card__body-wrap">
-            <p class="caso__cliente">Fanosa</p>
-            <h3 class="card__title">Reordenar la comunicación del portafolio para audiencias técnicas especializadas</h3>
-            <p class="card__body">Reorganización del portafolio multi-línea para que ingenieros y compradores encuentren la solución específica sin navegar el catálogo completo. Cada división habla el idioma de su especialidad.</p>
+            <p class="caso__cliente">Fanosa · en producción</p>
+            <h3 class="card__title">Portafolio multi-línea reordenado por división técnica especializada</h3>
+            <p class="card__body">Ingenieros y compradores encuentran su solución específica sin navegar el catálogo completo. Cada división habla el idioma de su especialidad. Rediseño diseñado y construido por APTO.</p>
           </div>
         </article>
       </div>
@@ -1904,40 +1909,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
   </section>
 
-  <!-- Categoría de mercado · dónde vive APTO · plan §2 -->
-  <section class="categoria" id="categoria">
-    <div class="container">
-      <header class="section__header">
-        <p class="eyebrow">Dónde vivimos</p>
-        <h2>Entre el rigor de la consultoría estratégica y la ejecución del estudio de diseño.</h2>
-        <p class="lead">APTO ocupa un espacio propio: la sensibilidad de un estudio de diseño con el rigor estratégico de una consultora — sin el sobreprecio Big-Four ni sus meses de análisis. Precio accesible para empresas medianas y firmas corporativas grandes.</p>
-      </header>
-      <div class="categoria__grid">
-        <div class="categoria__col">
-          <p class="categoria__label">Estudio de diseño</p>
-          <h3>Sensibilidad de diseño, pero se queda en concepto</h3>
-          <p>Diseñan la experiencia y el mock-up. No documentan para construcción ni resuelven la lógica de negocio detrás. El sistema real queda por definir.</p>
-          <p class="categoria__players">Ej. IDEO, frog</p>
-        </div>
-        <div class="categoria__col categoria__col--apto">
-          <p class="categoria__label">Aquí vive APTO</p>
-          <h3>Diseño con rigor + construcción con criterio</h3>
-          <p>Rediseñamos y construimos con el mismo equipo. Del journey mapeado hasta el sistema en producción — sin traspaso de contexto, sin re-interpretación entre diseño y construcción.</p>
-          <p class="categoria__players">Precio accesible para empresas medianas y corporativos grandes</p>
-        </div>
-        <div class="categoria__col">
-          <p class="categoria__label">Consultoría estratégica</p>
-          <h3>Rigor estratégico, pero sobreprecio y bloat</h3>
-          <p>Análisis profundo y decks robustos. Sobredimensión metodológica, proyectos de tres años y equipos senior sólo en el pitch. Ejecución tercerizada o inexistente.</p>
-          <p class="categoria__players">Ej. McKinsey Digital, BCG DV, Big-Four</p>
-        </div>
-      </div>
+  <!-- Categoría · movida a posición 2 (justo después del hero) para responder "¿es para mí?" antes del fold abandon -->
 
-      <div class="section-cta">
-        <a class="section-cta__link" href="#cta-form" data-track="categoria_cta_click">Si este es el espacio que buscas · Agenda una sesión <span class="arr" aria-hidden="true">→</span></a>
-      </div>
-    </div>
-  </section>
 
   <!-- Qué NO somos · rechazos explícitos del plan §4 · reduce leads mal calificados -->
   <section class="no-somos section--cream" id="no-somos">
@@ -1949,35 +1922,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       </header>
       <div class="no-somos__list">
         <details class="no-somos__item">
-          <summary data-track="no_somos_expand" data-item="branding"><strong>No somos agencia de branding ni de contenido.</strong> No hacemos identidad visual ni campañas de comunicación.</summary>
-          <div class="no-somos__body">En su lugar: trabajamos con tu agencia interna o partner de comunicación cuando existe. Nuestro terreno es sistema operativo detrás de la marca, no la marca.</div>
-        </details>
-        <details class="no-somos__item">
           <summary data-track="no_somos_expand" data-item="bigfour"><strong>No competimos con Big-Four en despliegues masivos tipo SAP Hana.</strong> Nuestro sweet spot es scope acotado con impacto medible.</summary>
           <div class="no-somos__body">En su lugar: integramos con implementaciones ERP en curso. Nuestro alcance es diseño de experiencia y capa operativa que hace el ERP usable para el equipo.</div>
         </details>
         <details class="no-somos__item">
-          <summary data-track="no_somos_expand" data-item="slideware"><strong>No somos consultora slideware.</strong> No entregamos 120 slides sin sistema construido detrás.</summary>
-          <div class="no-somos__body">En su lugar: cada strategic deliverable viene con el artefacto operable — service blueprint funcional, prototipo clicable, backlog priorizado con specs.</div>
-        </details>
-        <details class="no-somos__item">
-          <summary data-track="no_somos_expand" data-item="ideo"><strong>No somos estudio de diseño puro estilo IDEO.</strong> No nos quedamos en el concepto ni en el mock-up.</summary>
-          <div class="no-somos__body">En su lugar: nos quedamos hasta adopción real. Diseño sin implementación es 20% del trabajo — el 80% es que opere el lunes siguiente.</div>
-        </details>
-        <details class="no-somos__item">
-          <summary data-track="no_somos_expand" data-item="fabrica"><strong>No somos fábrica de software.</strong> No escribimos código sin estrategia y sin criterio de negocio.</summary>
+          <summary data-track="no_somos_expand" data-item="fabrica"><strong>No somos fábrica de software.</strong> No escribimos código sin estrategia ni sin criterio de negocio.</summary>
           <div class="no-somos__body">En su lugar: código con criterio de negocio, integrado a contexto operativo específico. El mismo equipo que diseña construye — sin pérdida de contexto entre fases.</div>
         </details>
         <details class="no-somos__item">
-          <summary data-track="no_somos_expand" data-item="15000pies"><strong>No somos consultora "a 15,000 pies".</strong> Nos metemos a las tripas del problema; el framework sin implementación no vale.</summary>
-          <div class="no-somos__body">En su lugar: team senior embedded con quien opera. Cada semana con la operación real — no visitas de checkpoint quincenales.</div>
+          <summary data-track="no_somos_expand" data-item="15000pies"><strong>No somos consultora "a 15,000 pies" que entrega deck y desaparece.</strong> Nos metemos a las tripas del problema y nos quedamos hasta adopción real.</summary>
+          <div class="no-somos__body">En su lugar: team senior embedded con quien opera. Cada semana con la operación real — no visitas de checkpoint quincenales, no handoff a fábrica externa post-diseño.</div>
         </details>
         <details class="no-somos__item">
-          <summary data-track="no_somos_expand" data-item="ai-first"><strong>No somos consultora AI-first.</strong> AI es una capa útil sobre una operación ya sana — no el punto de partida.</summary>
-          <div class="no-somos__body">En su lugar: aplicamos AI donde suma medible. Empezamos por sanear operación y datos; después la AI amplifica lo que ya funciona en vez de esconder lo que no.</div>
-        </details>
-        <details class="no-somos__item">
-          <summary data-track="no_somos_expand" data-item="startups"><strong>No trabajamos con startups sin fondeo confirmado.</strong> Sólo nivel Series A / Y Combinator o equivalente.</summary>
+          <summary data-track="no_somos_expand" data-item="startups"><strong>No trabajamos con startups sin fondeo confirmado.</strong> Solo Series A / Y Combinator o equivalente.</summary>
           <div class="no-somos__body">En su lugar: startups con PMF validado que buscan escalar producto — no construir MVP. Track record de rondas cerradas + métricas operativas reales ayuda.</div>
         </details>
       </div>
@@ -2295,7 +2252,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div class="footer__logo">
             <img src="./assets/logos/apto-logo-white.svg" alt="APTO" width="93" height="56">
           </div>
-          <p class="footer__tagline">Diseñamos y construimos los sistemas que tu operación necesita para crecer.</p>
+          <p class="footer__tagline">Plataformas, sistemas internos y agentes AI que tu operación necesita — construidos, documentados y operando.</p>
           <div class="footer__social" style="display:flex;gap:16px;margin-top:20px">
             <a href="https://www.linkedin.com/company/apto-innovacion/" target="_blank" rel="noopener" aria-label="LinkedIn" style="color:rgba(255,255,255,.6);font-size:14px">LinkedIn</a>
             <a href="https://www.instagram.com/apto.innovation/" target="_blank" rel="noopener" aria-label="Instagram" style="color:rgba(255,255,255,.6);font-size:14px">Instagram</a>
