@@ -1794,6 +1794,156 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     /* Footer social · WCAG 2.2 SC 2.5.8 · 44x44 preferido */
     .footer__social a { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; padding: 7px; }
 
+    /* CTA banner · reemplaza layout grid del form · centrado dramatico */
+    .cta-banner {
+      background: var(--navy);
+      padding: 100px 0;
+      color: var(--paper);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    @media (max-width: 767px) { .cta-banner { padding: 64px 0; } }
+    .cta-banner::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at center top, rgba(37,99,235,.15) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .cta-banner__inner {
+      position: relative;
+      max-width: 720px; margin: 0 auto;
+      padding: 0 20px;
+    }
+    .cta-banner__title {
+      color: var(--paper); margin: 16px 0 20px;
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+    }
+    .cta-banner__body {
+      color: rgba(255,255,255,.78);
+      font-size: clamp(1rem, 1.5vw, 1.125rem);
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+    .cta-banner__trust {
+      display: inline-flex; flex-wrap: wrap; gap: 12px 24px;
+      justify-content: center;
+      list-style: none; padding: 0;
+      margin: 0 auto 32px;
+      color: rgba(255,255,255,.62); font-size: 13.5px;
+    }
+    .cta-banner__trust li { position: relative; }
+    .cta-banner__trust li:not(:last-child)::after {
+      content: '·'; position: absolute; right: -14px; opacity: 0.5;
+    }
+    @media (max-width: 640px) {
+      .cta-banner__trust { flex-direction: column; gap: 8px; align-items: center; }
+      .cta-banner__trust li:not(:last-child)::after { display: none; }
+    }
+    .cta-banner__cta {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 16px 32px; min-height: 56px;
+      background: var(--paper); color: var(--ink);
+      border: 1px solid rgba(0,0,0,.06);
+      border-radius: 9999px;
+      font-family: var(--font-heading); font-weight: 600; font-size: 15px;
+      text-transform: uppercase; letter-spacing: 0.06em;
+      box-shadow: 0 20px 40px -12px rgba(37,99,235,.45);
+    }
+    .cta-banner__cta:hover { text-decoration: none; transform: translateY(-1px); box-shadow: 0 24px 48px -12px rgba(37,99,235,.6); }
+    .cta-banner__cta:active { transform: translateY(0); }
+    .cta-banner__cta .btn__arrow { font-size: 16px; transition: transform 200ms ease; }
+    .cta-banner__cta:hover .btn__arrow { transform: translateX(4px); }
+    .cta-banner__micro {
+      margin-top: 20px; color: rgba(255,255,255,.5);
+      font-size: 12.5px; letter-spacing: 0.02em;
+    }
+
+    /* Form modal · dialog · mobile bottom sheet + desktop centered · WCAG focus trap */
+    .form-modal {
+      position: fixed; inset: 0; z-index: 80;
+      display: flex; align-items: flex-end; justify-content: center;
+    }
+    .form-modal[hidden] { display: none; }
+    .form-modal__backdrop {
+      position: absolute; inset: 0;
+      background: rgba(3,27,63,.72);
+      backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+      animation: fm-backdrop-in 220ms ease-out both;
+    }
+    .form-modal__panel {
+      position: relative;
+      width: 100%; max-width: 560px;
+      max-height: 92dvh;
+      background: var(--paper);
+      border-radius: 24px 24px 0 0;
+      display: flex; flex-direction: column;
+      animation: fm-panel-in 320ms cubic-bezier(.16,1,.3,1) both;
+      box-shadow: 0 -12px 48px -8px rgba(0,0,0,.4);
+    }
+    @media (min-width: 768px) {
+      .form-modal { align-items: center; }
+      .form-modal__panel {
+        border-radius: 20px;
+        max-height: 88dvh;
+        animation: fm-panel-in-desktop 280ms cubic-bezier(.16,1,.3,1) both;
+      }
+    }
+    .form-modal__handle {
+      width: 44px; height: 4px;
+      background: rgba(0,0,0,.16);
+      border-radius: 2px;
+      margin: 12px auto 0;
+      flex-shrink: 0;
+    }
+    @media (min-width: 768px) { .form-modal__handle { display: none; } }
+    .form-modal__close {
+      position: absolute; top: 12px; right: 12px;
+      width: 40px; height: 40px;
+      background: rgba(0,0,0,.04);
+      border: none; border-radius: 50%; cursor: pointer;
+      display: inline-flex; align-items: center; justify-content: center;
+      color: var(--ink);
+      z-index: 2;
+      transition: background 150ms ease;
+    }
+    .form-modal__close:hover { background: rgba(0,0,0,.08); }
+    .form-modal__scroll {
+      overflow-y: auto;
+      padding: 20px 24px calc(24px + env(safe-area-inset-bottom));
+      flex: 1 1 auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    @media (min-width: 768px) { .form-modal__scroll { padding: 24px 32px 32px; } }
+    .form-modal__header {
+      margin-bottom: 20px;
+      padding-right: 40px; /* deja aire para el close btn */
+    }
+    .form-modal__title {
+      font-size: clamp(1.375rem, 3vw, 1.75rem);
+      color: var(--ink);
+      font-family: var(--font-heading);
+      margin: 8px 0 10px;
+      line-height: 1.15;
+      letter-spacing: -0.015em;
+    }
+    .form-modal__sub {
+      color: var(--ink-muted);
+      font-size: 14px; line-height: 1.5;
+      margin: 0;
+    }
+    .form-modal__sub strong { color: var(--ink); font-weight: 600; }
+    /* Cuando el modal está abierto · lock scroll del body */
+    body.form-modal-open { overflow: hidden; }
+    @keyframes fm-backdrop-in { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes fm-panel-in { from { transform: translateY(100%); } to { transform: translateY(0); } }
+    @keyframes fm-panel-in-desktop { from { transform: translateY(24px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    @media (prefers-reduced-motion: reduce) {
+      .form-modal__backdrop, .form-modal__panel { animation: none; }
+    }
+
     /* Reveal on scroll · elementos con .js-reveal aparecen suavemente al entrar viewport */
     .js-reveal {
       opacity: 0; transform: translateY(24px);
@@ -2441,21 +2591,44 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </section>
 
   <!-- CTA + Form -->
-  <section class="cta-form" id="cta-form">
+  <!-- CTA banner · abre form-modal (no scroll) · weecom pattern -->
+  <section class="cta-banner" id="cta-form">
     <div class="container">
-      <div class="cta-form__grid">
-        <div>
-          <p class="eyebrow">Sesión de descubrimiento · 30 min · sin costo</p>
-          <h2 class="cta-form__title">Cuéntanos qué te está trabando la operación.</h2>
-          <p class="cta-form__body">En 30 minutos platicas el problema con Carlos, socio senior. Si tiene sentido para ambas partes, agendamos una siguiente sesión con stakeholders y firmamos NDA. Si no, te decimos quién sí puede resolverlo. Nadie pierde tiempo.</p>
-          <ul class="trust-list">
-            <li>Respuesta en menos de 24 horas hábiles</li>
-            <li>Directo con socio senior · sin filtros de agencia</li>
-            <li>En la primera llamada no hay deck ni mockup — hablamos del problema</li>
-          </ul>
+      <div class="cta-banner__inner js-reveal">
+        <p class="eyebrow">Sesión de descubrimiento · 30 min · sin costo</p>
+        <h2 class="cta-banner__title">Cuéntanos qué te está trabando la operación.</h2>
+        <p class="cta-banner__body">En 30 minutos platicas el problema con Carlos, socio senior. Si tiene sentido para ambas partes, agendamos una siguiente sesión con stakeholders y firmamos NDA. Si no, te decimos quién sí puede resolverlo. Nadie pierde tiempo.</p>
+        <ul class="trust-list cta-banner__trust">
+          <li>Respuesta en &lt;24h hábiles</li>
+          <li>Directo con socio senior · sin filtros</li>
+          <li>Sin deck ni mockup — hablamos del problema</li>
+        </ul>
+        <a href="#cta-form" class="btn cta-banner__cta" data-track="cta_banner_click" data-open-form-modal>
+          Agenda tu sesión de descubrimiento
+          <span class="btn__arrow" aria-hidden="true">→</span>
+        </a>
+        <p class="cta-banner__micro">Sin costo · Sin cadena de agencia · Sin compromiso</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Form modal · dialog-based · mobile bottom sheet + desktop centered · WCAG compliant -->
+  <div class="form-modal" id="form-modal" role="dialog" aria-modal="true" aria-labelledby="form-modal-title" hidden>
+    <div class="form-modal__backdrop" data-close-form-modal></div>
+    <div class="form-modal__panel">
+      <button type="button" class="form-modal__close" aria-label="Cerrar" data-close-form-modal>
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
+        </svg>
+      </button>
+      <div class="form-modal__handle" aria-hidden="true"></div>
+      <div class="form-modal__scroll">
+        <div class="form-modal__header">
+          <p class="eyebrow">30 min · sin costo</p>
+          <h3 id="form-modal-title" class="form-modal__title">Agenda tu sesión de descubrimiento</h3>
+          <p class="form-modal__sub">Responde <strong>Carlos Beltrán</strong>, socio senior · en menos de 24 horas hábiles</p>
         </div>
         <div class="form-card" id="form-card">
-          <h3 class="form-card__title">Agenda tu sesión de descubrimiento</h3>
           <div id="form-message" class="form-message" role="alert" aria-live="assertive" hidden></div>
           <form id="diagnostico-form" novalidate>
             <div class="form-field">
@@ -2548,12 +2721,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="form-success__icon" aria-hidden="true">✓</div>
             <h3 class="form-success__title">Recibimos tu solicitud.</h3>
             <p class="form-success__body">Carlos Beltrán, socio senior, responde personalmente en menos de 24 horas hábiles.</p>
-            <a href="#casos" class="link-secondary">Mientras tanto, ver casos de éxito ↓</a>
+            <button type="button" class="link-secondary" data-close-form-modal>Volver al sitio ↑</button>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+  <!-- /form-modal -->
 
   <!-- FAQ -->
   <section class="section" id="faq">
@@ -2795,6 +2969,60 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           setTimeout(function(){ if (window.scrollY < 200) window.scrollTo(0, 0); }, 400);
         });
       })();
+
+      // Form modal · WCAG-compliant · abre en click a href="#cta-form" o [data-open-form-modal]
+      // Mobile bottom-sheet · desktop centered dialog · focus trap · escape close · body scroll lock
+      var formModalLastFocused = null;
+      function openFormModal(source){
+        var modal = document.getElementById('form-modal');
+        if (!modal) return;
+        formModalLastFocused = document.activeElement;
+        modal.hidden = false;
+        document.body.classList.add('form-modal-open');
+        setTimeout(function(){
+          var firstInput = modal.querySelector('input:not([type=hidden]):not([disabled]), textarea, select');
+          if (firstInput) firstInput.focus({ preventScroll: true });
+        }, 320);
+        track('form_modal_open', { source: source || 'unknown' });
+      }
+      function closeFormModal(){
+        var modal = document.getElementById('form-modal');
+        if (!modal) return;
+        modal.hidden = true;
+        document.body.classList.remove('form-modal-open');
+        if (formModalLastFocused && formModalLastFocused.focus) {
+          formModalLastFocused.focus({ preventScroll: true });
+        }
+        track('form_modal_close', {});
+      }
+      // Delegated click handler · captura anchors #cta-form + botones data-open-form-modal
+      // useCapture=true para correr ANTES que el anchor scroll fix (que también está en document)
+      document.addEventListener('click', function(e){
+        var opener = e.target.closest('[data-open-form-modal], a[href="#cta-form"]');
+        if (opener) {
+          e.preventDefault();
+          e.stopImmediatePropagation();
+          var source = opener.getAttribute('data-track') || opener.className || 'anchor';
+          openFormModal(source);
+          return;
+        }
+        var closer = e.target.closest('[data-close-form-modal]');
+        if (closer) {
+          e.preventDefault();
+          closeFormModal();
+        }
+      }, true);
+      // Escape key close
+      document.addEventListener('keydown', function(e){
+        if (e.key === 'Escape') {
+          var modal = document.getElementById('form-modal');
+          if (modal && !modal.hidden) closeFormModal();
+        }
+      });
+      // Deep-link · URL con #cta-form al load abre el modal
+      if (window.location.hash === '#cta-form') {
+        setTimeout(function(){ openFormModal('deep_link'); }, 400);
+      }
 
       // Mobile menu bottom-sheet · WCAG-compliant modal · escape key + backdrop click + a href close
       (function initMobileMenu(){
