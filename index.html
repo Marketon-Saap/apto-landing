@@ -1794,6 +1794,60 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     /* Footer social · WCAG 2.2 SC 2.5.8 · 44x44 preferido */
     .footer__social a { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; padding: 7px; }
 
+    /* Cierre landing · minimalista · 1 CTA para reabrir modal · sin muro de texto */
+    .cta-close {
+      background: var(--navy);
+      padding: 80px 0 96px;
+      color: var(--paper);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    @media (max-width: 767px) { .cta-close { padding: 56px 0 72px; } }
+    .cta-close::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at center 40%, rgba(37,99,235,.18) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    .cta-close__inner {
+      position: relative;
+      max-width: 640px; margin: 0 auto;
+      padding: 0 20px;
+    }
+    .cta-close__eyebrow {
+      color: rgba(255,255,255,.55) !important;
+      font-family: var(--font-heading);
+      text-transform: uppercase; letter-spacing: 0.12em;
+      font-size: 12px;
+      margin-bottom: 16px;
+    }
+    .cta-close__title {
+      color: var(--paper);
+      font-size: clamp(1.75rem, 4.5vw, 3rem);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      margin: 0 0 32px;
+    }
+    .cta-close__cta {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 18px 36px; min-height: 56px;
+      background: var(--paper); color: var(--ink);
+      border: 1px solid rgba(0,0,0,.06);
+      border-radius: 9999px;
+      font-family: var(--font-heading); font-weight: 600; font-size: 15px;
+      text-transform: uppercase; letter-spacing: 0.06em;
+      box-shadow: 0 24px 48px -14px rgba(37,99,235,.55);
+    }
+    .cta-close__cta:hover { text-decoration: none; transform: translateY(-2px); box-shadow: 0 28px 56px -14px rgba(37,99,235,.7); }
+    .cta-close__cta:active { transform: translateY(0); }
+    .cta-close__cta .btn__arrow { font-size: 16px; transition: transform 200ms ease; }
+    .cta-close__cta:hover .btn__arrow { transform: translateX(4px); }
+    .cta-close__micro {
+      margin-top: 20px; color: rgba(255,255,255,.5);
+      font-size: 12.5px; letter-spacing: 0.02em;
+    }
+
     /* CTA banner · reemplaza layout grid del form · centrado dramatico */
     .cta-banner {
       background: var(--navy);
@@ -2591,23 +2645,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </section>
 
   <!-- CTA + Form -->
-  <!-- CTA banner · abre form-modal (no scroll) · weecom pattern -->
-  <section class="cta-banner" id="cta-form">
+  <!-- Cierre landing · CTA final minimalista · el form vive en modal (weecom pattern) -->
+  <section class="cta-close" id="cta-form">
     <div class="container">
-      <div class="cta-banner__inner js-reveal">
-        <p class="eyebrow">Sesión de descubrimiento · 30 min · sin costo</p>
-        <h2 class="cta-banner__title">Cuéntanos qué te está trabando la operación.</h2>
-        <p class="cta-banner__body">En 30 minutos platicas el problema con Carlos, socio senior. Si tiene sentido para ambas partes, agendamos una siguiente sesión con stakeholders y firmamos NDA. Si no, te decimos quién sí puede resolverlo. Nadie pierde tiempo.</p>
-        <ul class="trust-list cta-banner__trust">
-          <li>Respuesta en &lt;24h hábiles</li>
-          <li>Directo con socio senior · sin filtros</li>
-          <li>Sin deck ni mockup — hablamos del problema</li>
-        </ul>
-        <a href="#cta-form" class="btn cta-banner__cta" data-track="cta_banner_click" data-open-form-modal>
-          Agenda tu sesión de descubrimiento
+      <div class="cta-close__inner js-reveal">
+        <p class="eyebrow cta-close__eyebrow">Cuando estés listo</p>
+        <h2 class="cta-close__title">Abre el calendario y agenda.</h2>
+        <a href="#cta-form" class="btn cta-close__cta" data-track="cta_close_click" data-open-form-modal>
+          Agendar sesión con socio senior
           <span class="btn__arrow" aria-hidden="true">→</span>
         </a>
-        <p class="cta-banner__micro">Sin costo · Sin cadena de agencia · Sin compromiso</p>
+        <p class="cta-close__micro">30 min · sin costo · responde en menos de 24 horas hábiles</p>
       </div>
     </div>
   </section>
