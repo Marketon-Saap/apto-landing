@@ -1521,7 +1521,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     }
     @media (max-width: 767px) { .form-card { padding: 28px; } }
     .form-card__title { font-size: 1.5rem; margin-bottom: 28px; color: var(--ink); font-family: var(--font-heading); }
-    .form-field { margin-bottom: 20px; }
+    .form-field { margin-bottom: 14px; }
+    @media (min-width: 768px) { .form-field { margin-bottom: 16px; } }
     .form-field label {
       display: block; font-size: 13px; font-weight: 500;
       color: var(--ink); margin-bottom: 6px;
@@ -1564,8 +1565,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     }
     .form-field__error {
       display: block; font-size: 13px; color: var(--error);
-      margin-top: 6px; min-height: 18px;
+      margin-top: 6px;
     }
+    .form-field:not(.has-error) .form-field__error:empty { display: none; }
     .form-field textarea { min-height: 100px; resize: vertical; font-family: inherit; }
     /* Phone: country code select + number input · combinados a E.164 en JS
        Mobile-first: compact select ancho fijo; ampliado en tablet/desktop.
@@ -1972,9 +1974,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     }
     @media (min-width: 768px) { .form-modal__scroll { padding: 24px 32px 32px; } }
     .form-modal__header {
-      margin-bottom: 20px;
+      margin-bottom: 16px;
       padding-right: 40px; /* deja aire para el close btn */
     }
+    @media (min-width: 768px) { .form-modal__header { margin-bottom: 20px; } }
     .form-modal__title {
       font-size: clamp(1.375rem, 3vw, 1.75rem);
       color: var(--ink);
