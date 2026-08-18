@@ -2070,7 +2070,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <!-- Nav pill flotante · desktop = 2 pills (nav + CTA), mobile = pill compacta + CTA pill separada -->
   <div class="nav-shell" role="banner">
     <nav class="nav-pill" aria-label="Navegación principal">
-      <a href="#hero" class="nav-pill__logo" aria-label="APTO — Inicio">
+      <a href="#hero" class="nav-pill__logo" aria-label="APTO — Inicio" data-track="nav_logo_click">
         <img src="./assets/logos/apto-logo-white.svg" alt="APTO" width="93" height="56">
       </a>
       <ul class="nav-pill__menu">
@@ -2833,46 +2833,45 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           </div>
           <p class="footer__tagline">Sistemas operando para hacer crecer tu negocio: plataformas, agentes AI y ecosistemas internos que tu equipo opera solo.</p>
           <div class="footer__social" style="display:flex;gap:16px;margin-top:20px">
-            <a href="https://www.linkedin.com/company/apto-innovacion/" target="_blank" rel="noopener" aria-label="LinkedIn" style="color:rgba(255,255,255,.6);font-size:14px">LinkedIn</a>
-            <a href="https://www.instagram.com/apto.innovation/" target="_blank" rel="noopener" aria-label="Instagram" style="color:rgba(255,255,255,.6);font-size:14px">Instagram</a>
-            <a href="https://medium.com/apto-magazine" target="_blank" rel="noopener" aria-label="Medium" style="color:rgba(255,255,255,.6);font-size:14px">Medium</a>
-            <a href="https://www.tiktok.com/@apto.innovation" target="_blank" rel="noopener" aria-label="TikTok" style="color:rgba(255,255,255,.6);font-size:14px">TikTok</a>
+            <a href="https://www.linkedin.com/company/apto-innovacion/" target="_blank" rel="noopener" aria-label="LinkedIn" style="color:rgba(255,255,255,.6);font-size:14px" data-track="footer_social_click" data-social="linkedin">LinkedIn</a>
+            <a href="https://www.instagram.com/apto.innovation/" target="_blank" rel="noopener" aria-label="Instagram" style="color:rgba(255,255,255,.6);font-size:14px" data-track="footer_social_click" data-social="instagram">Instagram</a>
+            <a href="https://medium.com/apto-magazine" target="_blank" rel="noopener" aria-label="Medium" style="color:rgba(255,255,255,.6);font-size:14px" data-track="footer_social_click" data-social="medium">Medium</a>
+            <a href="https://www.tiktok.com/@apto.innovation" target="_blank" rel="noopener" aria-label="TikTok" style="color:rgba(255,255,255,.6);font-size:14px" data-track="footer_social_click" data-social="tiktok">TikTok</a>
           </div>
         </div>
         <div class="footer__col">
           <h4>APTO</h4>
           <ul>
-            <li><a href="https://apto.mx/" target="_blank" rel="noopener">Lo que hacemos</a></li>
-            <li><a href="https://apto.mx/servicios/" target="_blank" rel="noopener">Servicios</a></li>
-            <li><a href="https://apto.mx/#proyectos" target="_blank" rel="noopener">Proyectos</a></li>
-            <li><a href="https://apto.mx/#equipo" target="_blank" rel="noopener">Equipo APTO</a></li>
-            <li><a href="https://apto.mx/#insights" target="_blank" rel="noopener">Insights</a></li>
-            <li><a href="https://apto.mx/education/" target="_blank" rel="noopener">APTO Education</a></li>
+            <li><a href="https://apto.mx/" target="_blank" rel="noopener" data-track="footer_external_click" data-target="apto_home">Lo que hacemos</a></li>
+            <li><a href="https://apto.mx/servicios/" target="_blank" rel="noopener" data-track="footer_external_click" data-target="apto_servicios">Servicios</a></li>
+            <li><a href="https://apto.mx/#proyectos" target="_blank" rel="noopener" data-track="footer_external_click" data-target="apto_proyectos">Proyectos</a></li>
+            <li><a href="https://apto.mx/#equipo" target="_blank" rel="noopener" data-track="footer_external_click" data-target="apto_equipo">Equipo APTO</a></li>
+            <li><a href="https://apto.mx/#insights" target="_blank" rel="noopener" data-track="footer_external_click" data-target="apto_insights">Insights</a></li>
+            <li><a href="https://apto.mx/education/" target="_blank" rel="noopener" data-track="footer_external_click" data-target="apto_education">APTO Education</a></li>
           </ul>
         </div>
         <div class="footer__col">
           <h4>Esta página</h4>
           <ul>
-            <li><a href="#pilares">Servicios</a></li>
-            <li><a href="#productos">Qué entregamos</a></li>
-            <li><a href="#casos">Casos de éxito</a></li>
-            <li><a href="#metodo">Método</a></li>
-            <li><a href="#faq">Preguntas frecuentes</a></li>
+            <li><a href="#productos" data-track="footer_section_click" data-section="productos">Qué construimos</a></li>
+            <li><a href="#casos" data-track="footer_section_click" data-section="casos">Casos</a></li>
+            <li><a href="#metodo" data-track="footer_section_click" data-section="metodo">Método</a></li>
+            <li><a href="#faq" data-track="footer_section_click" data-section="faq">Preguntas frecuentes</a></li>
           </ul>
         </div>
         <div class="footer__col">
           <h4>Contacto</h4>
           <ul>
-            <li><a href="#cta-form">Agenda una sesión</a></li>
-            <li><a href="mailto:info@apto.mx">info@apto.mx</a></li>
-            <li><a href="https://apto.mx/contacto/" target="_blank" rel="noopener">Formulario oficial</a></li>
+            <li><a href="#cta-form" data-track="footer_cta_click">Agenda una sesión</a></li>
+            <li><a href="mailto:info@apto.mx" data-track="footer_email_click">info@apto.mx</a></li>
+            <li><a href="https://apto.mx/contacto/" target="_blank" rel="noopener" data-track="footer_external_click" data-target="apto_contacto">Formulario oficial</a></li>
             <li style="color:rgba(255,255,255,.5);font-size:13px;margin-top:8px">Ciudad de México</li>
           </ul>
         </div>
       </div>
       <div class="footer__bottom">
         <div>© 2026 APTO · Todos los derechos reservados</div>
-        <div><a href="https://apto.mx/aviso-de-privacidad/" target="_blank" rel="noopener">Aviso de privacidad</a> · <a href="https://apto.mx/terminos/" target="_blank" rel="noopener">Términos</a></div>
+        <div><a href="https://apto.mx/aviso-de-privacidad/" target="_blank" rel="noopener" data-track="footer_legal_click" data-target="privacy">Aviso de privacidad</a> · <a href="https://apto.mx/terminos/" target="_blank" rel="noopener" data-track="footer_legal_click" data-target="terms">Términos</a></div>
       </div>
     </div>
   </footer>
@@ -2921,6 +2920,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           if (el.dataset.navLink) params.nav_link = el.dataset.navLink;
           if (el.dataset.producto) params.producto = el.dataset.producto;
           if (el.dataset.item) params.item = el.dataset.item;
+          if (el.dataset.social) params.social = el.dataset.social;
+          if (el.dataset.target) params.target = el.dataset.target;
+          if (el.dataset.section) params.section = el.dataset.section;
           track(el.dataset.track, params);
         });
       });
