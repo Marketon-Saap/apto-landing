@@ -302,15 +302,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .nav-cta-pill__arrow { font-size: 14px; transition: transform 150ms ease; }
     .nav-cta-pill:hover .nav-cta-pill__arrow { transform: translateX(3px); }
     @media (max-width: 900px) {
-      .nav-shell { top: 12px; width: calc(100% - 24px); margin-top: 12px; gap: 10px; }
-      .nav-pill { padding: 8px 12px 8px 16px; }
+      .nav-shell { top: 12px; width: calc(100% - 24px); margin-top: 12px; gap: 8px; }
+      .nav-pill { padding: 8px 10px 8px 14px; }
       .nav-pill__logo img { height: 24px; }
       .nav-pill__menu { display: none; }
-      .nav-pill__menu-toggle { display: flex; }
-      .nav-cta-pill { padding: 10px 16px; font-size: 12.5px; }
+      .nav-pill__menu-toggle { display: flex; margin-left: 4px; }
+      .nav-cta-pill { padding: 10px 16px; font-size: 12px; letter-spacing: 0.06em; }
       .nav-cta-pill span:not(.nav-cta-pill__arrow) { display: inline; }
     }
-    @media (max-width: 380px) {
+    @media (max-width: 340px) {
       .nav-cta-pill span:not(.nav-cta-pill__arrow) { display: none; }
       .nav-cta-pill { padding: 10px 14px; }
     }
@@ -2087,7 +2087,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       </button>
     </nav>
     <a href="#cta-form" class="nav-cta-pill" data-track="nav_cta_click">
-      <span>Agenda</span>
+      <span>Agenda sesión</span>
       <span class="nav-cta-pill__arrow" aria-hidden="true">→</span>
     </a>
   </div>
