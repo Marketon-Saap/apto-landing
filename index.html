@@ -2937,8 +2937,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <form id="diagnostico-form" novalidate>
             <div class="form-field">
               <label for="f-firstname">Nombre <span class="req">*</span></label>
-              <input type="text" id="f-firstname" name="firstname" required minlength="2" autocomplete="given-name" placeholder="Nombre completo" aria-describedby="err-firstname">
+              <input type="text" id="f-firstname" name="firstname" required minlength="2" autocomplete="given-name" placeholder="Tu nombre" aria-describedby="err-firstname">
               <span class="form-field__error" id="err-firstname" aria-live="polite"></span>
+            </div>
+            <div class="form-field">
+              <label for="f-lastname">Apellido <span class="req">*</span></label>
+              <input type="text" id="f-lastname" name="lastname" required minlength="2" autocomplete="family-name" placeholder="Tu apellido" aria-describedby="err-lastname">
+              <span class="form-field__error" id="err-lastname" aria-live="polite"></span>
             </div>
             <div class="form-field">
               <label for="f-email">Correo <span class="req">*</span></label>
@@ -3568,6 +3573,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         // Payload flat para Worker Marketon (Contact + Deal + CAPI + GA4 + email)
         const workerPayload = {
           firstname: document.getElementById('f-firstname').value.trim(),
+          lastname: document.getElementById('f-lastname').value.trim(),
           email: document.getElementById('f-email').value.trim(),
           phone: phoneE164,
           company: document.getElementById('f-company').value.trim(),
@@ -3647,9 +3653,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           try {
             // El form 696bbd9e exige mobilephone (no phone) y lastname por separado.
             // Partimos el nombre completo; si no hay apellido mandamos '-' para no fallar el required.
-            const _nombreCompleto = (workerPayload.firstname || '').trim().split(/\s+/);
-            const _first = _nombreCompleto[0] || '';
-            const _last  = _nombreCompleto.slice(1).join(' ') || '-';
+            const _first = (workerPayload.firstname || '').trim();
+            const _last  = (workerPayload.lastname || '').trim() || '-';
             const canonicalFields = [
               { name: 'firstname', value: _first },
               { name: 'lastname',  value: _last },
