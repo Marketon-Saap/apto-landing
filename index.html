@@ -113,7 +113,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     ul, ol { padding-inline-start: 0; }
     /* Excepción · scroll-x containers necesitan overflow-x auto */
     @media (max-width: 767px) {
-      .pilares, .productos, .metodo, .cards-3, .casos-secundarios, .categoria__grid {
+      .pilares, .productos, .cards-3, .casos-secundarios, .categoria__grid {
         overflow-x: auto !important;
       }
     }
@@ -152,7 +152,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     /* Reset + base */
     *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; scroll-padding-top: 88px; }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
@@ -402,7 +402,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       .hero__eyebrow { font-size: 10.5px; padding: 5px 12px 5px 10px; margin-bottom: 16px; letter-spacing: 0.08em; }
       .hero__eyebrow-dot { width: 5px; height: 5px; }
     }
-    .hero__title { color: var(--paper); margin-bottom: 28px; font-size: clamp(2.25rem, 5vw, 4rem); line-height: 1.02; letter-spacing: -0.02em; }
+    .hero__title { color: var(--paper); margin-bottom: 28px; font-size: clamp(2.25rem, 3.6vw, 3.25rem); line-height: 1.04; letter-spacing: -0.02em; text-wrap: balance; }
     .hero__title-italic {
       display: block;
       font-family: 'Roboto Slab', Georgia, serif;
@@ -444,15 +444,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       display: flex; flex-wrap: wrap; align-items: center; gap: 22px 30px;
     }
     .hero__logos img {
-      height: 24px; width: auto; max-width: 104px; object-fit: contain;
-      filter: brightness(0) invert(1); opacity: .62;
+      height: 30px; width: auto; max-width: 104px; object-fit: contain; flex: 0 0 auto;
+      opacity: 1;
       transition: opacity 200ms ease;
     }
-    .hero__logos img:hover { opacity: .9; }
+    .hero__logos img:hover { opacity: .82; }
     @media (max-width: 767px) {
       .hero__proof { margin-top: 28px; }
       .hero__logos { gap: 18px 22px; }
-      .hero__logos img { height: 21px; max-width: 92px; }
+      .hero__logos img { height: 26px; max-width: 88px; }
     }
     .hero__cta-group { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
     .btn {
@@ -973,7 +973,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
        Reduce ~5000px de altura total mobile sin sacrificar contenido. */
     @media (max-width: 767px) {
       /* Safety net · texto largo no rompe layout de cards en scroll-x · sin hyphens auto (rompe palabras españolas) */
-      .card__title, .card__body, .producto__label, .producto__desc, .paso h3, .paso .card__body {
+      .card__title, .card__body, .producto__label, .producto__desc {
         overflow-wrap: break-word;
         word-wrap: break-word;
         hyphens: manual;
@@ -1030,11 +1030,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         max-width: 280px;
         scroll-snap-align: start;
       }
-      /* Método mobile: fases stackeadas, pasos internos ya single-column vía .metodo__pasos */
-      .metodo {
-        display: block !important;
-      }
-      .metodo__fase + .metodo__fase { margin-top: 20px; }
       /* Casos secundarios: mismo patrón scroll horizontal */
       .casos-secundarios {
         display: flex !important;
@@ -1070,14 +1065,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         scroll-snap-align: start;
       }
       /* Hint visual "hay más" con gradient fade a los lados */
-      .pilares, .productos, .metodo, .casos-secundarios, .categoria__grid {
+      .pilares, .productos, .casos-secundarios, .categoria__grid {
         scroll-padding-left: 20px;
       }
       /* Micro hint "→" para indicar scrollable */
       .section:has(.cards-3) .section__header::after,
       .section:has(.pilares) .section__header::after,
       .section:has(.productos) .section__header::after,
-      .section:has(.metodo) .section__header::after,
       .categoria .section__header::after {
         content: "← desliza para ver más →";
         display: block;
@@ -1254,72 +1248,74 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       .card--with-image .card__image-wrap { aspect-ratio: 16/9; }
     }
 
-    /* Método · 2 bloques (entender / construir) con las 5 etapas publicadas + connector */
-    .metodo {
+    /* Método · ruta de 5 etapas · riel horizontal en desktop, vertical en mobile */
+    .ruta {
+      --ruta-gap: 28px;
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 32px;
+      grid-template-columns: repeat(5, 1fr);
+      column-gap: var(--ruta-gap);
+      align-items: start;
     }
-    .metodo__fase {
-      background: var(--paper);
-      border-radius: var(--radius-card);
-      border: 1px solid var(--line);
-      padding: 40px 36px;
-      display: flex;
-      flex-direction: column;
-      gap: 32px;
+    .ruta__fase { grid-row: 1; padding: 18px 0 32px; border-top: 2px solid var(--ink); }
+    .ruta__fase--a { grid-column: 1 / 4; }
+    .ruta__fase--b { grid-column: 4 / 6; }
+    .ruta__fase-num {
+      display: block; color: var(--blue-cta); font-family: var(--font-heading);
+      font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .12em;
     }
-    .metodo__fase-header { padding-bottom: 24px; border-bottom: 1px solid var(--line); }
-    .metodo__fase-num {
-      color: var(--blue-cta); font-family: var(--font-heading);
-      font-size: 12px; font-weight: 600;
-      text-transform: uppercase; letter-spacing: 0.12em;
-    }
-    .metodo__fase-title {
+    .ruta__fase-title {
       color: var(--ink); font-family: var(--font-heading);
-      font-size: 1.75rem; margin: 8px 0 6px; line-height: 1.1;
+      font-size: clamp(1.35rem, 2vw, 1.75rem); line-height: 1.12; margin: 8px 0 6px;
     }
-    .metodo__fase-question { color: var(--muted); font-size: 0.95rem; margin: 0; font-weight: 300; }
-    .metodo__pasos {
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      gap: 20px;
-      align-items: stretch;
+    .ruta__fase-q { color: var(--ink-muted); font-size: .95rem; font-weight: 300; line-height: 1.5; margin: 0; max-width: 48ch; }
+
+    .ruta__paso { grid-row: 2; position: relative; padding-top: 26px; }
+    .ruta__paso::before {
+      content: ''; position: absolute; top: 5px; left: 0;
+      right: calc(-1 * var(--ruta-gap)); height: 1px; background: var(--line);
     }
-    .paso {
-      background: transparent;
-      border: none;
-      padding: 0;
+    .ruta__paso:nth-of-type(5)::before { right: 0; }
+    .ruta__dot {
+      position: absolute; top: 0; left: 0; width: 11px; height: 11px;
+      border-radius: 50%; box-sizing: border-box;
+      background: var(--paper-cream); border: 2px solid var(--blue-cta);
     }
-    .paso__num {
-      font-family: var(--font-heading);
-      font-size: 2.75rem; font-weight: 500;
-      color: var(--blue-cta); opacity: .28;
-      margin-bottom: 14px; line-height: 1;
+    .ruta__num {
+      font-family: var(--font-heading); font-size: 12px; font-weight: 600;
+      line-height: 1.3; letter-spacing: .12em; color: var(--blue-cta); margin: 0 0 7px;
     }
-    .paso h4 {
+    .ruta__paso h4 {
       color: var(--ink); font-family: var(--font-heading);
-      font-size: 1.15rem; margin-bottom: 10px;
+      font-size: 1.15rem; line-height: 1.2; margin: 0 0 8px;
     }
-    .paso p { color: var(--muted); font-size: 0.95rem; line-height: 1.55; margin: 0; }
-    .paso__connector {
-      align-self: start;
-      margin-top: 32px;
-      width: 24px; height: 1px;
-      background: var(--line);
-      position: relative;
-    }
-    .paso__connector::after {
-      content: '';
-      position: absolute; right: -1px; top: -3px;
-      border-left: 6px solid var(--line);
-      border-top: 4px solid transparent; border-bottom: 4px solid transparent;
-    }
-    @media (max-width: 1100px) { .metodo { grid-template-columns: 1fr; gap: 20px; } }
-    @media (max-width: 640px) {
-      .metodo__pasos { grid-template-columns: 1fr; gap: 28px; }
-      .paso__connector { display: none; }
-      .metodo__fase { padding: 28px 24px; gap: 24px; }
+    .ruta__desc { color: var(--ink-muted); font-size: .9rem; line-height: 1.6; margin: 0; }
+
+    .ruta__caps { grid-row: 3; margin-top: 36px; }
+    .ruta__caps--a { grid-column: 1 / 4; }
+    .ruta__caps--b { grid-column: 4 / 6; }
+
+    @media (max-width: 980px) {
+      .ruta { grid-template-columns: 1fr; }
+      .ruta__fase, .ruta__paso, .ruta__caps { grid-column: 1; grid-row: auto; }
+      .ruta__fase { padding: 16px 0 24px; }
+      .ruta__fase--a { order: 1; }
+      .ruta__paso:nth-of-type(1) { order: 2; }
+      .ruta__paso:nth-of-type(2) { order: 3; }
+      .ruta__paso:nth-of-type(3) { order: 4; }
+      .ruta__caps--a { order: 5; margin-top: 10px; }
+      .ruta__fase--b { order: 6; margin-top: 44px; }
+      .ruta__paso:nth-of-type(4) { order: 7; }
+      .ruta__paso:nth-of-type(5) { order: 8; }
+      .ruta__caps--b { order: 9; margin-top: 10px; }
+      .ruta__paso { padding: 0 0 28px 30px; }
+      .ruta__paso::before {
+        top: 7px; bottom: -1px; left: 5px; right: auto; width: 1px; height: auto;
+      }
+      .ruta__paso:nth-of-type(3)::before,
+      .ruta__paso:nth-of-type(5)::before { display: none; }
+      .ruta__dot { top: 2px; left: 0; }
+      .ruta__paso h4 { font-size: 1.05rem; }
+      .ruta__desc { font-size: .92rem; }
     }
 
     /* Section CTA · botón scroll al form reutilizable · cream (default) + navy variant */
@@ -1415,11 +1411,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .metodo__caps[open] > summary { color: var(--ink); }
     .metodo__caps ul {
       list-style: none; margin: 4px 0 0; padding: 0;
-      display: grid; gap: 6px 22px; grid-template-columns: 1fr;
     }
-    @media (min-width: 700px) { .metodo__caps ul { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 700px) { .metodo__caps ul { columns: 2; column-gap: 28px; } }
     .metodo__caps li {
-      position: relative; padding-left: 16px;
+      position: relative; padding-left: 16px; margin-bottom: 6px;
+      break-inside: avoid; -webkit-column-break-inside: avoid;
       font-size: 13.5px; line-height: 1.45; color: var(--ink-muted);
     }
     .metodo__caps li::before { content: "·"; position: absolute; left: 4px; color: var(--blue-cta); font-weight: 700; }
@@ -1436,20 +1432,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       font-weight: 600; color: var(--ink); margin: 0 0 8px; letter-spacing: .01em;
     }
     .devsecops__nota { font-size: 13px; color: var(--ink-muted); margin: 0; max-width: 62ch; margin-inline: auto; }
+    .muro-band {
+      margin-top: 44px; padding: 34px 26px;
+      background: var(--navy); border-radius: var(--radius-card);
+    }
     .muro-logos {
-      list-style: none; margin: 44px 0 0; padding: 32px 0 0;
-      border-top: 1px solid var(--line);
-      display: grid; gap: 28px 24px;
+      list-style: none; margin: 0; padding: 0;
+      display: grid; gap: 30px 24px;
       grid-template-columns: repeat(2, 1fr); align-items: center;
     }
     @media (min-width: 620px) { .muro-logos { grid-template-columns: repeat(4, 1fr); gap: 34px 28px; } }
     @media (min-width: 1000px) { .muro-logos { grid-template-columns: repeat(6, 1fr); } }
     .muro-logos li { display: flex; align-items: center; justify-content: center; }
     .muro-logos img {
-      max-height: 42px; max-width: 100%; width: auto; object-fit: contain;
-      filter: grayscale(1); opacity: .55; transition: opacity 200ms ease, filter 200ms ease;
+      max-height: 34px; max-width: 112px; width: auto; object-fit: contain;
+      opacity: 1; transition: opacity 200ms ease;
     }
-    .muro-logos img:hover { filter: grayscale(0); opacity: 1; }
+    .muro-logos img:hover { opacity: .82; }
     .section-cta { display: flex; justify-content: center; margin-top: 44px; }
     .section-cta__link {
       display: inline-flex; align-items: center; gap: 10px;
@@ -2367,8 +2366,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <span class="hero__eyebrow-dot" aria-hidden="true"></span>
             Para líderes de innovación
           </p>
-          <h1 class="hero__title">Diseñamos el cambio. <span class="hero__title-italic">Y lo dejamos funcionando.</span></h1>
-          <p class="hero__sub">Estrategia, diseño y tecnología en un mismo equipo. Nos quedamos hasta que tu gente lo opera sola.</p>
+          <h1 class="hero__title">Diseñamos el cambio en tu empresa. <span class="hero__title-italic">Y lo dejamos funcionando.</span></h1>
+          <p class="hero__sub">No entregamos un documento: diseñamos la solución, la construimos y nos quedamos hasta que tu equipo la opera solo.</p>
           <ul class="hero__pills">
             <li>10 años impulsando la visión de líderes de innovación</li>
             <li>36 proyectos publicados</li>
@@ -2382,14 +2381,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="hero__proof">
             <p class="hero__proof-label">Con quienes ya lo hicimos</p>
             <ul class="hero__logos">
-              <li><img src="./assets/logos/clientes/coppel.svg" alt="Coppel" loading="lazy" decoding="async" height="24"></li>
-              <li><img src="./assets/logos/clientes/kiosko.svg" alt="KIOSKO" loading="lazy" decoding="async" height="24"></li>
-              <li><img src="./assets/logos/clientes/bregrand.svg" alt="Be Grand" loading="lazy" decoding="async" height="24"></li>
-              <li><img src="./assets/logos/clientes/apymsa.svg" alt="APYMSA" loading="lazy" decoding="async" height="24"></li>
-              <li><img src="./assets/logos/clientes/bayware.svg" alt="BayWa r.e." loading="lazy" decoding="async" height="24"></li>
-              <li><img src="./assets/logos/clientes/fanosa.svg" alt="Fanosa" loading="lazy" decoding="async" height="24"></li>
-              <li><img src="./assets/logos/clientes/mtp.svg" alt="MTP" loading="lazy" decoding="async" height="24"></li>
-              <li><img src="./assets/logos/clientes/nunsam.svg" alt="Nunsam" loading="lazy" decoding="async" height="24"></li>
+              <li><img src="./assets/logos/clientes/coppel.svg" alt="Coppel" loading="lazy" decoding="async"></li>
+              <li><img src="./assets/logos/clientes/nmdp.svg" alt="Nacional Monte de Piedad" loading="lazy" decoding="async"></li>
+              <li><img src="./assets/logos/clientes/iteso.svg" alt="ITESO" loading="lazy" decoding="async"></li>
+              <li><img src="./assets/logos/clientes/kiosko.svg" alt="KIOSKO" loading="lazy" decoding="async"></li>
+              <li><img src="./assets/logos/clientes/bregrand.svg" alt="Be Grand" loading="lazy" decoding="async"></li>
+              <li><img src="./assets/logos/clientes/bayware.svg" alt="BayWa r.e." loading="lazy" decoding="async"></li>
+              <li><img src="./assets/logos/clientes/apymsa.svg" alt="APYMSA" loading="lazy" decoding="async"></li>
+              <li><img src="./assets/logos/clientes/fanosa.svg" alt="Fanosa" loading="lazy" decoding="async"></li>
+              <li><img src="./assets/logos/clientes/mtp.svg" alt="MTP" loading="lazy" decoding="async"></li>
+              <li><img src="./assets/logos/clientes/nunsam.svg" alt="Nunsam" loading="lazy" decoding="async"></li>
             </ul>
           </div>
           </div>
@@ -2681,6 +2682,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </a>
       </div>
 
+      <div class="muro-band">
       <ul class="muro-logos" aria-label="Clientes con los que hemos trabajado">
           <li><img src="./assets/logos/clientes/coppel.svg" alt="Coppel" loading="lazy" decoding="async"></li>
           <li><img src="./assets/logos/clientes/nmdp.svg" alt="Nacional Monte de Piedad" loading="lazy" decoding="async"></li>
@@ -2694,6 +2696,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <li><img src="./assets/logos/clientes/nunsam.svg" alt="Nunsam" loading="lazy" decoding="async"></li>
           <li><img src="./assets/logos/clientes/octano.svg" alt="Grupo Octano" loading="lazy" decoding="async"></li>
       </ul>
+      </div>
 
       <div class="section-cta">
         <a class="section-cta__link" href="#cta-form" data-track="proyectos_cta_click">Ahora hablemos del tuyo <span class="arr" aria-hidden="true">→</span></a>
@@ -2711,85 +2714,81 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div class="container">
       <header class="section__header js-reveal">
         <p class="eyebrow">Cómo trabajamos</p>
-        <h2>Cinco etapas. Las mismas en los 36 proyectos que hemos hecho.</h2>
-        <p class="lead">Adaptamos las herramientas a cada reto, pero el camino no cambia: tres etapas para entender y decidir qué construir, dos para construirlo. Detrás hay dos talleres —uno de estrategia y uno de producto— y esa mezcla de capacidades es la que nos permite entrar en distintos tipos de reto. Es también lo que nos aleja de la idea de <em>proyecto</em> y nos acerca a la de <em>producto</em>.</p>
+        <h2>Cinco etapas. Las mismas en los 36 proyectos.</h2>
+        <p class="lead">Las herramientas cambian con cada reto; el camino no. Tres etapas para entender y decidir qué construir, dos para construirlo.</p>
       </header>
-      <div class="metodo">
-        <div class="metodo__fase">
-          <header class="metodo__fase-header">
-            <span class="metodo__fase-num">Primero</span>
-            <h3 class="metodo__fase-title">Entender y decidir</h3>
-            <p class="metodo__fase-question">¿Cuál es el problema real y qué vale la pena construir?</p>
-            <p class="metodo__taller">Taller de estrategia</p>
-          </header>
-          <div class="metodo__pasos">
-            <article class="paso">
-              <div class="paso__num">01</div>
-              <h4>Inmersión</h4>
-              <p>Entender el problema desde tu negocio, no desde la tecnología. Nos sentamos con tu equipo a revisar cómo opera hoy, qué lo limita y qué decisiones ya se tomaron.</p>
-            </article>
-            <div class="paso__connector" aria-hidden="true"></div>
-            <article class="paso">
-              <div class="paso__num">02</div>
-              <h4>Exploración</h4>
-              <p>Ver el problema desde quien lo vive. Hablamos con la gente que hace ese trabajo todos los días y revisamos qué está pasando en tu mercado.</p>
-            </article>
-            <div class="paso__connector" aria-hidden="true"></div>
-            <article class="paso">
-              <div class="paso__num">03</div>
-              <h4>Ideación</h4>
-              <p>Poner opciones sobre la mesa antes de casarnos con una. Aquí es donde se cuestiona cómo podría ser distinto, en lugar de digitalizar el proceso tal como está hoy.</p>
-            </article>
-          </div>
-          <details class="metodo__caps">
-            <summary data-track="taller_expand" data-taller="estrategia">¿Qué hacemos en el taller de estrategia?</summary>
-            <ul>
-              <li>Análisis cuantitativo y cualitativo</li>
-              <li>Análisis y estrategia de negocio</li>
-              <li>Diseño centrado en el usuario</li>
-              <li>Diseño de producto físico y digital</li>
-              <li>Diseño e ingeniería de ecosistemas de servicio y procesos</li>
-              <li>Estrategia de marca, servicio y producto</li>
-              <li>Técnicas de ideación y diseño</li>
-              <li>Storytelling y argumentación de negocio</li>
-            </ul>
-          </details>
+
+      <div class="ruta">
+        <div class="ruta__fase ruta__fase--a">
+          <span class="ruta__fase-num">Primero</span>
+          <h3 class="ruta__fase-title">Entender y decidir</h3>
+          <p class="ruta__fase-q">¿Cuál es el problema real y qué vale la pena construir?</p>
+          <p class="metodo__taller">Taller de estrategia</p>
+        </div>
+        <div class="ruta__fase ruta__fase--b">
+          <span class="ruta__fase-num">Después</span>
+          <h3 class="ruta__fase-title">Diseñar y construir</h3>
+          <p class="ruta__fase-q">¿Cómo lo dejamos funcionando?</p>
+          <p class="metodo__taller">Taller de producto</p>
         </div>
 
-        <div class="metodo__fase">
-          <header class="metodo__fase-header">
-            <span class="metodo__fase-num">Después</span>
-            <h3 class="metodo__fase-title">Diseñar y construir</h3>
-            <p class="metodo__fase-question">¿Cómo lo dejamos funcionando?</p>
-            <p class="metodo__taller">Taller de producto</p>
-          </header>
-          <div class="metodo__pasos">
-            <article class="paso">
-              <div class="paso__num">04</div>
-              <h4>Definición</h4>
-              <p>Diseñamos la solución, decidimos qué va primero y la dejamos lista para construir: el mapa del servicio, el recorrido que hace tu cliente y las instrucciones que necesita quien va a programarlo.</p>
-            </article>
-            <div class="paso__connector" aria-hidden="true"></div>
-            <article class="paso">
-              <div class="paso__num">05</div>
-              <h4>Construcción</h4>
-              <p>Construimos, conectamos con lo que ya tienes y salimos a producción, con pruebas, monitoreo y seguridad. Lo construye el mismo equipo que lo diseñó.</p>
-            </article>
-          </div>
-          <details class="metodo__caps">
-            <summary data-track="taller_expand" data-taller="producto">¿Qué hacemos en el taller de producto?</summary>
-            <ul>
-              <li>Diseño de producto digital (UX/UI)</li>
-              <li>Ingeniería y arquitectura de sistemas</li>
-              <li>Desarrollo front y back end</li>
-              <li>Prototipado y pruebas con usuarios</li>
-              <li>Mapa del servicio completo</li>
-              <li>Arquitectura de información</li>
-              <li>Técnicas de mapeo sistémico</li>
-              <li>DevSecOps</li>
-            </ul>
-          </details>
-        </div>
+        <article class="ruta__paso">
+          <span class="ruta__dot" aria-hidden="true"></span>
+          <p class="ruta__num">01</p>
+          <h4>Inmersión</h4>
+          <p class="ruta__desc">Entendemos el problema desde tu negocio, no desde la tecnología: cómo opera hoy, qué lo limita y qué ya se decidió.</p>
+        </article>
+        <article class="ruta__paso">
+          <span class="ruta__dot" aria-hidden="true"></span>
+          <p class="ruta__num">02</p>
+          <h4>Exploración</h4>
+          <p class="ruta__desc">Hablamos con quien hace ese trabajo todos los días y revisamos qué está pasando en tu mercado.</p>
+        </article>
+        <article class="ruta__paso">
+          <span class="ruta__dot" aria-hidden="true"></span>
+          <p class="ruta__num">03</p>
+          <h4>Ideación</h4>
+          <p class="ruta__desc">Ponemos opciones sobre la mesa antes de casarnos con una, en vez de digitalizar el proceso tal como está hoy.</p>
+        </article>
+        <article class="ruta__paso">
+          <span class="ruta__dot" aria-hidden="true"></span>
+          <p class="ruta__num">04</p>
+          <h4>Definición</h4>
+          <p class="ruta__desc">Diseñamos la solución y la dejamos lista para construir: mapa del servicio, recorrido del cliente y especificación.</p>
+        </article>
+        <article class="ruta__paso">
+          <span class="ruta__dot" aria-hidden="true"></span>
+          <p class="ruta__num">05</p>
+          <h4>Construcción</h4>
+          <p class="ruta__desc">Construimos, conectamos con lo que ya tienes y salimos a producción. Lo construye el mismo equipo que lo diseñó.</p>
+        </article>
+
+        <details class="metodo__caps ruta__caps ruta__caps--a">
+          <summary data-track="taller_expand" data-taller="estrategia">¿Qué hacemos en el taller de estrategia?</summary>
+          <ul>
+            <li>Análisis cuantitativo y cualitativo</li>
+            <li>Análisis y estrategia de negocio</li>
+            <li>Diseño centrado en el usuario</li>
+            <li>Diseño de producto físico y digital</li>
+            <li>Diseño e ingeniería de ecosistemas de servicio y procesos</li>
+            <li>Estrategia de marca, servicio y producto</li>
+            <li>Técnicas de ideación y diseño</li>
+            <li>Storytelling y argumentación de negocio</li>
+          </ul>
+        </details>
+        <details class="metodo__caps ruta__caps ruta__caps--b">
+          <summary data-track="taller_expand" data-taller="producto">¿Qué hacemos en el taller de producto?</summary>
+          <ul>
+            <li>Diseño de producto digital (UX/UI)</li>
+            <li>Ingeniería y arquitectura de sistemas</li>
+            <li>Desarrollo front y back end</li>
+            <li>Prototipado y pruebas con usuarios</li>
+            <li>Mapa del servicio completo</li>
+            <li>Arquitectura de información</li>
+            <li>Técnicas de mapeo sistémico</li>
+            <li>DevSecOps</li>
+          </ul>
+        </details>
       </div>
 
       <div class="devsecops">
