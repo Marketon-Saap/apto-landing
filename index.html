@@ -1832,7 +1832,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       font-size: 36px;
     }
     .form-success__title { font-size: 1.375rem; margin-bottom: 14px; color: var(--ink); font-family: var(--font-heading); }
-    .form-success__body { color: var(--ink-muted); margin-bottom: 20px; }
+    .form-success__body { color: var(--ink-muted); margin-bottom: 24px; }
+    .form-success__back {
+      display: inline-flex; align-items: center; gap: 8px;
+      min-height: 44px; padding: 11px 22px;
+      background: transparent; border: 1px solid var(--line);
+      border-radius: var(--radius-btn);
+      color: var(--ink); font-family: var(--font-heading);
+      font-size: 13px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
+      cursor: pointer;
+      transition: border-color 160ms ease, background 160ms ease;
+    }
+    .form-success__back:hover { border-color: var(--ink); background: var(--paper-cream); }
+    .form-success__back:active { transform: translateY(1px); }
     .btn[disabled] { opacity: .6; cursor: wait; }
     .spinner {
       display: inline-block; width: 16px; height: 16px;
@@ -2379,7 +2391,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             </a>
             <a href="#casos" class="link-secondary" data-track="hero_secondary_click">Mira cómo lo hicimos para Coppel ↓</a>
             <div class="hero__proof">
-            <p class="hero__proof-label">Con quienes ya lo hicimos</p>
+            <p class="hero__proof-label">Otras empresas con las que ya lo hicimos</p>
             <ul class="hero__logos">
               <li><img src="./assets/logos/clientes/coppel.svg" alt="Coppel" loading="lazy" decoding="async"></li>
               <li><img src="./assets/logos/clientes/nmdp.svg" alt="Nacional Monte de Piedad" loading="lazy" decoding="async"></li>
@@ -2467,7 +2479,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       </div>
 
       <div class="section-cta">
-        <a class="section-cta__link" href="#cta-form" data-track="problema_cta_click">¿Te suena? Cuéntanos qué está pasando <span class="arr" aria-hidden="true">→</span></a>
+        <a class="section-cta__link" href="#cta-form" data-track="problema_cta_click">Si algo de esto te suena, cuéntanos tu reto <span class="arr" aria-hidden="true">→</span></a>
       </div>
     </div>
   </section>
@@ -2479,8 +2491,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div class="container">
       <header class="section__header js-reveal">
         <p class="eyebrow">¿Es para ti?</p>
-        <h2>Cinco razones por las que nos buscan.</h2>
-        <p class="lead">Si te suena alguno, esa es la conversación. Cada uno abre con lo que te entregamos y con lo que no hacemos. Si tu caso no está aquí, también te lo decimos.</p>
+        <h2>Cinco retos con los que nos buscan.</h2>
+        <p class="lead">Si te suena alguno, ese es el punto de partida. Cada uno dice qué te entregamos y qué no hacemos. Si tu reto no está en la lista, también te lo decimos.</p>
       </header>
       <div class="retos">
         <article class="reto">
@@ -2581,7 +2593,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       </div>
 
       <div class="section-cta">
-        <a class="section-cta__link" href="#cta-form" data-track="no_somos_cta_click">¿Te suena alguno? Cuéntanos el tuyo <span class="arr" aria-hidden="true">→</span></a>
+        <a class="section-cta__link" href="#cta-form" data-track="no_somos_cta_click">¿El tuyo es uno de estos? Hablemos <span class="arr" aria-hidden="true">→</span></a>
       </div>
     </div>
   </section>
@@ -2601,8 +2613,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <p class="caso__cliente">Coppel Club de Protección</p>
           <h3 class="caso__title">Un seguro con dos décadas en el mercado, rediseñado para millones de clientes.</h3>
           <p class="caso__body">Grupo Coppel buscaba evolucionar uno de sus productos de seguros más emblemáticos: una oferta con más de veinte años en el mercado que había dejado de ser clara para el cliente. Co-diseñamos con ellos un producto más simple de entender y de gestionar, con una estructura modular de distintos niveles de cobertura para que la oferta fuera más inclusiva.</p>
-          <div class="caso__callout">“Más que rediseñar un seguro, construimos una nueva forma de hablar de protección: simple, relevante y cercana para millones de clientes.” — Equipo de Innovación, Grupo Coppel · <a href="#cta-form" data-track="whitepaper_cta_click" class="caso__callout-link">Hablemos del tuyo →</a></div>
-          <a href="#cta-form" class="caso__link" data-track="ver_mas_casos">¿Te pasa algo parecido? Cuéntanoslo →</a>
+          <div class="caso__callout">“Más que rediseñar un seguro, construimos una nueva forma de hablar de protección: simple, relevante y cercana para millones de clientes.” — Equipo de Innovación, Grupo Coppel</div>
+          <a href="#cta-form" class="caso__link" data-track="ver_mas_casos">¿Tu reto se parece a este? →</a>
         </div>
         <figure class="caso__visual">
           <img src="https://apto.mx/wp-content/uploads/2026/01/Coppel-CPF-Hero-image-web-apto.webp" alt="Coppel Club de Protección Familiar — plataforma multi-producto diseñada y construida por APTO" loading="lazy" width="800" height="800">
@@ -2699,7 +2711,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       </div>
 
       <div class="section-cta">
-        <a class="section-cta__link" href="#cta-form" data-track="proyectos_cta_click">Ahora hablemos del tuyo <span class="arr" aria-hidden="true">→</span></a>
+        <a class="section-cta__link" href="#cta-form" data-track="proyectos_cta_click">Ahora hablemos de tu reto <span class="arr" aria-hidden="true">→</span></a>
       </div>
     </div>
   </section>
@@ -2792,13 +2804,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       </div>
 
       <div class="devsecops">
-        <p class="devsecops__label">Y no lo dejamos solo al salir</p>
+        <p class="devsecops__label">Y no lo dejamos solo cuando sale</p>
         <p class="devsecops__body">Planeación · Desarrollo · Pruebas · Lanzamiento · Monitoreo · Seguridad</p>
-        <p class="devsecops__nota">Es lo que en apto.mx aparece como DevSecOps: lo que sostiene el sistema una vez que ya está en producción.</p>
+        <p class="devsecops__nota">Un sistema no se termina el día que se lanza. Ese ciclo es lo que lo mantiene de pie, medido y seguro. Si te sirve el nombre técnico, se llama <a href="https://apto.mx/" target="_blank" rel="noopener" data-track="devsecops_link_click">DevSecOps</a> y ahí puedes ver a qué se refiere.</p>
       </div>
 
       <div class="section-cta">
-        <a class="section-cta__link" href="#cta-form" data-track="metodo_cta_click">Empecemos por entender qué te está pasando <span class="arr" aria-hidden="true">→</span></a>
+        <a class="section-cta__link" href="#cta-form" data-track="metodo_cta_click">Empecemos por entender tu reto <span class="arr" aria-hidden="true">→</span></a>
       </div>
     </div>
   </section>
@@ -2807,7 +2819,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <section class="section section--navy" id="conoce-equipo">
     <div class="container">
       <header class="conoce__header">
-        <p class="eyebrow">Con quién vas a trabajar</p>
+        <p class="eyebrow">El equipo</p>
         <h2 class="conoce__title">Con quién vas a hablar.</h2>
         <p class="conoce__intro">La primera llamada la toma uno de los dos socios, contigo o con tu equipo. No te va a atender un vendedor, ni alguien que apenas está aprendiendo cómo funciona tu negocio.</p>
       </header>
@@ -2861,9 +2873,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       </div>
 
       <div class="conoce__video-block">
-        <p class="conoce__video-label">Álvaro te lo cuenta en un minuto</p>
+        <p class="conoce__video-label">El equipo lo cuenta en un minuto</p>
         <button type="button" class="yt-facade" id="yt-facade-alvaro"
-                data-yt-id="40gjKGn8qME"
+                data-track="video_play" data-yt-id="40gjKGn8qME"
                 aria-label="Reproducir: APTO — Innovación especializada en product y business design">
           <img src="./assets/team/alvaro-cover.jpg"
                alt=""
@@ -2876,7 +2888,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             </svg>
           </span>
         </button>
-        <p class="conoce__video-caption">Manifesto APTO</p>
+        <p class="conoce__video-caption">Video institucional de APTO</p>
       </div>
     </div>
   </section>
@@ -2887,7 +2899,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div class="container">
       <div class="cta-close__inner js-reveal">
         <p class="eyebrow cta-close__eyebrow">El siguiente paso</p>
-        <h2 class="cta-close__title">Cuéntanos qué está pasando en tu operación.</h2>
+        <h2 class="cta-close__title">Cuéntanos tu reto.</h2>
         <a href="#cta-form" class="btn cta-close__cta" data-track="cta_close_click" data-open-form-modal>
           Quiero resolver mi reto
           <span class="btn__arrow" aria-hidden="true">→</span>
@@ -2917,8 +2929,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="form-modal__scroll">
         <div class="form-modal__header">
           <p class="eyebrow">30 min · sin costo</p>
-          <h3 id="form-modal-title" class="form-modal__title">Agenda tu sesión de descubrimiento</h3>
-          <p class="form-modal__sub">Responde <strong>Carlos Beltrán</strong>, socio senior · en menos de 24 horas hábiles</p>
+          <h3 id="form-modal-title" class="form-modal__title">Cuéntanos tu reto</h3>
+          <p class="form-modal__sub">Lo lee <strong>Carlos Beltrán</strong>, socio, y te contesta en menos de un día hábil.</p>
         </div>
         <div class="form-card" id="form-card">
           <div id="form-message" class="form-message" role="alert" aria-live="assertive" hidden></div>
@@ -3005,16 +3017,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               <span class="form-field__error" id="err-privacy_consent" aria-live="polite"></span>
             </div>
             <button type="submit" class="btn btn--full" id="form-submit">
-              <span id="submit-label">Agenda tu sesión de descubrimiento</span>
+              <span id="submit-label">Enviar mi reto</span>
               <span class="btn__arrow">→</span>
             </button>
-            <p class="form-trust-micro">Sin costo · Responde Carlos en &lt;24h hábiles · Sin cadena de agencia.</p>
+            <p class="form-trust-micro">Sin costo. La primera conversación es para escucharte, no para venderte.</p>
           </form>
           <div id="form-success" class="form-success" hidden tabindex="-1" role="status" aria-live="polite">
             <div class="form-success__icon" aria-hidden="true">✓</div>
-            <h3 class="form-success__title">Recibimos tu solicitud.</h3>
-            <p class="form-success__body">Carlos Beltrán, socio senior, responde personalmente en menos de 24 horas hábiles.</p>
-            <button type="button" class="link-secondary" data-close-form-modal>Seguir viendo la página ↑</button>
+            <h3 class="form-success__title">Listo, ya lo tenemos.</h3>
+            <p class="form-success__body">Carlos te escribe al correo que nos dejaste. Si prefieres que te llame, dínoslo ahí mismo.</p>
+            <button type="button" class="form-success__back" data-close-form-modal>Seguir viendo la página</button>
           </div>
         </div>
       </div>
@@ -3065,7 +3077,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       </div>
 
       <div class="section-cta">
-        <a class="section-cta__link" href="#cta-form" data-track="faq_cta_click">¿Te quedó alguna duda? Escríbenos <span class="arr" aria-hidden="true">→</span></a>
+        <a class="section-cta__link" href="#cta-form" data-track="faq_cta_click">¿Te quedó una duda? Cuéntanosla <span class="arr" aria-hidden="true">→</span></a>
       </div>
     </div>
   </section>
@@ -3130,7 +3142,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       </div>
       <div class="footer__bottom">
         <div>© 2026 APTO Innovación Digital · Todos los derechos reservados</div>
-        <div>Sitio protegido por reCAPTCHA · <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" data-track="footer_legal_click" data-target="google_privacy">Política de privacidad</a> y <a href="https://policies.google.com/terms" target="_blank" rel="noopener" data-track="footer_legal_click" data-target="google_terms">Términos</a> de Google</div>
+        <div>Guadalajara, México</div>
       </div>
     </div>
   </footer>
@@ -3329,6 +3341,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           e.preventDefault();
           e.stopImmediatePropagation();
           var source = opener.getAttribute('data-track') || opener.className || 'anchor';
+          // Este handler corre en fase de CAPTURA y corta la propagacion, asi que el
+          // listener por elemento de [data-track] nunca alcanza a ejecutarse. Sin esto,
+          // las 16 microconversiones de CTAs que abren el form nunca llegan al dataLayer
+          // y GTM trigger 93 (GA4 tag 94 + Meta Pixel tag 95) se queda sin senal.
+          if (opener.dataset.track) {
+            track(opener.dataset.track, {
+              label: (opener.textContent || '').trim().slice(0, 50),
+              opens_form: true
+            });
+          }
           openFormModal(source);
           return;
         }
