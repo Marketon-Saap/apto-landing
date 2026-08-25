@@ -2329,7 +2329,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </head>
 <body>
 
-  <a href="#cta-form" class="sr-only">Saltar al formulario de contacto</a>
+  <a href="#cta-form" class="sr-only" data-track="skip_link_form_click">Saltar al formulario de contacto</a>
 
   <!-- Nav pill flotante · desktop = 2 pills (nav + CTA), mobile = pill compacta + CTA pill separada -->
   <div class="nav-shell" role="banner">
@@ -3609,6 +3609,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             em_raw: workerPayload.email,
             ph_raw: workerPayload.phone || '',
             fn_raw: workerPayload.firstname,
+            ln_raw: workerPayload.lastname,
             // Business signals (safe para GA4 · no PII)
             company: workerPayload.company,
             jobtitle: workerPayload.jobtitle,
