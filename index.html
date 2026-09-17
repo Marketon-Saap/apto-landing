@@ -3689,6 +3689,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           form.hidden = true;
           successView.hidden = false;
           successView.focus();
+          // Inline: al colapsar el formulario la confirmación puede quedar fuera del viewport
+          try { successView.scrollIntoView({ block: 'center', behavior: 'smooth' }); } catch (e) {}
 
         } catch (err) {
           track('form_submit_fail', { error: 'submit_failed' });
@@ -3742,6 +3744,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             track('form_submit_success_fallback', { has_problem_desc: !!workerPayload.message });
             form.hidden = true;
             successView.hidden = false;
+            try { successView.scrollIntoView({ block: 'center', behavior: 'smooth' }); } catch (e) {}
             successView.focus();
           } catch (err2) {
             showMessage('error', 'Algo falló al enviar. Intenta de nuevo o escríbenos a info@apto.mx');
