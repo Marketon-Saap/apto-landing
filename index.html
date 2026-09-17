@@ -2026,6 +2026,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       font-size: 12px;
       margin-bottom: 16px;
     }
+    .cta-close__sub { color: rgba(255,255,255,.72); font-size: 15px; margin: -16px 0 24px; }
+    .cta-close__sub strong { color: var(--paper); font-weight: 600; }
+    .cta-close__form { text-align: left; max-width: 640px; margin: 0 auto; }
+    .cta-close__form .form-card { box-shadow: 0 24px 80px rgba(0,0,0,.35); }
     .cta-close__title {
       color: var(--paper);
       font-size: clamp(1.75rem, 4.5vw, 3rem);
@@ -2931,38 +2935,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="cta-close__inner js-reveal">
         <p class="eyebrow cta-close__eyebrow">El siguiente paso</p>
         <h2 class="cta-close__title">Cuéntanos tu reto.</h2>
-        <a href="#cta-form" class="btn cta-close__cta" data-track="cta_close_click" data-open-form-modal>
-          Quiero resolver mi reto
-          <span class="btn__arrow" aria-hidden="true">→</span>
-        </a>
-        <div class="primer-contacto">
-          <img class="primer-contacto__foto" src="./assets/team/carlos-portrait.jpg" alt="Carlos Beltrán, socio de APTO" loading="lazy" decoding="async" width="200" height="250">
-          <div class="primer-contacto__texto">
-            <p class="primer-contacto__nombre">Carlos Beltrán</p>
-            <p class="primer-contacto__rol">Tu primer contacto en APTO</p>
-            <p class="primer-contacto__nota">Escuchamos el reto antes de proponer nada. No hay presentación de ventas.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Form modal · dialog-based · mobile bottom sheet + desktop centered · WCAG compliant -->
-  <div class="form-modal" id="form-modal" role="dialog" aria-modal="true" aria-labelledby="form-modal-title" hidden>
-    <div class="form-modal__backdrop" data-close-form-modal></div>
-    <div class="form-modal__panel">
-      <button type="button" class="form-modal__close" aria-label="Cerrar" data-close-form-modal>
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
-        </svg>
-      </button>
-      <div class="form-modal__handle" aria-hidden="true"></div>
-      <div class="form-modal__scroll">
-        <div class="form-modal__header">
-          <p class="eyebrow">30 min · sin costo</p>
-          <h3 id="form-modal-title" class="form-modal__title">Cuéntanos tu reto</h3>
-          <p class="form-modal__sub">Lo lee <strong>Carlos Beltrán</strong>, socio, y te contesta en menos de un día hábil.</p>
-        </div>
+        <p class="cta-close__sub">Lo lee <strong>Carlos Beltrán</strong>, socio, y te contesta en menos de un día hábil.</p>
+        <div id="form-inline-host" class="cta-close__form">
         <div class="form-card" id="form-card">
           <div id="form-message" class="form-message" role="alert" aria-live="assertive" hidden></div>
           <form id="diagnostico-form" novalidate data-hs-do-not-collect="true">
@@ -3065,6 +3039,36 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <button type="button" class="form-success__back" data-close-form-modal>Seguir viendo la página</button>
           </div>
         </div>
+        </div>
+        <div class="primer-contacto">
+          <img class="primer-contacto__foto" src="./assets/team/carlos-portrait.jpg" alt="Carlos Beltrán, socio de APTO" loading="lazy" decoding="async" width="200" height="250">
+          <div class="primer-contacto__texto">
+            <p class="primer-contacto__nombre">Carlos Beltrán</p>
+            <p class="primer-contacto__rol">Tu primer contacto en APTO</p>
+            <p class="primer-contacto__nota">Escuchamos el reto antes de proponer nada. No hay presentación de ventas.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Form modal · dialog-based · mobile bottom sheet + desktop centered · WCAG compliant -->
+  <div class="form-modal" id="form-modal" role="dialog" aria-modal="true" aria-labelledby="form-modal-title" hidden>
+    <div class="form-modal__backdrop" data-close-form-modal></div>
+    <div class="form-modal__panel">
+      <button type="button" class="form-modal__close" aria-label="Cerrar" data-close-form-modal>
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
+        </svg>
+      </button>
+      <div class="form-modal__handle" aria-hidden="true"></div>
+      <div class="form-modal__scroll">
+        <div class="form-modal__header">
+          <p class="eyebrow">30 min · sin costo</p>
+          <h3 id="form-modal-title" class="form-modal__title">Cuéntanos tu reto</h3>
+          <p class="form-modal__sub">Lo lee <strong>Carlos Beltrán</strong>, socio, y te contesta en menos de un día hábil.</p>
+        </div>
+        <div id="form-modal-host"></div>
       </div>
     </div>
   </div>
@@ -3351,6 +3355,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         var modal = document.getElementById('form-modal');
         if (!modal) return;
         formModalLastFocused = document.activeElement;
+        var card = document.getElementById('form-card'), mh = document.getElementById('form-modal-host');
+        if (card && mh && card.parentNode !== mh) mh.appendChild(card);
         modal.hidden = false;
         document.body.classList.add('form-modal-open');
         setTimeout(function(){
@@ -3364,6 +3370,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         if (!modal) return;
         modal.hidden = true;
         document.body.classList.remove('form-modal-open');
+        var card = document.getElementById('form-card'), ih = document.getElementById('form-inline-host');
+        // Si nadie escribió nada, el blur del cierre no debe dejar campos en rojo en la versión inline
+        var f = document.getElementById('diagnostico-form');
+        if (f && ![].some.call(f.querySelectorAll('input:not([type=checkbox]),textarea'), function(i){ return i.value.trim() !== ''; })) {
+          [].forEach.call(f.querySelectorAll('.form-field.has-error'), function(w){
+            w.classList.remove('has-error'); var e=w.querySelector('.form-field__error'); if (e) e.textContent=''; var i=w.querySelector('input,select,textarea'); if (i) i.setAttribute('aria-invalid','false');
+          });
+        }
+        if (card && ih && card.parentNode !== ih) ih.appendChild(card);
         if (formModalLastFocused && formModalLastFocused.focus) {
           formModalLastFocused.focus({ preventScroll: true });
         }
