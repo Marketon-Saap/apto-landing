@@ -3371,16 +3371,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         modal.hidden = true;
         document.body.classList.remove('form-modal-open');
         var card = document.getElementById('form-card'), ih = document.getElementById('form-inline-host');
-        // Si nadie escribió nada, el blur del cierre no debe dejar campos en rojo en la versión inline
+        if (card && ih && card.parentNode !== ih) ih.appendChild(card);
+        if (formModalLastFocused && formModalLastFocused.focus) {
+          formModalLastFocused.focus({ preventScroll: true });
+        }
+        // El blur del cierre ya corrió: si nadie escribió nada, no dejar campos en rojo en la versión inline
         var f = document.getElementById('diagnostico-form');
         if (f && ![].some.call(f.querySelectorAll('input:not([type=checkbox]),textarea'), function(i){ return i.value.trim() !== ''; })) {
           [].forEach.call(f.querySelectorAll('.form-field.has-error'), function(w){
             w.classList.remove('has-error'); var e=w.querySelector('.form-field__error'); if (e) e.textContent=''; var i=w.querySelector('input,select,textarea'); if (i) i.setAttribute('aria-invalid','false');
           });
-        }
-        if (card && ih && card.parentNode !== ih) ih.appendChild(card);
-        if (formModalLastFocused && formModalLastFocused.focus) {
-          formModalLastFocused.focus({ preventScroll: true });
         }
         track('form_modal_close', {});
       }
