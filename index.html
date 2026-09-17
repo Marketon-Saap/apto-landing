@@ -228,8 +228,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       letter-spacing: -0.005em;
       line-height: 1.1;
     }
-    h1 { font-size: clamp(2.25rem, 5.5vw, 4rem); text-transform: uppercase; }
-    h2 { font-size: clamp(1.75rem, 4vw, 2.75rem); text-transform: uppercase; letter-spacing: -0.01em; }
+    h1 { font-size: clamp(2.25rem, 5.5vw, 4rem); }
+    h2 { font-size: clamp(1.75rem, 4vw, 2.75rem); letter-spacing: -0.01em; }
     h3 { font-size: clamp(1.125rem, 2vw, 1.375rem); font-weight: 600; }
     p { margin: 0 0 1em; }
     .eyebrow {
@@ -1258,8 +1258,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       align-items: start;
     }
     .ruta__fase { grid-row: 1; padding: 18px 0 32px; border-top: 2px solid var(--ink); }
-    .ruta__fase--a { grid-column: 1 / 4; }
-    .ruta__fase--b { grid-column: 4 / 6; }
+    .ruta__fase--a { grid-column: 1 / 5; }
+    .ruta__fase--b { grid-column: 5 / 6; }
     .ruta__fase-num {
       display: block; color: var(--blue-cta); font-family: var(--font-heading);
       font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .12em;
@@ -1292,8 +1292,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .ruta__desc { color: var(--ink-muted); font-size: .9rem; line-height: 1.6; margin: 0; }
 
     .ruta__caps { grid-row: 3; margin-top: 36px; }
-    .ruta__caps--a { grid-column: 1 / 4; }
-    .ruta__caps--b { grid-column: 4 / 6; }
+    .ruta__caps--a { grid-column: 1 / 3; }
+    .ruta__caps--b { grid-column: 3 / 5; }
 
     @media (max-width: 980px) {
       .ruta { grid-template-columns: 1fr; }
@@ -1303,11 +1303,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       .ruta__paso:nth-of-type(1) { order: 2; }
       .ruta__paso:nth-of-type(2) { order: 3; }
       .ruta__paso:nth-of-type(3) { order: 4; }
-      .ruta__caps--a { order: 5; margin-top: 10px; }
-      .ruta__fase--b { order: 6; margin-top: 44px; }
-      .ruta__paso:nth-of-type(4) { order: 7; }
-      .ruta__paso:nth-of-type(5) { order: 8; }
-      .ruta__caps--b { order: 9; margin-top: 10px; }
+      .ruta__paso:nth-of-type(4) { order: 5; }
+      .ruta__caps--a { order: 6; margin-top: 10px; }
+      .ruta__caps--b { order: 7; margin-top: 10px; }
+      .ruta__fase--b { order: 8; margin-top: 44px; }
+      .ruta__paso:nth-of-type(5) { order: 9; }
       .ruta__paso { padding: 0 0 28px 30px; }
       .ruta__paso::before {
         top: 7px; bottom: -1px; left: 5px; right: auto; width: 1px; height: auto;
@@ -2758,21 +2758,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <header class="section__header js-reveal">
         <p class="eyebrow">Nuestra metodología</p>
         <h2>Cinco etapas. Las mismas en todos los proyectos.</h2>
-        <p class="lead">Las herramientas cambian con cada reto; el camino no. Primero entendemos y diseñamos, después definimos y construimos. Es la misma lógica de las tres capas —deseable, factible, viable— aplicada etapa por etapa.</p>
+        <p class="lead">Las herramientas cambian con cada reto; el camino no. Primero entendemos, diseñamos y definimos qué vamos a construir; después lo construimos. Es la misma lógica de las tres capas —deseable, factible, viable— aplicada etapa por etapa.</p>
       </header>
 
       <div class="ruta">
         <div class="ruta__fase ruta__fase--a">
           <span class="ruta__fase-num">Primero</span>
-          <h3 class="ruta__fase-title">Entender y diseñar</h3>
-          <p class="ruta__fase-q">¿Cuál es el problema real y cómo podría resolverse?</p>
-          <p class="metodo__taller">Taller de estrategia</p>
+          <h3 class="ruta__fase-title">Entender, diseñar y definir</h3>
+          <p class="ruta__fase-q">¿Cuál es el problema real, cómo se resuelve y qué vamos a construir?</p>
+          <p class="metodo__taller">Taller de estrategia · Taller de producto</p>
         </div>
         <div class="ruta__fase ruta__fase--b">
           <span class="ruta__fase-num">Después</span>
-          <h3 class="ruta__fase-title">Definir y construir</h3>
-          <p class="ruta__fase-q">¿Qué construimos y cómo lo dejamos funcionando?</p>
-          <p class="metodo__taller">Taller de producto</p>
+          <h3 class="ruta__fase-title">Construir</h3>
+          <p class="ruta__fase-q">¿Cómo lo dejamos funcionando?</p>
+          <p class="metodo__taller">Desarrollo</p>
         </div>
 
         <article class="ruta__paso">
