@@ -2980,7 +2980,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   <option value="593">Ecuador +593</option>
                   <option value="598">Uruguay +598</option>
                 </select>
-                <input type="tel" id="f-phone_number" name="phone_number" required minlength="8" maxlength="15" autocomplete="tel-national" inputmode="numeric" placeholder="10 dígitos" aria-describedby="err-phone_number" class="phone-input__num">
+                <input type="tel" id="f-phone_number" name="phone_number" required minlength="8" maxlength="12" autocomplete="tel-national" inputmode="numeric" placeholder="10 dígitos" aria-describedby="err-phone_number" class="phone-input__num">
               </div>
               <span class="form-field__error" id="err-phone_country_code" aria-live="polite" hidden></span>
               <span class="form-field__error" id="err-phone_number" aria-live="polite"></span>
@@ -3499,6 +3499,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         }, { once: true });
       });
 
+      // Dígitos del número nacional por lada · fuente: planes de numeración de cada país
+      const PHONE_LEN = { '52': [10], '1': [10], '34': [9], '57': [10], '54': [10], '56': [9], '51': [9], '55': [10, 11], '593': [9], '598': [8, 9] };
       function validateField(input) {
         const err = document.getElementById('err-' + input.name);
         const wrap = input.closest('.form-field');
@@ -3515,6 +3517,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         } else if (input.type === 'email' && input.value) {
           if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value)) {
             msg = 'Formato inválido. Ejemplo: nombre@empresa.com';
+          }
+        } else if (input.name === 'phone_number' && input.value.trim()) {
+          // Longitud del número nacional según la lada elegida (México: exactamente 10 dígitos)
+          const cc = (document.getElementById('f-phone_country_code').value || '').trim();
+          let d = input.value.replace(/\D/g, '');
+          if (cc && d.startsWith(cc) && d.length > (PHONE_LEN[cc] ? Math.max.apply(null, PHONE_LEN[cc]) : 10)) d = d.slice(cc.length);
+          const allowed = PHONE_LEN[cc] || [8, 9, 10, 11, 12];
+          if (allowed.indexOf(d.length) === -1) {
+            msg = allowed.length === 1
+              ? `Escribe los ${allowed[0]} dígitos de tu número, sin lada.`
+              : `Escribe entre ${allowed[0]} y ${allowed[allowed.length - 1]} dígitos, sin lada.`;
           }
         }
         err.textContent = msg;
@@ -3553,6 +3566,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       form.querySelectorAll('input, textarea, select').forEach(input => {
         input.addEventListener('blur', () => validateField(input));
         input.addEventListener('change', () => validateField(input));
+        if (input.name === 'phone_number') {
+          input.addEventListener('input', () => {
+            const cc = (document.getElementById('f-phone_country_code').value || '').trim();
+            const max = PHONE_LEN[cc] ? Math.max.apply(null, PHONE_LEN[cc]) : 12;
+            let d = input.value.replace(/\D/g, '');
+            if (cc && d.startsWith(cc) && d.length > max) d = d.slice(cc.length);
+            if (d.length > max) d = d.slice(0, max);
+            if (input.value !== d) input.value = d;
+          });
+          document.getElementById('f-phone_country_code').addEventListener('change', () => { if (input.value) validateField(input); });
+        }
         input.addEventListener('input', () => {
           if (input.closest('.form-field').classList.contains('has-error')) {
             validateField(input);
