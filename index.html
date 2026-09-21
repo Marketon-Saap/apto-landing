@@ -3556,6 +3556,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         }
       });
 
+      // Tras el envío el formulario se oculta y la sección se acorta: la confirmación puede quedar
+      // fuera del viewport (sobre todo en la versión inline). Scroll determinista, sin animación,
+      // repetido para ganarle a cualquier scroll suave en vuelo; luego el foco para lectores de pantalla.
+      function revealSuccess(view) {
+        function place() {
+          if (document.body.classList.contains('form-modal-open')) return; // en el modal el panel hace su propio scroll
+          var y = view.getBoundingClientRect().top + window.scrollY - 120;
+          var prevBehavior = document.documentElement.style.scrollBehavior;
+          document.documentElement.style.scrollBehavior = 'auto';
+          window.scrollTo(0, Math.max(0, y));
+          document.documentElement.style.scrollBehavior = prevBehavior;
+        }
+        place(); setTimeout(place, 80); setTimeout(place, 450);
+        try { view.focus({ preventScroll: true }); } catch (e) { view.focus(); }
+      }
       function showMessage(type, text) {
         messageBox.className = 'form-message form-message--' + type;
         messageBox.textContent = text;
@@ -3712,9 +3727,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
           form.hidden = true;
           successView.hidden = false;
-          successView.focus();
-          // Inline: al colapsar el formulario la confirmación puede quedar fuera del viewport
-          try { successView.scrollIntoView({ block: 'center', behavior: 'smooth' }); } catch (e) {}
+          revealSuccess(successView);
 
         } catch (err) {
           track('form_submit_fail', { error: 'submit_failed' });
@@ -3768,8 +3781,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             track('form_submit_success_fallback', { has_problem_desc: !!workerPayload.message });
             form.hidden = true;
             successView.hidden = false;
-            try { successView.scrollIntoView({ block: 'center', behavior: 'smooth' }); } catch (e) {}
-            successView.focus();
+            revealSuccess(successView);
           } catch (err2) {
             showMessage('error', 'Algo falló al enviar. Intenta de nuevo o escríbenos a info@apto.mx');
             submitBtn.disabled = false;
