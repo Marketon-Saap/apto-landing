@@ -2259,6 +2259,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .js-reveal.is-visible { opacity: 1; transform: translateY(0); }
     .no-js .js-reveal { opacity: 1; transform: none; }
     @media (prefers-reduced-motion: reduce) { .js-reveal { opacity: 1 !important; transform: none !important; transition: none !important; } }
+    @media (max-width: 767px) {
+      .form-field .phone-input select.phone-input__cc { flex: 0 0 118px; width: 118px; padding-left: 10px; }
+      .form-field .phone-input .phone-input__num { padding-left: 12px; padding-right: 10px; letter-spacing: 0; }
+    }
+    @media (max-width: 380px) {
+      /* Pantallas angostas (iPhone SE): lada arriba, número abajo, ambos a todo el ancho */
+      .form-field .phone-input { flex-wrap: wrap; }
+      .form-field .phone-input select.phone-input__cc { flex: 0 0 100%; width: 100%; }
+      .form-field .phone-input .phone-input__num { flex: 1 1 100%; width: 100%; }
+    }
     .partner-card__linkedin { min-width: 44px; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
     .devsecops__nota a { display: inline-block; padding: 10px 2px; margin: -10px 0; }
     .js-reveal[data-reveal-delay="1"] { transition-delay: 80ms; }
