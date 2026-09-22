@@ -152,7 +152,10 @@
         }
         window.scrollTo(0, 0);
         window.addEventListener('DOMContentLoaded', function(){ window.scrollTo(0, 0); });
+        // Sitelinks de Ads llegan con ?sl=<seccion>#<seccion>: aterrizar en esa seccion, no en el hero
+        var SL_TARGET = (INITIAL_HASH && INITIAL_HASH !== '#cta-form' && document.getElementById(INITIAL_HASH.slice(1))) ? INITIAL_HASH.slice(1) : '';
         window.addEventListener('load', function(){
+          if (SL_TARGET) { setTimeout(function(){ scrollToId(SL_TARGET); }, 150); return; }
           window.scrollTo(0, 0);
           // Re-force top después de que fonts + imágenes late-load pueden shift layout
           setTimeout(function(){ if (window.scrollY < 200) window.scrollTo(0, 0); }, 400);
