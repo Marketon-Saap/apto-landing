@@ -136,10 +136,8 @@
           var id = href.slice(1);
           if (scrollToId(id)) {
             e.preventDefault();
-            // track click event si tiene data-track (mantiene compatibilidad con GTM)
-            if (link.dataset.track && typeof window.dataLayer !== 'undefined') {
-              window.dataLayer.push({ event: link.dataset.track, anchor: id });
-            }
+            // El clic ya lo registra el listener por elemento de [data-track] (con label).
+            // Un segundo push aqui duplicaba el evento en GA4 sin label.
           }
         });
         // Force top on load · IG WebView + otros in-app browsers a veces auto-scrollean
