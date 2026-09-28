@@ -330,10 +330,10 @@
           msg = `Mínimo ${input.minLength} caracteres.`;
         } else if (['firstname','lastname','jobtitle'].indexOf(input.name) !== -1 && input.value.trim() && !/^[A-Za-zÁÉÍÓÚÜÑáéíóúüñ ]+$/.test(input.value.trim())) {
           msg = 'Solo letras y espacios, sin números ni caracteres especiales.';
-        } else if (input.name === 'company' && input.value.trim() && !/^[A-Za-zÁÉÍÓÚÜÑáéíóúüñ0-9 .&-]+$/.test(input.value.trim())) {
-          msg = 'Solo letras y números, sin caracteres especiales.';
+        } else if (['company','message'].indexOf(input.name) !== -1 && input.value.trim() && !/^[A-Za-zÁÉÍÓÚÜÑáéíóúüñ0-9 ]+$/.test(input.value.trim())) {
+          msg = 'Solo letras, números y espacios, sin caracteres especiales.';
         } else if (input.type === 'email' && input.value) {
-          if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value)) {
+          if (!/^[a-z0-9._+-]+@[a-z0-9-]+(\.[a-z0-9-]+)+$/.test(input.value)) {
             msg = 'Formato inválido. Ejemplo: nombre@empresa.com';
           }
         } else if (input.name === 'phone_number' && input.value.trim()) {
@@ -396,10 +396,27 @@
       }
       function hideMessage() { messageBox.hidden = true; }
 
-      // Reglas de captura (22-sep-2026): nombre, apellido, empresa y cargo se guardan en MAYÚSCULAS y sin espacios dobles
-      var UPPER_FIELDS = ['firstname','lastname','company','jobtitle'];
-      function normalizeText(input) { if (UPPER_FIELDS.indexOf(input.name) === -1) return; var v = input.value.replace(/\s+/g, ' ').trim().toUpperCase(); if (input.value !== v) input.value = v; }
+      // Reglas de captura (22 y 28-sep-2026): el campo solo acepta MAYÚSCULAS sin caracteres especiales.
+      // Nombre, apellido y cargo: letras y espacios · Empresa y mensaje: letras, números y espacios.
+      // Correo: solo minúsculas, con arroba y dominio (cualquiera). Se limpia mientras el usuario escribe.
+      var LETTER_FIELDS = ['firstname','lastname','jobtitle'];
+      var ALNUM_FIELDS = ['company','message'];
+      function cleanValue(input, final) {
+        var v = input.value;
+        if (LETTER_FIELDS.indexOf(input.name) !== -1) v = v.toUpperCase().replace(/[^A-ZÁÉÍÓÚÜÑ ]+/g, '');
+        else if (ALNUM_FIELDS.indexOf(input.name) !== -1) v = v.toUpperCase().replace(/[^A-ZÁÉÍÓÚÜÑ0-9 ]+/g, '');
+        else if (input.type === 'email') v = v.toLowerCase().replace(/[^a-z0-9@._+-]+/g, '');
+        else return;
+        v = final ? v.replace(/\s+/g, ' ').trim() : v.replace(/ {2,}/g, ' ');
+        if (input.value !== v) {
+          var pos = input.selectionStart, delta = input.value.length - v.length;
+          input.value = v;
+          try { if (pos != null) { var np = Math.max(0, Math.min(pos - delta, v.length)); input.setSelectionRange(np, np); } } catch (e) {}
+        }
+      }
+      function normalizeText(input) { cleanValue(input, true); }
       form.querySelectorAll('input, textarea, select').forEach(input => {
+        input.addEventListener('input', () => cleanValue(input, false));
         input.addEventListener('blur', () => { normalizeText(input); validateField(input); });
         input.addEventListener('change', () => validateField(input));
         if (input.name === 'phone_number') {
