@@ -330,8 +330,10 @@
           msg = `Mínimo ${input.minLength} caracteres.`;
         } else if (['firstname','lastname','jobtitle'].indexOf(input.name) !== -1 && input.value.trim() && !/^[A-Za-zÁÉÍÓÚÜÑáéíóúüñ ]+$/.test(input.value.trim())) {
           msg = 'Solo letras y espacios, sin números ni caracteres especiales.';
-        } else if (['company','message'].indexOf(input.name) !== -1 && input.value.trim() && !/^[A-Za-zÁÉÍÓÚÜÑáéíóúüñ0-9 ]+$/.test(input.value.trim())) {
+        } else if (input.name === 'company' && input.value.trim() && !/^[A-Za-zÁÉÍÓÚÜÑáéíóúüñ0-9 ]+$/.test(input.value.trim())) {
           msg = 'Solo letras, números y espacios, sin caracteres especiales.';
+        } else if (input.name === 'message' && input.value.trim() && !/^[A-Za-zÁÉÍÓÚÜÑáéíóúüñ0-9\s.,;:¿?¡!()%$&\/'"\-_@#+*=]+$/.test(input.value.trim())) {
+          msg = 'Usa letras, números y puntuación normal (puntos, comas, signos).';
         } else if (input.type === 'email' && input.value) {
           if (!/^[a-z0-9._+-]+@[a-z0-9-]+(\.[a-z0-9-]+)+$/.test(input.value)) {
             msg = 'Formato inválido. Ejemplo: nombre@empresa.com';
@@ -397,14 +399,21 @@
       function hideMessage() { messageBox.hidden = true; }
 
       // Reglas de captura (22 y 28-sep-2026): el campo solo acepta MAYÚSCULAS sin caracteres especiales.
-      // Nombre, apellido y cargo: letras y espacios · Empresa y mensaje: letras, números y espacios.
+      // Nombre, apellido y cargo: letras y espacios · Empresa: letras, números y espacios.
+      // Mensaje (reto): texto libre, conserva mayúsculas/minúsculas y puntuación (puntos, comas, signos).
       // Correo: solo minúsculas, con arroba y dominio (cualquiera). Se limpia mientras el usuario escribe.
       var LETTER_FIELDS = ['firstname','lastname','jobtitle'];
-      var ALNUM_FIELDS = ['company','message'];
+      var ALNUM_FIELDS = ['company'];
       function cleanValue(input, final) {
         var v = input.value;
         if (LETTER_FIELDS.indexOf(input.name) !== -1) v = v.toUpperCase().replace(/[^A-ZÁÉÍÓÚÜÑ ]+/g, '');
         else if (ALNUM_FIELDS.indexOf(input.name) !== -1) v = v.toUpperCase().replace(/[^A-ZÁÉÍÓÚÜÑ0-9 ]+/g, '');
+        else if (input.name === 'message') {
+          v = v.replace(/[^A-Za-zÁÉÍÓÚÜÑáéíóúüñ0-9\s.,;:¿?¡!()%$&\/'"\-_@#+*=]+/g, '');
+          v = final ? v.replace(/[ \t]+/g, ' ').replace(/\n{3,}/g, '\n\n').trim() : v.replace(/ {2,}/g, ' ');
+          if (input.value !== v) { var p0 = input.selectionStart, d0 = input.value.length - v.length; input.value = v; try { if (p0 != null) { var q = Math.max(0, Math.min(p0 - d0, v.length)); input.setSelectionRange(q, q); } } catch (e) {} }
+          return;
+        }
         else if (input.type === 'email') v = v.toLowerCase().replace(/[^a-z0-9@._+-]+/g, '');
         else return;
         v = final ? v.replace(/\s+/g, ' ').trim() : v.replace(/ {2,}/g, ' ');
