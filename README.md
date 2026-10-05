@@ -3,7 +3,7 @@
 Repo dedicado del landing madre APTO gestionado por Marketon (Fractional CMO 2026H2).
 
 - **URL producción**: https://landing.apto.mx/
-- **Backend Worker**: `apto-landing-api.grupo-plasencia-automotriz.workers.dev`
+- **Backend Worker**: `apto-landing-api.marketon-saap.workers.dev`
 - **HubSpot**: pipeline "Marketon" · portal 2583031
 - **Google Ads**: cuenta 7021324934 · Enhanced Conversions activas
 - **GTM**: GTM-K7J6MQ8
