@@ -424,7 +424,7 @@
         }
       }
       function normalizeText(input) { cleanValue(input, true); }
-      form.querySelectorAll('input, textarea, select').forEach(input => {
+      form.querySelectorAll('input:not([type=hidden]), textarea, select').forEach(input => {
         input.addEventListener('input', () => cleanValue(input, false));
         input.addEventListener('blur', () => { normalizeText(input); validateField(input); });
         input.addEventListener('change', () => validateField(input));
@@ -459,14 +459,15 @@
         // Reentrancy guard · previene doble submit (Enter-key rapid presses o dispatch programático)
         if (submitBtn.disabled) return;
 
-        const inputs = form.querySelectorAll('input, textarea, select');
+        const inputs = form.querySelectorAll('input:not([type=hidden]), textarea, select');
         inputs.forEach(normalizeText);
         let allValid = true;
         inputs.forEach(i => { if (!validateField(i)) allValid = false; });
         if (!allValid) {
           track('form_field_error', {});
           // A11y · mover focus al primer campo con error para keyboard users
-          form.querySelector('.has-error input, .has-error select, .has-error textarea')?.focus();
+          var firstErr = form.querySelector('.has-error input, .has-error select, .has-error textarea');
+          if (firstErr) firstErr.focus();
           return;
         }
 
@@ -481,8 +482,11 @@
         };
         if (hutk) context.hutk = hutk;
         // Meta Pixel cookies para dedup client/server CAPI
-        const fbp = document.cookie.match(/_fbp=([^;]+)/)?.[1];
-        const fbc = document.cookie.match(/_fbc=([^;]+)/)?.[1];
+        // Sin encadenamiento opcional: navegadores viejos no lo parsean y tiraban todo capture.js (15-oct-2026)
+        const fbpMatch = document.cookie.match(/_fbp=([^;]+)/);
+        const fbcMatch = document.cookie.match(/_fbc=([^;]+)/);
+        const fbp = fbpMatch ? fbpMatch[1] : '';
+        const fbc = fbcMatch ? fbcMatch[1] : '';
         if (fbp) context.fbp = fbp;
         if (fbc) context.fbc = fbc;
         // GA4 client_id (from _ga cookie)
