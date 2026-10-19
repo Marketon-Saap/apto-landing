@@ -35,6 +35,74 @@
         (window.dataLayer = window.dataLayer || []).push(params);
       }
 
+      // ── Atribución · primer y último toque (19-oct-2026) ──────────────────────────
+      // La plantilla de seguimiento de Google Ads deja campaña, grupo, keyword, anuncio y
+      // ubicación del clic en la URL (ValueTrack). Se guardan en localStorage para no perder
+      // la atribución si la persona vuelve directo días después, y se mandan al Worker.
+      var ATTR_KEYS = {
+        gclid: ['gclid'], gbraid: ['gbraid'], wbraid: ['wbraid'], fbclid: ['fbclid'],
+        utm_source: ['utm_source'], utm_medium: ['utm_medium'], utm_campaign: ['utm_campaign'],
+        utm_content: ['utm_content'], utm_term: ['utm_term'],
+        campaign_id: ['campaignid', 'hsa_cam', 'utm_id'], adgroup_id: ['adgroupid', 'hsa_grp'],
+        keyword: ['keyword', 'hsa_kw'], match_type: ['matchtype', 'hsa_mt'], device: ['device'],
+        creative_id: ['creative', 'hsa_ad'], network: ['hsa_src', 'network'], target_id: ['hsa_tgt', 'targetid'],
+        loc_physical_id: ['loc_physical_ms'], loc_interest_id: ['loc_interest_ms']
+      };
+      function readAttributionFromUrl() {
+        var out = {}, any = false, sp;
+        try { sp = new URLSearchParams(location.search); } catch (e) { return null; }
+        Object.keys(ATTR_KEYS).forEach(function (k) {
+          var names = ATTR_KEYS[k];
+          for (var i = 0; i < names.length; i++) {
+            var v = (sp.get(names[i]) || '').trim();
+            if (v) { out[k] = v.slice(0, 300); any = true; break; }
+          }
+        });
+        if (!out.adgroup_id && /^\d{6,}$/.test(out.utm_content || '')) out.adgroup_id = out.utm_content;
+        if (!(out.gclid || out.gbraid || out.wbraid || out.fbclid || out.campaign_id || out.utm_source)) return null;
+        out.ts = new Date().toISOString();
+        out.uri = location.href.slice(0, 2000);
+        out.referrer = (document.referrer || '').slice(0, 500);
+        return any ? out : null;
+      }
+      function lsGet(k) { try { return JSON.parse(localStorage.getItem(k) || 'null'); } catch (e) { return null; } }
+      function lsSet(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+      var attrNow = readAttributionFromUrl();
+      if (attrNow) {
+        lsSet('apto_attr_last', attrNow);
+        if (!lsGet('apto_attr_first')) lsSet('apto_attr_first', attrNow);
+      }
+      function getAttribution() {
+        var first = lsGet('apto_attr_first'), last = lsGet('apto_attr_last');
+        return (first || last) ? { first: first || undefined, last: last || undefined } : null;
+      }
+      // Campo oculto para el envío nativo (sin fetch): mismo JSON
+      (function () {
+        var h = document.getElementById('f-attribution');
+        var a = getAttribution();
+        if (h && a) { try { h.value = JSON.stringify(a); } catch (e) {} }
+      })();
+
+      // ── Señales de intención: profundidad de scroll, CTA que abrió el form, errores ──
+      var maxScrollPct = 0;
+      function updateScroll() {
+        var doc = document.documentElement, body = document.body;
+        var total = Math.max(doc.scrollHeight, body ? body.scrollHeight : 0) - window.innerHeight;
+        if (total <= 0) { maxScrollPct = 100; return; }
+        var pct = Math.round(((window.scrollY || doc.scrollTop || 0) / total) * 100);
+        if (pct > maxScrollPct) maxScrollPct = Math.min(100, pct);
+      }
+      window.addEventListener('scroll', updateScroll, { passive: true });
+      updateScroll();
+      var formOriginCta = 'inline';
+      var formErrorCount = 0;
+      // Clarity: ids de usuario y sesión desde sus cookies, para abrir la grabación del lead
+      function clarityIds() {
+        var u = document.cookie.match(/(?:^|; )_clck=([^;|]+)/);
+        var s = document.cookie.match(/(?:^|; )_clsk=([^;|]+)/);
+        return { user: u ? decodeURIComponent(u[1]) : '', session: s ? decodeURIComponent(s[1]) : '' };
+      }
+
       document.querySelectorAll('[data-track]').forEach(el => {
         el.addEventListener('click', () => {
           var params = { label: el.textContent.trim().slice(0,50) };
@@ -175,6 +243,7 @@
           var firstInput = modal.querySelector('input:not([type=hidden]):not([disabled]), textarea, select');
           if (firstInput) firstInput.focus({ preventScroll: true });
         }, 320);
+        formOriginCta = source || 'unknown';
         track('form_modal_open', { source: source || 'unknown' });
       }
       function closeFormModal(){
@@ -464,6 +533,7 @@
         let allValid = true;
         inputs.forEach(i => { if (!validateField(i)) allValid = false; });
         if (!allValid) {
+          formErrorCount += 1;
           track('form_field_error', {});
           // A11y · mover focus al primer campo con error para keyboard users
           var firstErr = form.querySelector('.has-error input, .has-error select, .has-error textarea');
@@ -481,6 +551,19 @@
           pageName: document.title
         };
         if (hutk) context.hutk = hutk;
+        // Atribución (primer/último toque) y señales de intención · 19-oct-2026
+        var attribution = getAttribution();
+        if (attribution) context.attribution = attribution;
+        updateScroll();
+        var cl = clarityIds();
+        context.meta = {
+          form_origin_cta: formOriginCta,
+          time_on_page_s: Math.round((window.performance && performance.now ? performance.now() : 0) / 1000),
+          scroll_depth_pct: maxScrollPct,
+          form_error_count: formErrorCount,
+          clarity_user_id: cl.user,
+          clarity_session_id: cl.session
+        };
         // Meta Pixel cookies para dedup client/server CAPI
         // Sin encadenamiento opcional: navegadores viejos no lo parsean y tiraban todo capture.js (15-oct-2026)
         const fbpMatch = document.cookie.match(/_fbp=([^;]+)/);
@@ -560,6 +643,19 @@
             // Consent legal (proof of consent · siempre true si llegó a este punto por required)
             privacy_consent: workerPayload.privacy_consent,
             privacy_consent_ts: workerPayload.privacy_consent_ts,
+            // Pauta · lo que trae el clic (o el toque guardado) · sin PII
+            campaign_id: ((attribution && (attribution.last || attribution.first)) || {}).campaign_id || '',
+            ad_group_id: ((attribution && (attribution.last || attribution.first)) || {}).adgroup_id || '',
+            keyword: ((attribution && (attribution.last || attribution.first)) || {}).keyword || '',
+            match_type: ((attribution && (attribution.last || attribution.first)) || {}).match_type || '',
+            creative_id: ((attribution && (attribution.last || attribution.first)) || {}).creative_id || '',
+            ad_network: ((attribution && (attribution.last || attribution.first)) || {}).network || '',
+            attribution_touch: attrNow ? 'url' : (attribution ? 'stored' : 'none'),
+            // Intención
+            form_origin_cta: context.meta.form_origin_cta,
+            time_on_page_s: context.meta.time_on_page_s,
+            scroll_depth_pct: context.meta.scroll_depth_pct,
+            form_error_count: context.meta.form_error_count,
             // Attribution IDs
             gclid: new URLSearchParams(location.search).get('gclid') || '',
             fbclid: new URLSearchParams(location.search).get('fbclid') || '',
