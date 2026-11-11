@@ -41,7 +41,8 @@ small{display:block;margin-top:18px;opacity:.6}
   if(c){try{var u='https://apto-chat-api.marketon-saap.workers.dev/wa/clic?c='+encodeURIComponent(c)+'&canal='+encodeURIComponent(canal);
     if(!(navigator.sendBeacon&&navigator.sendBeacon(u)))fetch(u,{keepalive:true,mode:'no-cors'}).catch(function(){});}catch(e){}}
   // 3) Al calendario.
-  setTimeout(function(){location.replace(destino);},700);
+  // qa=1: no redirige (para revisar los tags con GTM Preview o la consola de red).
+  if(q.get('qa')!=='1'){setTimeout(function(){location.replace(destino);},700);}
 })();
 </script>
 </body></html>
