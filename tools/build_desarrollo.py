@@ -85,6 +85,17 @@ head = re.sub(r'<p class="lead">[^<]*</p>', '<p class="lead">Podemos entrar solo
 s = s[:a] + head + retos + sec[j:] + s[z:]
 s = s.replace('>Los seis retos<', '>Qué desarrollamos<')
 
+# 5b) sección propia: qué resuelve y qué logramos (textos de apto.mx/servicios, 11-nov-2026)
+propia = ('<section class="section section--cream" id="por-que-software">\n<div class="container">\n<header class="section__header">\n'
+          '<p class="eyebrow">Por qué importa</p>\n<h2>Software con foco en la productividad de tu operación y en la experiencia de tus clientes.</h2>\n'
+          '<p class="lead">Desarrollamos e integramos la arquitectura de sistemas y productos, con la ingeniería y el diseño trabajando en el mismo equipo.</p>\n</header>\n<div class="cards-3">\n'
+          '<article class="card">\n<h3 class="card__title">Qué problema resuelve</h3>\n<p class="card__body">La tecnología es un pilar de cualquier negocio. Contar con sistemas ágiles, seguros y escalables impulsa el crecimiento: bien aplicada, potencia cada etapa de la cadena de valor, desde los procesos industriales hasta la relación con tus clientes, en B2B y en B2C.</p>\n</article>\n'
+          '<article class="card">\n<h3 class="card__title">Qué logramos</h3>\n<p class="card__body">Nuestro equipo lidera la ejecución del roadmap de construcción y cuida cada etapa del proceso, para entregar una infraestructura sólida y un producto impecable en calidad y en experiencia de usuario.</p>\n</article>\n'
+          '<article class="card">\n<h3 class="card__title">Integrado a lo que ya operas</h3>\n<p class="card__body">La calidad de tus activos digitales influye en las decisiones de compra de tus clientes y en la eficiencia de tu operación. Desarrollamos software que se integra con los sistemas centrales del negocio, para una experiencia consistente y efectiva.</p>\n</article>\n'
+          '</div>\n</div>\n</section>\n')
+k = s.index('<section class="section section--navy" id="productos">')
+s = s[:k] + propia + s[k:]
+
 # 6) FAQ: solo las de software, en este orden; JSON-LD igual a lo visible
 orden = ['¿Hacen desarrollo de software a la medida?', '¿Ustedes desarrollan el software?', '¿Tienen desarrolladores propios?',
          '¿Desarrollan aplicaciones?', '¿Hacen plataformas de ecommerce o venta B2B?', '¿Pueden integrarse con los sistemas que ya usamos?',

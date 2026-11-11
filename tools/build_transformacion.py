@@ -40,17 +40,41 @@ serv = ('<section class="servicios" id="servicios" aria-labelledby="servicios-ti
         + ul + '\n</div>\n</section>')
 s = re.sub(r'<!-- PROPUESTA 22-sep.*?<!-- /PROPUESTA -->', serv, s, count=1, flags=re.S)
 
-# retos: el de transformación digital (06) primero, renumerados
-a = s.index('<section class="section section--navy" id="productos">'); z = s.index('</section>', a); sec = s[a:z]
+# retos -> cinco frentes de la transformación digital, con los textos de apto.mx/servicios (11-nov-2026)
+def reto(n, prod, title, tema, dolor, items, caso):
+    li = ''.join(f'<li>{i}</li>\n' for i in items)
+    return (f'<article class="reto">\n<div class="reto__head">\n<span class="reto__num">{n}</span>\n<h3 class="reto__title">{title}</h3>\n'
+            f'<p class="reto__tema">{tema}</p>\n</div>\n<p class="reto__dolor">{dolor}</p>\n<details class="reto__more">\n'
+            f'<summary data-track="producto_expand" data-producto="{prod}">Qué logramos</summary>\n<div class="reto__body">\n'
+            f'<ul class="reto__si">\n{li}</ul>\n<p class="reto__caso">{caso}</p>\n</div>\n</details>\n</article>\n')
+frentes = (reto('01', 'omnicanal', 'Tus canales funcionan por separado', 'Diseño de servicios y experiencias omnicanales',
+                'La experiencia de servicio es crítica para el desempeño comercial. La fidelidad del cliente no existe ante un servicio complicado o que falla, mantener la excelencia cuesta en la operación y la integración omnicanal para atender a los usuarios se vuelve cada vez más compleja.',
+                ['Comprendemos las oportunidades del negocio y la relación con tus clientes', 'Identificamos las necesidades del usuario en cada etapa del servicio', 'Co-diseñamos los flujos entre canales remotos y presenciales, con una visión de sistema', 'Validamos los conceptos con prototipos y definimos las capacidades del servicio y un plan de acción', 'Desarrollamos la tecnología e implementamos procesos y equipos para operar el Mínimo Servicio Viable'],
+                'Grupo San Carlos · omnicanalidad integrada a los sistemas core del negocio')
+         + reto('02', 'productos', 'Tus activos digitales no están a la altura', 'Diseño y desarrollo de productos y ecosistemas digitales',
+                'La calidad de los activos digitales influye tanto en las decisiones de compra de tus clientes como en la eficiencia de la operación. Mejorar su funcionalidad y su experiencia aumenta las ventas y optimiza los procesos internos.',
+                ['Diseñamos, validamos y desarrollamos productos digitales centrados en el cliente o en la eficiencia operativa', 'Creamos nuevos canales y herramientas para fortalecer las relaciones comerciales', 'Desarrollamos software que se integra con los sistemas centrales del negocio'],
+                'APYMSA · plataforma B2B de autopartes')
+         + reto('03', 'operacion', 'Tu operación depende de tareas manuales', 'Digitalización de la operación y automatización',
+                'Optimizamos procesos con tecnología: sistemas ágiles, seguros y escalables que potencian cada etapa de la cadena de valor, desde los procesos industriales hasta la relación con los clientes.',
+                ['Análisis de procesos y oportunidades de automatización', 'Automatización con inteligencia artificial: agentes y asistentes conectados a tus sistemas y datos', 'Desarrollo de sistemas y aplicaciones a la medida', 'Herramientas e integraciones con los sistemas existentes'],
+                'Fanosa · automatización comercial')
+         + reto('04', 'estrategia', 'Tu estrategia no parte de lo que necesita tu cliente', 'Estrategia con enfoque centrado en el usuario',
+                'Se habla mucho de orientar los esfuerzos hacia el usuario, pero en la práctica los análisis suelen quedarse en la superficie. Las organizaciones que alinean sus capacidades con las necesidades reales de sus usuarios mantienen su relevancia y su competitividad.',
+                ['Análisis de la organización, sus líneas de ingreso y sus retos de crecimiento', 'Investigación cualitativa y cuantitativa con tus segmentos de usuarios', 'Portafolio de iniciativas evaluadas por viabilidad, deseabilidad y factibilidad tecnológica'],
+                'BayWa r.e. · recorrido de instaladores')
+         + reto('05', 'equipos', 'Tus iniciativas de innovación no logran avanzar', 'Equipos de innovación y diseño para empresas',
+                'Muchas organizaciones tardan en llevar productos al mercado porque el proceso carece de consistencia o el equipo a cargo no cuenta con las herramientas, el liderazgo o las competencias técnicas para resolver retos complejos.',
+                ['Construimos y fortalecemos equipos multidisciplinarios dentro de tu empresa', 'Los habilitamos para diseñar y transformar productos, servicios y flujos de valor', 'Capacitación en metodologías de diseño centradas en el usuario, con APTO Education'],
+                'Coppel Club de Protección · producto de seguros'))
+a_ = s.index('<section class="section section--navy" id="productos">'); z = s.index('</section>', a_); sec = s[a_:z]
 i = sec.index('<div class="retos">\n') + len('<div class="retos">\n'); j = sec.rindex('</article>\n') + len('</article>\n')
-arts = re.findall(r'<article class="reto">.*?</article>\n', sec[i:j], re.S)
-assert len(arts) == 6
-orden = [arts[5], arts[2], arts[0], arts[1], arts[3], arts[4]]
-orden = [re.sub(r'<span class="reto__num">\d+</span>', f'<span class="reto__num">{k+1:02d}</span>', x) for k, x in enumerate(orden)]
 head = sec[:i]
-head = re.sub(r'<p class="eyebrow">[^<]*</p>', '<p class="eyebrow">Por dónde empieza</p>', head, count=1)
-head = re.sub(r'<h2>[^<]*</h2>', '<h2>Seis puntos de partida para la transformación digital.</h2>', head, count=1)
-s = s[:a] + head + ''.join(orden) + sec[j:] + s[z:]
+head = re.sub(r'<p class="eyebrow">[^<]*</p>', '<p class="eyebrow">Qué transformamos</p>', head, count=1)
+head = re.sub(r'<h2>[^<]*</h2>', '<h2>Cinco frentes de la transformación digital.</h2>', head, count=1)
+head = re.sub(r'<p class="lead">[^<]*</p>', '<p class="lead">La transformación digital no es un proyecto de tecnología aislado: conecta el servicio, los productos digitales, la operación, la estrategia y los equipos. Podemos empezar por un frente y sumar los demás según el alcance.</p>', head, count=1)
+s = s[:a_] + head + frentes + sec[j:] + s[z:]
+s = s.replace('>Los seis retos<', '>Cinco frentes<')
 
 # FAQ: transformación digital primero
 items = re.findall(r'<details class="faq-item">\n<summary>(.*?)</summary>\n<div class="faq-item__body">(.*?)</div>\n</details>\n', s, re.S)
