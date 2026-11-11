@@ -453,11 +453,11 @@
     if (leadCard) { leadCard.scrollIntoView({ block: 'nearest' }); var f = leadCard.querySelector('input'); if (f) f.focus({ preventScroll: true }); return; }
     setChips([]);
     var el = document.createElement('div'); el.className = 'jz-lead';
-    el.innerHTML = '<p class="jz-lead-t">Déjanos tus datos</p><p class="jz-lead-s">Alguien de APTO te escribe para platicar de tu reto.</p>'
+    el.innerHTML = '<p class="jz-lead-t">Déjanos tus datos</p><p class="jz-lead-s">Alguien de APTO te escribe por WhatsApp o por correo, el que nos dejes.</p>'
       + field('Nombre', 'firstname', 'text', 'name', 'Tu nombre')
-      + field('Correo de empresa', 'email', 'email', 'email', 'tu@empresa.com')
       + field('Empresa', 'company', 'text', 'organization', 'Nombre de la empresa')
-      + field('Teléfono (opcional)', 'phone', 'tel', 'tel', '10 dígitos')
+      + field('WhatsApp', 'phone', 'tel', 'tel', '10 dígitos')
+      + field('Correo', 'email', 'email', 'email', 'tu@empresa.com')
       + '<label class="jz-consent"><input type="checkbox" name="privacy_consent" id="jz-consent"><span>He leído y acepto el <a href="' + PRIVACY_URL + '" target="_blank" rel="noopener">aviso de privacidad</a>.</span></label>'
       + '<div class="jz-err" data-for="privacy_consent"></div>'
       + '<div class="jz-lead-btns"><button type="button" class="jz-btn is-pri" data-act="send">Enviar</button><button type="button" class="jz-btn is-sec" data-act="form">Prefiero el formulario completo</button></div>';
@@ -473,12 +473,14 @@
     var errs = {};
     var v = function (n) { return (g(n).value || '').trim(); };
     if (v('firstname').length < 2) errs.firstname = 'Escribe tu nombre.';
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v('email'))) errs.email = 'Revisa el correo.';
     if (v('company').length < 2) errs.company = 'Escribe el nombre de tu empresa.';
+    // WhatsApp o correo, el que quiera dejar (11-nov-2026); los dos vacíos no pasa.
     var d = v('phone').replace(/\D/g, '');
-    if (d && !/^\d{8,15}$/.test(d)) errs.phone = 'Revisa el teléfono (10 dígitos).';
+    if (d && !/^\d{8,15}$/.test(d)) errs.phone = 'Revisa el WhatsApp (10 dígitos).';
+    if (v('email') && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v('email'))) errs.email = 'Revisa el correo.';
+    if (!d && !v('email')) { errs.phone = 'Déjanos tu WhatsApp o tu correo para escribirte.'; errs.email = ' '; }
     if (!g('privacy_consent').checked) errs.privacy_consent = 'Necesitamos tu aceptación del aviso de privacidad.';
-    ['firstname', 'email', 'company', 'phone', 'privacy_consent'].forEach(function (n) {
+    ['firstname', 'company', 'phone', 'email', 'privacy_consent'].forEach(function (n) {
       var e = el.querySelector('.jz-err[data-for="' + n + '"]'); var inp = g(n);
       if (errs[n]) { e.textContent = errs[n]; e.classList.add('is-on'); if (inp.type !== 'checkbox') inp.classList.add('is-bad'); }
       else { e.textContent = ''; e.classList.remove('is-on'); inp.classList.remove('is-bad'); }
@@ -513,7 +515,7 @@
       }
     };
     if (attr) context.attribution = attr;
-    var payload = { firstname: data.firstname, lastname: '', email: data.email, phone: data.phone, company: data.company, jobtitle: '', industry: '', company_size: '', message: firstUserMessage().slice(0, 480), privacy_consent: true, context: context };
+    var payload = { firstname: data.firstname, lastname: '', email: data.email, phone: data.phone, metodo_de_contacto: data.phone ? 'WhatsApp' : 'Email', company: data.company, jobtitle: '', industry: '', company_size: '', message: firstUserMessage().slice(0, 480), privacy_consent: true, context: context };
     lastAction = 'lead_sent';
     fetch(API + '/lead', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
       .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { j.__status = r.status; return j; }); })

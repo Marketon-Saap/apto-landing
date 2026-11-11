@@ -603,6 +603,7 @@
           lastname: document.getElementById('f-lastname').value.trim(),
           email: document.getElementById('f-email').value.trim(),
           phone: phoneE164,
+          metodo_de_contacto: phoneE164 ? 'WhatsApp' : 'Email',
           company: document.getElementById('f-company').value.trim(),
           jobtitle: document.getElementById('f-jobtitle').value.trim(),
           industry: document.getElementById('f-industry').value.trim(),
