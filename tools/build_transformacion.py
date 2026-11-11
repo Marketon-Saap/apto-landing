@@ -12,7 +12,7 @@ s = re.sub(r'(\s(?:href|src|action|poster|data-src)=")(?!https?:|/|#|mailto:|tel
 s = re.sub(r'srcset="([^"]+)"', lambda m: 'srcset="' + ', '.join(('/' + p.strip()) if not p.strip().startswith(('/', 'http')) else p.strip() for p in m.group(1).split(',')) + '"', s)
 
 TITLE = 'Consultoría de transformación digital para empresas · APTO'
-DESC = 'Transformación digital para corporativos y empresas medianas: integramos estrategia, diseño y tecnología para transformar ecosistemas, crear nuevos canales y optimizar operaciones.'
+DESC = 'Transformación digital para empresas: integramos estrategia, diseño y tecnología para crear nuevos canales, optimizar operaciones y crecer.'
 s = re.sub(r'<title>.*?</title>', f'<title>{TITLE}</title>', s, count=1, flags=re.S)
 s = re.sub(r'(<meta name="description" content=")[^"]*"', rf'\g<1>{DESC}"', s, count=1)
 s = re.sub(r'(<meta name="twitter:description" content=")[^"]*"', rf'\g<1>{DESC}"', s)
@@ -21,6 +21,9 @@ s = re.sub(r'(<meta property="og:description" content=")[^"]*"', rf'\g<1>{DESC}"
 s = re.sub(r'(<meta content=")[^"]*(" property="og:title")', rf'\g<1>{TITLE}\2', s)
 s = re.sub(r'(<meta property="og:title" content=")[^"]*"', rf'\g<1>{TITLE}"', s)
 s = s.replace('<link rel="canonical" href="https://landing.apto.mx/">', f'<link rel="canonical" href="{URL}">')
+# hreflang: cada página se declara a sí misma (antes apuntaba a la portada y contradecía la canónica)
+s = s.replace('<link rel="alternate" hreflang="es-MX" href="https://landing.apto.mx/">', f'<link rel="alternate" hreflang="es-MX" href="{URL}">')
+s = s.replace('<link rel="alternate" hreflang="x-default" href="https://landing.apto.mx/">', f'<link rel="alternate" hreflang="x-default" href="{URL}">')
 s = s.replace('<meta property="og:url" content="https://landing.apto.mx/">', f'<meta property="og:url" content="{URL}">')
 
 s = re.sub(r'<h1>[^<]*</h1>', '<h1>Transformación digital para tu empresa.</h1>', s, count=1)

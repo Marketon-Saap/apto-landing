@@ -20,7 +20,7 @@ s = re.sub(r'srcset="([^"]+)"', lambda m: 'srcset="' + ', '.join(('/' + p.strip(
 
 # 2) head: title, description, canonical, og
 TITLE = 'Desarrollo de software a la medida en México · APTO'
-DESC = 'Desarrollo de software a la medida, aplicaciones, plataformas de ecommerce B2B e integraciones con los sistemas que ya operas: arquitectura, desarrollo, pruebas y puesta en marcha.'
+DESC = 'Software a la medida, aplicaciones, ecommerce B2B e integraciones con los sistemas que ya operas: arquitectura, desarrollo, pruebas y puesta en marcha.'
 s = re.sub(r'<title>.*?</title>', f'<title>{TITLE}</title>', s, count=1, flags=re.S)
 s = re.sub(r'(<meta name="description" content=")[^"]*"', rf'\g<1>{DESC}"', s, count=1)
 s = re.sub(r'(<meta property="og:description" content=")[^"]*"', rf'\g<1>{DESC}"', s)
@@ -29,6 +29,9 @@ s = re.sub(r'(<meta name="twitter:description" content=")[^"]*"', rf'\g<1>{DESC}
 s = re.sub(r'(<meta property="og:title" content=")[^"]*"', rf'\g<1>{TITLE}"', s)
 s = re.sub(r'(<meta content=")[^"]*(" property="og:title")', rf'\g<1>{TITLE}\2', s)
 s = s.replace('<link rel="canonical" href="https://landing.apto.mx/">', f'<link rel="canonical" href="{URL}">')
+# hreflang: cada página se declara a sí misma (antes apuntaba a la portada y contradecía la canónica)
+s = s.replace('<link rel="alternate" hreflang="es-MX" href="https://landing.apto.mx/">', f'<link rel="alternate" hreflang="es-MX" href="{URL}">')
+s = s.replace('<link rel="alternate" hreflang="x-default" href="https://landing.apto.mx/">', f'<link rel="alternate" hreflang="x-default" href="{URL}">')
 s = s.replace('<meta property="og:url" content="https://landing.apto.mx/">', f'<meta property="og:url" content="{URL}">')
 
 # 3) hero
