@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es-MX"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agenda una llamada con Carlos Beltrán · APTO</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Elige el horario que te acomode para una primera llamada con Carlos Beltrán, socio de APTO.">
+<meta property="og:type" content="website"><meta property="og:site_name" content="APTO"><meta property="og:locale" content="es_MX">
+<meta property="og:title" content="Agenda una llamada con Carlos Beltrán · APTO">
+<meta property="og:description" content="Elige el horario que te acomode para una primera llamada con Carlos Beltrán, socio de APTO.">
+<meta property="og:url" content="https://landing.apto.mx/agenda/">
+<meta property="og:image" content="https://landing.apto.mx/assets/og-image-apto-official.png">
+<link rel="icon" href="/assets/apto-logo-243.png">
+<!-- Google Tag Manager -->
+<script>window.dataLayer=window.dataLayer||[];(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-K7J6MQ8');</script>
+<!-- End Google Tag Manager -->
+<style>
+:root{color-scheme:light}html,body{height:100%;margin:0}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:#01122d;color:#fff;display:grid;place-items:center;text-align:center;padding:24px}
+main{max-width:28rem}img{width:72px;height:auto;margin-bottom:20px}
+h1{font-size:1.35rem;font-weight:600;margin:0 0 8px}p{margin:0 0 20px;opacity:.85;line-height:1.5}
+a.btn{display:inline-block;background:#fff;color:#01122d;text-decoration:none;font-weight:600;padding:14px 22px;border-radius:999px}
+small{display:block;margin-top:18px;opacity:.6}
+</style></head>
+<body>
+<!-- Google Tag Manager (noscript) --><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K7J6MQ8" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript><!-- End Google Tag Manager -->
+<main>
+<img src="/assets/apto-logo-243.png" alt="APTO" width="81" height="36">
+<h1>Te llevamos al calendario de Carlos Beltrán</h1>
+<p>Elige el horario que te acomode para una primera llamada. Si no cambia de página en unos segundos, toca el botón.</p>
+<a class="btn" id="ir" href="https://calendar.app.google/nard2rX5FNJErnGN6" rel="noopener">Abrir el calendario</a>
+<small>APTO Innovación · Zapopan, Jalisco</small>
+</main>
+<script>
+(function(){
+  var q=new URLSearchParams(location.search);
+  var c=(q.get('c')||'').replace(/[^0-9]/g,'').slice(0,20);
+  var canal=(q.get('canal')||'directo').replace(/[^a-z_]/g,'').slice(0,20)||'directo';
+  var destino=document.getElementById('ir').href;
+  // 1) Evento para GTM (GA4 select_content + Meta Schedule se configuran en el contenedor).
+  window.dataLayer.push({event:'calendario_carlos',canal:canal,contacto_id:c||undefined});
+  // 2) Aviso al asistente de WhatsApp: marca la conversación y deja nota en HubSpot.
+  if(c){try{var u='https://apto-chat-api.marketon-saap.workers.dev/wa/clic?c='+encodeURIComponent(c)+'&canal='+encodeURIComponent(canal);
+    if(!(navigator.sendBeacon&&navigator.sendBeacon(u)))fetch(u,{keepalive:true,mode:'no-cors'}).catch(function(){});}catch(e){}}
+  // 3) Al calendario.
+  setTimeout(function(){location.replace(destino);},700);
+})();
+</script>
+</body></html>
