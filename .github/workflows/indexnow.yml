@@ -1,0 +1,43 @@
+name: IndexNow
+
+# Después de cada publicación de GitHub Pages, avisa a Bing (y a los demás buscadores
+# de IndexNow) de las páginas que cambiaron. La llave vive en la raíz del sitio; no es secreta.
+on:
+  workflow_run:
+    workflows: [pages-build-deployment]
+    types: [completed]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  indexnow:
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+
+      - name: Ping IndexNow
+        env:
+          KEY: c9f3de08b0664ada8a3edd0f6cd43475
+        run: |
+          sleep 30   # que el CDN ya sirva la versión nueva
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            CAMBIOS=$(git ls-files)
+          else
+            CAMBIOS=$(git diff --name-only HEAD~1 HEAD)
+          fi
+          URLS=$(echo "$CAMBIOS" | grep -E '(^|/)index\.html$' | grep -vE '^(reports|tools|agenda|aviso-de-privacidad)/' \
+            | sed -E 's#index\.html$##; s#^#https://landing.apto.mx/#' | sort -u)
+          if [ -z "$URLS" ]; then echo "Sin páginas cambiadas"; exit 0; fi
+          echo "$URLS"
+          LISTA=$(echo "$URLS" | python3 -c 'import json,sys;print(json.dumps([l.strip() for l in sys.stdin if l.strip()]))')
+          CODE=$(curl -sS -o /dev/null -w "%{http_code}" -H "Content-Type: application/json; charset=utf-8" \
+            -d "{\"host\":\"landing.apto.mx\",\"key\":\"$KEY\",\"keyLocation\":\"https://landing.apto.mx/$KEY.txt\",\"urlList\":$LISTA}" \
+            https://api.indexnow.org/indexnow)
+          echo "IndexNow $CODE"
+          case "$CODE" in 200|202) ;; *) exit 1;; esac
